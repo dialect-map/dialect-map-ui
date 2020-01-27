@@ -1,8 +1,9 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
+import PapersTilesLayer from "../../controllers/PapersTilesLayer";
 import { colorTilesHost, colorTilesAttr, greyTilesHost, greyTilesAttr } from "../../../../config";
-import { LayersControl, Map, TileLayer } from "react-leaflet";
+import { LayersControl, Map } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 
@@ -13,7 +14,7 @@ export default class MapCanvas extends Component {
         super(props);
         this.state = {
             mapCenter: [37.765248, -122.402676],
-            mapZoom: 10,
+            mapZoom: 4,
             markersRadius: 4,
         };
     }
@@ -35,7 +36,7 @@ export default class MapCanvas extends Component {
                     <LayersControl.BaseLayer
                         checked={false}
                         name="Color">
-                        <TileLayer
+                        <PapersTilesLayer
                             url={colorTilesHost}
                             attribution={colorTilesAttr}
                         />
@@ -43,7 +44,7 @@ export default class MapCanvas extends Component {
                     <LayersControl.BaseLayer
                         checked={true}
                         name="Greyscale">
-                        <TileLayer
+                        <PapersTilesLayer
                             url={greyTilesHost}
                             attribution={greyTilesAttr}
                         />
