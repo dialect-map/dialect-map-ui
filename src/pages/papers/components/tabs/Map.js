@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import PapersTilesLayer from "../../controllers/PapersTilesLayer";
 import { colorTilesHost, colorTilesAttr, greyTilesHost, greyTilesAttr } from "../../../../config";
 import { LayersControl, Map } from "react-leaflet";
+import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 
@@ -13,16 +14,15 @@ export default class MapCanvas extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mapCenter: [37.765248, -122.402676],
-            mapZoom: 4,
-            markersRadius: 4,
+            mapCenter: [-1500, 1500],
+            mapZoom: 0,
         };
     }
 
 
     componentDidMount () {
         const map = this.map.leafletElement;
-        setTimeout(() => map.invalidateSize(), 0);
+        setTimeout(() => map.invalidateSize(), 100);
     }
 
 
@@ -31,7 +31,12 @@ export default class MapCanvas extends Component {
 
         return (
             // The "ref" prop is necessary to obtain the created instance
-            <Map center={mapCenter} zoom={mapZoom} ref={(ref) => this.map = ref}>
+            <Map
+                center={mapCenter}
+                zoom={mapZoom}
+                crs={CRS.Simple}
+                ref={(ref) => this.map = ref}
+            >
                 <LayersControl>
                     <LayersControl.BaseLayer
                         checked={false}
