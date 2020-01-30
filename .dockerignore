@@ -1,0 +1,12 @@
+# Hidden items
+.dockerignore
+.gitignore
+.git
+
+# Items that do not need to be in a Docker image
+Dockerfile
+README.md
+
+# Artifacts that will be built during image creation
+build
+node_modules
