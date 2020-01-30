@@ -1,10 +1,10 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
+import CustomCRS from "../../controllers/PapersCRS";
 import PapersTilesLayer from "../../controllers/PapersTilesLayer";
-import { colorTilesHost, colorTilesAttr, greyTilesHost, greyTilesAttr } from "../../../../config";
+import * as config from "../../../../config";
 import { LayersControl, Map } from "react-leaflet";
-import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 
@@ -13,45 +13,46 @@ export default class MapCanvas extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            mapCenter: [-1500, 1500],
-            mapZoom: 0,
-        };
+
+        // Set up at render() time
+        this.map = null;
     }
 
 
     componentDidMount () {
-        const map = this.map.leafletElement;
-        setTimeout(() => map.invalidateSize(), 100);
+        setTimeout(() => this.map.invalidateSize(), 100);
     }
 
 
     render() {
-        const { mapCenter, mapZoom } = this.state;
 
         return (
             // The "ref" prop is necessary to obtain the created instance
             <Map
-                center={mapCenter}
-                zoom={mapZoom}
-                crs={CRS.Simple}
-                ref={(ref) => this.map = ref}
+                center={config.mapInitialCenter}
+                crs={CustomCRS}
+                maxBounds={config.mapBounds}
+                maxBoundsViscosity={config.mapBoundsViscosity}
+                zoom={config.mapInitialZoom}
+                zoomDelta={config.mapZoomDelta}
+                zoomSnap={config.mapZoomSnap}
+                ref={(ref) => this.map = ref.leafletElement}
             >
                 <LayersControl>
                     <LayersControl.BaseLayer
                         checked={false}
                         name="Color">
                         <PapersTilesLayer
-                            url={colorTilesHost}
-                            attribution={colorTilesAttr}
+                            url={config.colorTilesHost}
+                            attribution={config.colorTilesAttr}
                         />
                     </LayersControl.BaseLayer>
                     <LayersControl.BaseLayer
                         checked={true}
                         name="Greyscale">
                         <PapersTilesLayer
-                            url={greyTilesHost}
-                            attribution={greyTilesAttr}
+                            url={config.greyTilesHost}
+                            attribution={config.greyTilesAttr}
                         />
                     </LayersControl.BaseLayer>
                 </LayersControl>

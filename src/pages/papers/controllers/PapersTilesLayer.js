@@ -13,7 +13,6 @@ class PaperscapeTiles extends GridLayer {
         options.minZoom = 0;
         options.maxZoom = 6;
         options.tileSize = 512;
-        options.noWrap = true;
         options.continuousWorld = true;
         options.subdomains = ["1", "2", "3", "4"];
 
