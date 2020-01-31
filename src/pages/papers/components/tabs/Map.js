@@ -1,10 +1,10 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
-import CustomCRS from "../../controllers/PapersCRS";
-import PapersTilesLayer from "../../controllers/PapersTilesLayer";
 import * as config from "../../../../config";
+import PapersTilesLayer from "../../controllers/PapersTilesLayer";
 import { LayersControl, Map } from "react-leaflet";
+import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 
@@ -30,7 +30,7 @@ export default class MapCanvas extends Component {
             // The "ref" prop is necessary to obtain the created instance
             <Map
                 center={config.mapInitialCenter}
-                crs={CustomCRS}
+                crs={CRS.Simple}
                 maxBounds={config.mapBounds}
                 maxBoundsViscosity={config.mapBoundsViscosity}
                 zoom={config.mapInitialZoom}

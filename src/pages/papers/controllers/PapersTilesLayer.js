@@ -7,8 +7,7 @@ import { TileLayer } from "leaflet";
 class PaperscapeTiles extends GridLayer {
 
 
-    // Function invoked by the GridLayer
-    createLeafletElement(props) {
+    getCustomOptions(props) {
         let options = super.getOptions(props);
         options.minZoom = 0;
         options.maxZoom = 6;
@@ -16,7 +15,27 @@ class PaperscapeTiles extends GridLayer {
         options.continuousWorld = true;
         options.subdomains = ["1", "2", "3", "4"];
 
-        return new TileLayer(props.url, options);
+        return options
+    }
+
+
+    customGetTileUrl(coords) {
+        coords.x += 1;
+        coords.y += 1;
+        return this.defaultGetTileUrl(coords);
+    }
+
+
+    // Function invoked by the GridLayer
+    createLeafletElement(props) {
+        let options = this.getCustomOptions(props);
+        let layer = new TileLayer(props.url, options);
+
+        // Override default in order to correct zoom drift
+        layer.defaultGetTileUrl = layer.getTileUrl;
+        layer.getTileUrl = this.customGetTileUrl;
+
+        return layer;
     }
 
 
@@ -24,7 +43,7 @@ class PaperscapeTiles extends GridLayer {
     updateLeafletElement(fromProps, toProps) {
         super.updateLeafletElement(fromProps, toProps);
         if (toProps.url !== fromProps.url) {
-            this.leafletElement.setUrl(toProps.url)
+            this.leafletElement.setUrl(toProps.url);
         }
     }
 }
