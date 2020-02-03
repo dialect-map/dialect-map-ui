@@ -8,6 +8,13 @@ import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 
+const world_X_min = -73523;
+const world_X_max = 69456;
+
+const world_Y_min = -66067;
+const world_Y_max = 84802;
+
+
 export default class MapCanvas extends Component {
 
 
@@ -21,6 +28,33 @@ export default class MapCanvas extends Component {
 
     componentDidMount () {
         setTimeout(() => this.map.invalidateSize(), 100);
+    }
+
+
+    getPan() {
+        let centerLatLng = this.map.getCenter();
+        let centerCoords = this.map.latLngToLayerPoint(centerLatLng);
+        let originCoords = this.map.getPixelOrigin();
+
+        return [
+            centerCoords.x - originCoords.x,
+            centerCoords.y - originCoords.y
+        ];
+    }
+
+
+    worldToViewScale() {
+        let canvasBounds = this.map.getPixelBounds();
+        let canvasWidth = canvasBounds.max.x - canvasBounds.min.x;
+        let currentZoom = this.map.getZoom();
+        let worldWidth = world_X_max - world_X_min;
+
+        return (canvasWidth * currentZoom) / worldWidth;
+    }
+
+
+    viewToWorldScale() {
+        return 1 / this.worldToViewScale()
     }
 
 
