@@ -2,8 +2,8 @@
 
 import React, { Component } from "react";
 import * as config from "../../../../config";
-import PapersTilesLayer from "../../controllers/PapersTilesLayer";
-import { CircleMarker, LayersControl, Map } from "react-leaflet";
+import MapLayerControl from "./MapLayerControl";
+import { CircleMarker, Map } from "react-leaflet";
 import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -39,9 +39,10 @@ export default class MapCanvas extends Component {
 
     buildLocationToPaperURL(X_pos, Y_pos) {
         return config.locationToPaperURL
-            + "?callback=&tbl=" + "&"
-            + "ml2p[]=" + X_pos + "&"
-            + "ml2p[]=" + Y_pos
+            + "?callback="
+            + "&tbl="
+            + "&ml2p[]=" + X_pos
+            + "&ml2p[]=" + Y_pos
     }
 
 
@@ -110,26 +111,7 @@ export default class MapCanvas extends Component {
                 zoomSnap={config.mapZoomSnap}
                 ref={(ref) => this.map = ref.leafletElement}
             >
-                <LayersControl>
-                    <LayersControl.BaseLayer
-                        checked={false}
-                        name="Field">
-                        <PapersTilesLayer
-                            url={config.colorTilesHost}
-                            attribution={config.colorTilesAttr}
-                            tileSize={tilePixelSize}
-                        />
-                    </LayersControl.BaseLayer>
-                    <LayersControl.BaseLayer
-                        checked={true}
-                        name="Heatmap">
-                        <PapersTilesLayer
-                            url={config.greyTilesHost}
-                            attribution={config.greyTilesAttr}
-                            tileSize={tilePixelSize}
-                        />
-                    </LayersControl.BaseLayer>
-                </LayersControl>
+                <MapLayerControl tileSize={tilePixelSize} />
 
                 {papersList.map((paper, index) =>
                     <CircleMarker
