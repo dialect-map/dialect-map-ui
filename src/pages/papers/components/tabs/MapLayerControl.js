@@ -15,12 +15,15 @@ export default class MapLayerControl extends Component {
             labels: []
         };
 
+        // Necessary binding in order to access parent functions
         this.loadLabels = this.loadLabels.bind(this);
     }
 
 
     loadLabels() {
+        let map = this.props.getMap();
         console.log("Loaded!");
+        console.log("Current zoom:", map.getZoom());
     }
 
 

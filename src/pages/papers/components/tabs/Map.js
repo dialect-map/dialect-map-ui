@@ -28,12 +28,20 @@ export default class MapCanvas extends Component {
 
     constructor(props) {
         super(props);
-        this.map = null;  // Set up at render() time
+
+        // Set up at render() time
+        this.map = null;
+        this.getMap = this.getMap.bind(this);
     }
 
 
     componentDidMount () {
         setTimeout(() => this.map.invalidateSize(), 100);
+    }
+
+
+    getMap(){
+        return this.map;
     }
 
 
@@ -111,7 +119,10 @@ export default class MapCanvas extends Component {
                 zoomSnap={config.mapZoomSnap}
                 ref={(ref) => this.map = ref.leafletElement}
             >
-                <MapLayerControl tileSize={tilePixelSize} />
+                <MapLayerControl
+                    getMap={this.getMap}
+                    tileSize={tilePixelSize}
+                />
 
                 {papersList.map((paper, index) =>
                     <CircleMarker
