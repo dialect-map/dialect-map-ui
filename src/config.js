@@ -12,9 +12,9 @@ export const mapZoomSnap = 0.25;
 
 /* PaperScape map properties */
 export const worldMinX = -73671;
-export const worldMaxX = 69418;
+export const worldMaxX = +69418;
 export const worldMinY = -66079;
-export const worldMaxY = 84798;
+export const worldMaxY = +84798;
 
 
 /* PaperScape URLs */

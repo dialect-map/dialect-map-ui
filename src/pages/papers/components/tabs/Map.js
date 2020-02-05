@@ -15,13 +15,6 @@ import "leaflet/dist/leaflet.css";
 const tilePixelSize = 512;
 const tilePixelsAtZoom0 = 37732;
 
-/*
- View offset with respect to the [0, 0]
- TODO: Why these values?
- */
-const Y_axis_offset = - 897.5;
-const X_axis_offset = + 1000;
-
 
 export default class MapCanvas extends Component {
 
@@ -96,8 +89,8 @@ export default class MapCanvas extends Component {
 
         // Leaflet considers [Y, X] not [X, Y]
         return [
-            (-1 * world_Y * scale) + Y_axis_offset,
-            (+1 * world_X * scale) + X_axis_offset
+            (-1 * (world_Y - config.worldMinY) * scale),
+            (+1 * (world_X - config.worldMinX) * scale),
         ];
     }
 
@@ -107,8 +100,8 @@ export default class MapCanvas extends Component {
 
         // PaperScape considers [X, Y] not [Y, X]
         return [
-            +1 * (view_X - X_axis_offset) * scale,
-            -1 * (view_Y - Y_axis_offset) * scale
+            (+1 * view_X * scale) + config.worldMinX,
+            (-1 * view_Y * scale) + config.worldMinY,
         ];
     }
 
