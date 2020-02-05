@@ -20,7 +20,7 @@ const tilePixelsAtZoom0 = 37732;
  TODO: Why these values?
  */
 const Y_axis_offset = - 897.5;
-const X_axis_offset = + 998.5;
+const X_axis_offset = + 1000;
 
 
 export default class MapCanvas extends Component {
@@ -31,7 +31,11 @@ export default class MapCanvas extends Component {
 
         // Set up at render() time
         this.map = null;
+
+        // Necessary binding in order to pass these functions to children
         this.getMap = this.getMap.bind(this);
+        this.viewToWorld = this.viewToWorld.bind(this);
+        this.worldToView = this.worldToView.bind(this);
     }
 
 
@@ -45,26 +49,27 @@ export default class MapCanvas extends Component {
     }
 
 
-    buildLocationToPaperURL(X_pos, Y_pos) {
-        return config.locationToPaperURL
+    _fetchPaperID(X_pos, Y_pos) {
+        let url = config.locationToPaperURL
             + "?callback="
             + "&tbl="
             + "&ml2p[]=" + X_pos
-            + "&ml2p[]=" + Y_pos
+            + "&ml2p[]=" + Y_pos;
+
+        fetch(url, {})
+            .then(resp => console.log(resp))
+            .catch(err => console.log(err));
     }
 
 
-    printInfo(e) {
+    clickToPaperID(e) {
         let coords = this.map.mouseEventToLatLng(e.originalEvent);
 
         let view_X_pos = coords.lng;
         let view_Y_pos = coords.lat;
         let world_loc = this.viewToWorld(view_X_pos, view_Y_pos);
-        let url = this.buildLocationToPaperURL(world_loc[0], world_loc[1]);
 
-        fetch(url, {})
-            .then(resp => console.log(resp))
-            .catch(err => console.log(err))
+        this._fetchPaperID(world_loc[0], world_loc[1]);
     }
 
 
@@ -113,14 +118,16 @@ export default class MapCanvas extends Component {
                 crs={CRS.Simple}
                 maxBounds={config.mapBounds}
                 maxBoundsViscosity={config.mapBoundsViscosity}
-                onClick={(e) => this.printInfo(e)}
+                onClick={(e) => this.clickToPaperID(e)}
                 zoom={config.mapInitialZoom}
                 zoomDelta={config.mapZoomDelta}
                 zoomSnap={config.mapZoomSnap}
                 ref={(ref) => this.map = ref.leafletElement}
             >
                 <MapLayerControl
-                    getMap={this.getMap}
+                    getMapFunc={this.getMap}
+                    viewToWorldFunc={this.viewToWorld}
+                    worldToViewFunc={this.worldToView}
                     tileSize={tilePixelSize}
                 />
 
