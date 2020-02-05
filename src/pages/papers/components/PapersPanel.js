@@ -15,6 +15,11 @@ class PapersPanel extends Component {
         super(props);
         this.state = {
             chosenTab: "map",
+            papers: [
+                {x: 31531, y: -21233},
+                {x: -5138, y: 588},
+                {x: 34, y: 34},
+            ],
         };
 
         // Necessary binding in order to allow children actions
@@ -25,9 +30,9 @@ class PapersPanel extends Component {
     renderTab() {
         switch (this.state.chosenTab) {
             case "map":
-                return <MapCanvas />;
+                return <MapCanvas papersList={this.state.papers}/>;
             default:
-                return <MapCanvas />;
+                return <MapCanvas papersList={this.state.papers}/>;
         }
     }
 

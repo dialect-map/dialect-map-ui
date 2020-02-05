@@ -57,3 +57,12 @@
 .panel-body-main {
     max-width: calc(100% - 100px);
 }
+
+
+.panel-body-map-label {
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+}
