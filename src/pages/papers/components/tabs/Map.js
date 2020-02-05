@@ -33,7 +33,7 @@ export default class MapCanvas extends Component {
 
 
     componentDidMount () {
-        setTimeout(() => this.map.invalidateSize(), 100);
+        setTimeout(() => this.map.invalidateSize(), 200);
     }
 
 
@@ -43,7 +43,9 @@ export default class MapCanvas extends Component {
 
 
     setMap(ref) {
-        this.map = ref;
+        if (this.map === null) {
+            this.map = ref.leafletElement;
+        }
     }
 
 
@@ -120,7 +122,7 @@ export default class MapCanvas extends Component {
                 zoom={config.mapInitialZoom}
                 zoomDelta={config.mapZoomDelta}
                 zoomSnap={config.mapZoomSnap}
-                ref={(ref) => this.setMap(ref.leafletElement)}
+                ref={(ref) => this.setMap(ref)}
             >
                 <MapLayerControl
                     getMapFunc={this.getMap}
