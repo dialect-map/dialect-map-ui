@@ -5,18 +5,35 @@ It has been built using [React][react-webpage] using the [PaperSpace public fron
 
 
 ## Environment setup
+All dependencies can be installed by running:
 ```shell script
-npm install
+RUN npm install
+RUN npm install --global serve
+```
+
+## Project development
+```shell script
+npm start
 ```
 
 ## Project build
 ```shell script
-npm run build
+make build
 ```
 
 ## Project deploy
 ```shell script
-npm start
+make deploy
+```
+
+## Docker build
+```shell script
+make docker-build
+```
+
+## Docker run
+```shell script
+make docker-deploy
 ```
 
 
