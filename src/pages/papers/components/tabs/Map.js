@@ -44,8 +44,13 @@ export default class MapCanvas extends Component {
     }
 
 
-    getMap(){
+    getMap() {
         return this.map;
+    }
+
+
+    setMap(ref) {
+        this.map = ref;
     }
 
 
@@ -122,7 +127,7 @@ export default class MapCanvas extends Component {
                 zoom={config.mapInitialZoom}
                 zoomDelta={config.mapZoomDelta}
                 zoomSnap={config.mapZoomSnap}
-                ref={(ref) => this.map = ref.leafletElement}
+                ref={(ref) => this.setMap(ref.leafletElement)}
             >
                 <MapLayerControl
                     getMapFunc={this.getMap}

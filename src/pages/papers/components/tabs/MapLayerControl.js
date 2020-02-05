@@ -93,7 +93,7 @@ export default class MapLayerControl extends Component {
         let worldCenter = this.props.viewToWorldFunc(viewCenter.lng, viewCenter.lat);
 
         let currentZoom = map.getZoom();
-        let roundedZoom = Math.round(currentZoom);
+        let roundedZoom = Math.floor(currentZoom);
         let labelSpec   = LABELS[roundedZoom];
         let labelsXTile = this._getLabelTile(worldCenter[0], config.worldMinX, config.worldMaxX, labelSpec.nx);
         let labelsYTile = this._getLabelTile(worldCenter[1], config.worldMinY, config.worldMaxY, labelSpec.ny);
