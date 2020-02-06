@@ -20,9 +20,10 @@ const config = {
     worldMaxX: null,
     worldMinY: null,
     worldMaxY: null,
+    worldTileSize: null,
 
-    tileRealPixelsSize:  null,
-    tileWorldPixelsAtZ0: null,
+    viewToWorldScale: null,
+    worldToViewScale: null,
 
 
     /* PaperScape URLs */

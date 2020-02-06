@@ -116,7 +116,7 @@ export default class MapLayerControl extends Component {
                     <PapersTilesLayer
                         url={config.colorTilesHost}
                         attribution={config.colorTilesAttr}
-                        tileSize={config.tileRealPixelsSize}
+                        tileSize={config.worldTileSize}
                         onLoad={this.loadLabels}
                     />
                 </LayersControl.BaseLayer>
@@ -126,7 +126,7 @@ export default class MapLayerControl extends Component {
                     <PapersTilesLayer
                         url={config.greyTilesHost}
                         attribution={config.greyTilesAttr}
-                        tileSize={config.tileRealPixelsSize}
+                        tileSize={config.worldTileSize}
                         onLoad={this.loadLabels}
                     />
                 </LayersControl.BaseLayer>

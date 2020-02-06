@@ -86,7 +86,7 @@ export default class MapSelectedPaper extends Component {
 
 
     convertRadius(radius) {
-        return radius * this.props.worldToViewScale();
+        return radius * config.worldToViewScale;
     }
 
 

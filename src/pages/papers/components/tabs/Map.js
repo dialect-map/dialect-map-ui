@@ -42,37 +42,20 @@ export default class MapCanvas extends Component {
     }
 
 
-    worldToViewScale() {
-        // Leaflet "Simple" CRS supposes a 1:1 ratio
-        // Between tile pixels and world pixels at zoom 0.
-        // As it is not the case, scaling need to be performed
-        return config.tileRealPixelsSize / config.tileWorldPixelsAtZ0;
-    }
-
-
-    viewToWorldScale() {
-        return 1 / this.worldToViewScale();
-    }
-
-
     worldToView(world_X, world_Y) {
-        let scale = this.worldToViewScale();
-
         // Leaflet considers [Y, X] not [X, Y]
         return [
-            (-1 * (world_Y - config.worldMinY) * scale),
-            (+1 * (world_X - config.worldMinX) * scale),
+            (-1 * (world_Y - config.worldMinY) * config.worldToViewScale),
+            (+1 * (world_X - config.worldMinX) * config.worldToViewScale),
         ];
     }
 
 
     viewToWorld(view_X, view_Y) {
-        let scale = this.viewToWorldScale();
-
         // PaperScape considers [X, Y] not [Y, X]
         return [
-            (+1 * view_X * scale) + config.worldMinX,
-            (-1 * view_Y * scale) + config.worldMinY,
+            (+1 * view_X * config.viewToWorldScale) + config.worldMinX,
+            (-1 * view_Y * config.viewToWorldScale) + config.worldMinY,
         ];
     }
 
@@ -102,7 +85,6 @@ export default class MapCanvas extends Component {
                     getMap={this.getMap}
                     viewToWorld={this.viewToWorld}
                     worldToView={this.worldToView}
-                    worldToViewScale={this.worldToViewScale}
                 />
 
                 {papersList.map((paper, index) =>
