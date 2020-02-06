@@ -15,11 +15,7 @@ class PapersPanel extends Component {
         super(props);
         this.state = {
             chosenTab: "map",
-            papers: [
-                {x: 31531, y: -21233},
-                {x: -5138, y: 588},
-                {x: 34, y: 34},
-            ],
+            papers: [],
         };
 
         // Necessary binding in order to allow children actions

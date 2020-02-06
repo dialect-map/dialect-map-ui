@@ -1,19 +1,12 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
-import * as config from "../../../../config";
+import config from "../../../../config";
 import MapLayerControl from "./MapLayerControl";
+import MapSelectedPaper  from "./MapSelected";
 import { CircleMarker, Map } from "react-leaflet";
 import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
-
-
-/*
- The complete specification can be obtained from:
- https://tile1.paperscape.org/world/world_index.json
- */
-const tilePixelSize = 512;
-const tilePixelsAtZoom0 = 37732;
 
 
 export default class MapCanvas extends Component {
@@ -49,61 +42,20 @@ export default class MapCanvas extends Component {
     }
 
 
-    _fetchPaperID(X_pos, Y_pos) {
-        let url = config.locationToPaperURL
-            + "?callback="
-            + "&tbl="
-            + "&ml2p[]=" + X_pos
-            + "&ml2p[]=" + Y_pos;
-
-        fetch(url, {})
-            .then(resp => console.log(resp))
-            .catch(err => console.log(err));
-    }
-
-
-    clickToPaperID(e) {
-        let coords = this.map.mouseEventToLatLng(e.originalEvent);
-
-        let view_X_pos = coords.lng;
-        let view_Y_pos = coords.lat;
-        let world_loc = this.viewToWorld(view_X_pos, view_Y_pos);
-
-        this._fetchPaperID(world_loc[0], world_loc[1]);
-    }
-
-
-    worldToViewScale() {
-        // Leaflet "Simple" CRS supposes a 1:1 ratio
-        // Between tile pixels and world pixels at zoom 0.
-        // As it is not the case, scaling need to be performed
-        return tilePixelSize / tilePixelsAtZoom0;
-    }
-
-
-    viewToWorldScale() {
-        return 1 / this.worldToViewScale();
-    }
-
-
     worldToView(world_X, world_Y) {
-        let scale = this.worldToViewScale();
-
         // Leaflet considers [Y, X] not [X, Y]
         return [
-            (-1 * (world_Y - config.worldMinY) * scale),
-            (+1 * (world_X - config.worldMinX) * scale),
+            (-1 * (world_Y - config.worldMinY) * config.worldToViewScale),
+            (+1 * (world_X - config.worldMinX) * config.worldToViewScale),
         ];
     }
 
 
     viewToWorld(view_X, view_Y) {
-        let scale = this.viewToWorldScale();
-
         // PaperScape considers [X, Y] not [Y, X]
         return [
-            (+1 * view_X * scale) + config.worldMinX,
-            (-1 * view_Y * scale) + config.worldMinY,
+            (+1 * view_X * config.viewToWorldScale) + config.worldMinX,
+            (-1 * view_Y * config.viewToWorldScale) + config.worldMinY,
         ];
     }
 
@@ -116,19 +68,23 @@ export default class MapCanvas extends Component {
             <Map
                 center={config.mapInitialCenter}
                 crs={CRS.Simple}
-                maxBounds={config.mapBounds}
+                maxBounds={config.mapBoundsCoords}
                 maxBoundsViscosity={config.mapBoundsViscosity}
-                onClick={(e) => this.clickToPaperID(e)}
                 zoom={config.mapInitialZoom}
                 zoomDelta={config.mapZoomDelta}
                 zoomSnap={config.mapZoomSnap}
                 ref={(ref) => this.setMap(ref)}
             >
                 <MapLayerControl
-                    getMapFunc={this.getMap}
-                    viewToWorldFunc={this.viewToWorld}
-                    worldToViewFunc={this.worldToView}
-                    tileSize={tilePixelSize}
+                    getMap={this.getMap}
+                    viewToWorld={this.viewToWorld}
+                    worldToView={this.worldToView}
+                />
+
+                <MapSelectedPaper
+                    getMap={this.getMap}
+                    viewToWorld={this.viewToWorld}
+                    worldToView={this.worldToView}
                 />
 
                 {papersList.map((paper, index) =>

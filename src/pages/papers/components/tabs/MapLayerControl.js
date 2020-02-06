@@ -1,8 +1,8 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
+import config from "../../../../config";
 import { LABELS } from "./MapLabels";
-import * as config from "../../../../config";
 import PapersTilesLayer from "../../controllers/PapersTilesLayer";
 import { FeatureGroup, LayersControl, Marker } from "react-leaflet";
 import { divIcon } from "leaflet";
@@ -53,10 +53,7 @@ export default class MapLayerControl extends Component {
             + "/" + Y_tile
             + ".json";
 
-        // Using a CORS-proxy given that the paperscape responses
-        // Do not include the 'Access-Control-Allow-Origin' header
-        // Ref: https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors
-        fetch(config.labelsJsonProxy + "/" + url, {})
+        fetch(url, {})
             .then(resp => this._handleLabelsResp(resp))
             .catch(err => console.log(err));
     }
@@ -64,11 +61,13 @@ export default class MapLayerControl extends Component {
 
     _handleLabelsResp(resp) {
         let reader = resp.body.getReader();
+
         reader.read()
             .then(text => {
                 let body = this.stringDecoder.decode(text.value);
                 let resp = this._pruneLabelsResp(body);
                 let json = JSON.parse(resp);
+
                 this.setState({
                     labels: json["lbls"]
                 });
@@ -87,10 +86,10 @@ export default class MapLayerControl extends Component {
 
 
     loadLabels() {
-        let map = this.props.getMapFunc();
+        let map = this.props.getMap();
 
         let viewCenter  = map.getCenter();
-        let worldCenter = this.props.viewToWorldFunc(viewCenter.lng, viewCenter.lat);
+        let worldCenter = this.props.viewToWorld(viewCenter.lng, viewCenter.lat);
 
         let currentZoom = map.getZoom();
         let roundedZoom = Math.floor(currentZoom);
@@ -103,7 +102,7 @@ export default class MapLayerControl extends Component {
 
 
     render() {
-        const { tileSize, worldToViewFunc } = this.props;
+        const { worldToView } = this.props;
         const { labels } = this.state;
 
         return (
@@ -112,9 +111,9 @@ export default class MapLayerControl extends Component {
                     checked={false}
                     name="Field">
                     <PapersTilesLayer
-                        url={config.colorTilesHost}
-                        attribution={config.colorTilesAttr}
-                        tileSize={tileSize}
+                        url={config.tilesColorHost}
+                        attribution={config.tilesAttrib}
+                        tileSize={config.worldTileSize}
                         onLoad={this.loadLabels}
                     />
                 </LayersControl.BaseLayer>
@@ -122,9 +121,9 @@ export default class MapLayerControl extends Component {
                     checked={true}
                     name="Heatmap">
                     <PapersTilesLayer
-                        url={config.greyTilesHost}
-                        attribution={config.greyTilesAttr}
-                        tileSize={tileSize}
+                        url={config.tilesGreyHost}
+                        attribution={config.tilesAttrib}
+                        tileSize={config.worldTileSize}
                         onLoad={this.loadLabels}
                     />
                 </LayersControl.BaseLayer>
@@ -136,7 +135,7 @@ export default class MapLayerControl extends Component {
                         {labels.map((label, index) =>
                             <Marker
                                 key={index}
-                                position={worldToViewFunc(label["x"], label["y"])}
+                                position={worldToView(label.x, label.y)}
                                 icon={divIcon({
                                     className: "panel-body-map-label",
                                     html: label["lbl"].split(",").join("<br>")
