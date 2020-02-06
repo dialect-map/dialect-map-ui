@@ -67,20 +67,33 @@ export default class MapSelectedPaper extends Component {
 
 
     _prunePaperIDResp(body) {
-        let startStr  = paperIDRespPrefix.length;
+        let startStr = paperIDRespPrefix.length;
         let finishStr = body.length - paperIDRespSuffix.length;
         return body.substring(startStr, finishStr);
     }
 
 
+    _isMapBackground(e) {
+        let clickedClass = e.originalEvent.target.className;
+
+        if (typeof (clickedClass) !== "string" || clickedClass.includes("leaflet") === false) {
+            return false
+        } else {
+            return true;
+        }
+    }
+
+
     clickToPaperID(e) {
+        // Stop click event if it was not performed directly into the map
+        if (this._isMapBackground(e) === false) {
+            return;
+        }
+
         let coords = this.map.mouseEventToLatLng(e.originalEvent);
+        let worldLoc = this.props.viewToWorld(coords.lng, coords.lat);
 
-        let view_X_pos = coords.lng;
-        let view_Y_pos = coords.lat;
-        let world_loc = this.props.viewToWorld(view_X_pos, view_Y_pos);
-
-        this._fetchPaperID(world_loc[0], world_loc[1]);
+        this._fetchPaperID(worldLoc[0], worldLoc[1])
     }
 
 
