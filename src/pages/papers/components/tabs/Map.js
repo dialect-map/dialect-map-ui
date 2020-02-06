@@ -9,14 +9,6 @@ import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 
-/*
- The complete specification can be obtained from:
- https://tile1.paperscape.org/world/world_index.json
- */
-const tilePixelSize = 512;
-const tilePixelsAtZoom0 = 37732;
-
-
 export default class MapCanvas extends Component {
 
 
@@ -54,7 +46,7 @@ export default class MapCanvas extends Component {
         // Leaflet "Simple" CRS supposes a 1:1 ratio
         // Between tile pixels and world pixels at zoom 0.
         // As it is not the case, scaling need to be performed
-        return tilePixelSize / tilePixelsAtZoom0;
+        return config.tileRealPixelsSize / config.tileWorldPixelsAtZoom0;
     }
 
 
@@ -104,7 +96,6 @@ export default class MapCanvas extends Component {
                     getMap={this.getMap}
                     viewToWorld={this.viewToWorld}
                     worldToView={this.worldToView}
-                    tileSize={tilePixelSize}
                 />
 
                 <MapSelectedPaper

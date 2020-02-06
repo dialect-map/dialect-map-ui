@@ -10,17 +10,27 @@ export const mapZoomDelta = 0.25;
 export const mapZoomSnap = 0.25;
 
 
-/* PaperScape map properties */
-export const worldMinX = -73671;
-export const worldMaxX = +69418;
-export const worldMinY = -66079;
-export const worldMaxY = +84798;
+/* PaperScape map properties
+*
+*  They change in a daily basis.
+*  They need to be fetched prior any rendering
+*/
+export const worldMinX = null;
+export const worldMaxX = null;
+export const worldMinY = null;
+export const worldMaxY = null;
+export const tileRealPixelsSize = null;
+export const tileWorldPixelsAtZoom0 = null;
 
 
 /* PaperScape URLs */
+export const worldConfigParams  = "https://tile1.paperscape.org/world/world_index.json";
 export const locationToPaperURL = "https://paperscape.org/wombat";
-export const labelsJsonProxy = "https://cors-anywhere.herokuapp.com";
-export const labelsJsonHost = "https://tile1.paperscape.org/world/zones";
+export const labelsJsonHost     = "https://tile1.paperscape.org/world/zones";
+
+
+/* Mandatory proxy to allow PaperScape CORS requests */
+export const worldMandatoryProxy = "https://cors-anywhere.herokuapp.com";
 
 
 /* Color tiles provider */

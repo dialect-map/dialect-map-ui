@@ -56,7 +56,7 @@ export default class MapLayerControl extends Component {
         // Using a CORS-proxy given that the paperscape responses
         // Do not include the 'Access-Control-Allow-Origin' header
         // Ref: https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors
-        fetch(config.labelsJsonProxy + "/" + url, {})
+        fetch(config.worldMandatoryProxy + "/" + url, {})
             .then(resp => this._handleLabelsResp(resp))
             .catch(err => console.log(err));
     }
@@ -64,11 +64,13 @@ export default class MapLayerControl extends Component {
 
     _handleLabelsResp(resp) {
         let reader = resp.body.getReader();
+
         reader.read()
             .then(text => {
                 let body = this.stringDecoder.decode(text.value);
                 let resp = this._pruneLabelsResp(body);
                 let json = JSON.parse(resp);
+
                 this.setState({
                     labels: json["lbls"]
                 });
@@ -114,7 +116,7 @@ export default class MapLayerControl extends Component {
                     <PapersTilesLayer
                         url={config.colorTilesHost}
                         attribution={config.colorTilesAttr}
-                        tileSize={tileSize}
+                        tileSize={config.tileRealPixelsSize}
                         onLoad={this.loadLabels}
                     />
                 </LayersControl.BaseLayer>
@@ -124,7 +126,7 @@ export default class MapLayerControl extends Component {
                     <PapersTilesLayer
                         url={config.greyTilesHost}
                         attribution={config.greyTilesAttr}
-                        tileSize={tileSize}
+                        tileSize={config.tileRealPixelsSize}
                         onLoad={this.loadLabels}
                     />
                 </LayersControl.BaseLayer>
