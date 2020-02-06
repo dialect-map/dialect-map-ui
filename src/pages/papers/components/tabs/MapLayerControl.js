@@ -85,6 +85,11 @@ export default class MapLayerControl extends Component {
     }
 
 
+    buildLabel(label) {
+        return label.split(",").filter((s) => s !== "").join("<br>")
+    }
+
+
     loadLabels() {
         let map = this.props.getMap();
 
@@ -138,7 +143,7 @@ export default class MapLayerControl extends Component {
                                 position={worldToView(label.x, label.y)}
                                 icon={divIcon({
                                     className: "panel-body-map-label",
-                                    html: label["lbl"].split(",").join("<br>")
+                                    html: this.buildLabel(label["lbl"])
                                 })}
                             >
                             </Marker>

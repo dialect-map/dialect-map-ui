@@ -16,10 +16,10 @@ export default class MapSelectedPaper extends Component {
         super(props);
         this.state = {
             selected: {
-                id: 0,
-                x: 0,
-                y: 0,
-                r: 0
+                id: null,
+                x:  null,
+                y:  null,
+                r:  null
             },
         };
 
@@ -76,7 +76,7 @@ export default class MapSelectedPaper extends Component {
     _isMapBackground(e) {
         let clickedClass = e.originalEvent.target.className;
 
-        if (typeof (clickedClass) !== "string" || clickedClass.includes("leaflet") === false) {
+        if (typeof(clickedClass) !== "string" || clickedClass.includes("leaflet") === false) {
             return false
         } else {
             return true;
@@ -92,7 +92,6 @@ export default class MapSelectedPaper extends Component {
 
         let coords = this.map.mouseEventToLatLng(e.originalEvent);
         let worldLoc = this.props.viewToWorld(coords.lng, coords.lat);
-
         this._fetchPaperID(worldLoc[0], worldLoc[1])
     }
 
@@ -105,6 +104,11 @@ export default class MapSelectedPaper extends Component {
     render() {
         const { worldToView } = this.props;
         const { selected } = this.state;
+
+        // In case the info box is hidden
+        if ((selected.x === null) || (selected.y === null) || (selected.r === null)) {
+            return false;
+        }
 
         return (
             <Circle
