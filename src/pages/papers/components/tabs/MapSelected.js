@@ -40,6 +40,7 @@ export default class MapSelectedPaper extends Component {
 
         fetch(url, {})
             .then(resp => this._handlePaperIDResp(resp))
+            .then(____ => this.props.showInfoBox())
             .catch(err => console.log(err));
     }
 

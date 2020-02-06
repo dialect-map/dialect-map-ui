@@ -10,7 +10,6 @@ export default class MapInfoBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: true,
             paper: {
                 title: "Loading...",
                 authors: "Loading...",
@@ -20,9 +19,6 @@ export default class MapInfoBox extends Component {
                 numCits: 0,
             },
         };
-
-        // Necessary binding in order to modify the state
-        this.hideInfoBox = this.hideInfoBox.bind(this);
     }
 
 
@@ -31,35 +27,35 @@ export default class MapInfoBox extends Component {
     }
 
 
-    hideInfoBox() {
-        this.setState({
-            visible: false,
-        })
-    }
-
-
     render() {
-        const { visible } = this.state;
-        const a = this.buildArxivLink();
+        const { getInfoBox, hideInfoBox } = this.props;
+        const arxivLink = this.buildArxivLink();
 
-        if (!visible) {
+        // In case the info box is hidden
+        if (getInfoBox() === false) {
             return false;
         }
 
         return (
             <Card className="panel-body-map-info">
-                <Button icon onClick={this.hideInfoBox}>
+                <Button icon onClick={hideInfoBox}>
                     <Icon name="minus square" />
                 </Button>
 
                 <Card.Content>
-                    <Card.Header>{this.state.paper.title}</Card.Header>
+                    <Card.Header>
+                        {this.state.paper.title}
+                    </Card.Header>
                     <Card.Description>
                         {this.state.paper.authors}
                     </Card.Description>
                     <Card.Description>
                         {this.state.paper.publisher}
-                        <a href={a} rel="noopener noreferrer" target="_blank">
+                        <a
+                            href={arxivLink}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >
                             <Icon name="file pdf" />
                         </a>
                     </Card.Description>
