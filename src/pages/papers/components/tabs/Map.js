@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import config from "../../../../config";
+import MapInfoBox from "./MapInfoBox";
 import MapLayerControl from "./MapLayerControl";
 import MapSelectedPaper  from "./MapSelected";
 import { CircleMarker, Map } from "react-leaflet";
@@ -71,10 +72,13 @@ export default class MapCanvas extends Component {
                 maxBounds={config.mapBoundsCoords}
                 maxBoundsViscosity={config.mapBoundsViscosity}
                 zoom={config.mapInitialZoom}
+                zoomControl={config.mapZoomControl}
                 zoomDelta={config.mapZoomDelta}
                 zoomSnap={config.mapZoomSnap}
                 ref={(ref) => this.setMap(ref)}
             >
+                <MapInfoBox />
+
                 <MapLayerControl
                     getMap={this.getMap}
                     viewToWorld={this.viewToWorld}

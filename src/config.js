@@ -17,6 +17,7 @@ const config = {
     mapBoundsViscosity: 0.8,
     mapInitialCenter: [-1000, 1000],
     mapInitialZoom: 0,
+    mapZoomControl: false,
     mapZoomDelta: 0.25,
     mapZoomSnap: 0.25,
 

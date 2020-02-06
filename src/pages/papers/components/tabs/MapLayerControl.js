@@ -106,7 +106,7 @@ export default class MapLayerControl extends Component {
         const { labels } = this.state;
 
         return (
-            <LayersControl>
+            <LayersControl position="topleft">
                 <LayersControl.BaseLayer
                     checked={false}
                     name="Field">

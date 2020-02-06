@@ -32,7 +32,7 @@
 }
 
 .search-start-container {
-    padding: 0    !important; /* Necessary flag */
+    padding: 0          !important; /* Necessary flag */
 }
 
 
@@ -65,4 +65,13 @@
     font-weight: bold;
     text-align: center;
     white-space: nowrap;
+}
+
+.panel-body-map-info {
+    width: 150px;
+    height: 150px;
+    z-index: 450;
+    right: 10px;
+    position: absolute      !important; /* Necessary flag */
+    background-color: #FFFFFF;
 }
