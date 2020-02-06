@@ -87,10 +87,10 @@ export default class MapLayerControl extends Component {
 
 
     loadLabels() {
-        let map = this.props.getMapFunc();
+        let map = this.props.getMap();
 
         let viewCenter  = map.getCenter();
-        let worldCenter = this.props.viewToWorldFunc(viewCenter.lng, viewCenter.lat);
+        let worldCenter = this.props.viewToWorld(viewCenter.lng, viewCenter.lat);
 
         let currentZoom = map.getZoom();
         let roundedZoom = Math.floor(currentZoom);
@@ -103,7 +103,7 @@ export default class MapLayerControl extends Component {
 
 
     render() {
-        const { tileSize, worldToViewFunc } = this.props;
+        const { tileSize, worldToView } = this.props;
         const { labels } = this.state;
 
         return (
@@ -136,7 +136,7 @@ export default class MapLayerControl extends Component {
                         {labels.map((label, index) =>
                             <Marker
                                 key={index}
-                                position={worldToViewFunc(label.x, label.y)}
+                                position={worldToView(label.x, label.y)}
                                 icon={divIcon({
                                     className: "panel-body-map-label",
                                     html: label["lbl"].split(",").join("<br>")

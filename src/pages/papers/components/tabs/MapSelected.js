@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import * as config from "../../../../config";
-import { CircleMarker } from "react-leaflet";
+import { Circle } from "react-leaflet";
 
 
 const paperIDRespPrefix = '(';
@@ -15,12 +15,17 @@ export default class MapSelectedPaper extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: {id: 0, x: 0, y: 0, r: 0},
+            selected: {
+                id: 0,
+                x: 0,
+                y: 0,
+                r: 0
+            },
         };
 
         this.stringDecoder = new TextDecoder("utf-8");
 
-        this.map = props.getMapFunc();
+        this.map = props.getMap();
         this.map.on("click", (e) => this.clickToPaperID(e));
     }
 
@@ -69,28 +74,27 @@ export default class MapSelectedPaper extends Component {
 
         let view_X_pos = coords.lng;
         let view_Y_pos = coords.lat;
-        let world_loc = this.props.viewToWorldFunc(view_X_pos, view_Y_pos);
+        let world_loc = this.props.viewToWorld(view_X_pos, view_Y_pos);
 
         this._fetchPaperID(world_loc[0], world_loc[1]);
     }
 
 
     convertRadius(radius) {
-        return radius / 75;
+        return radius * this.props.worldToViewScale();
     }
 
 
     render() {
-        const { worldToViewFunc } = this.props;
+        const { worldToView } = this.props;
         const { selected } = this.state;
 
         return (
-            <CircleMarker
-                key={4}
-                center={worldToViewFunc(selected.x, selected.y)}
+            <Circle
+                center={worldToView(selected.x, selected.y)}
                 color={"black"}
                 radius={this.convertRadius(selected.r)}>
-            </CircleMarker>
+            </Circle>
         );
     }
 }

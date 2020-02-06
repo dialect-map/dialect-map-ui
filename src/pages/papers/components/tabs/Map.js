@@ -101,16 +101,17 @@ export default class MapCanvas extends Component {
                 ref={(ref) => this.setMap(ref)}
             >
                 <MapLayerControl
-                    getMapFunc={this.getMap}
-                    viewToWorldFunc={this.viewToWorld}
-                    worldToViewFunc={this.worldToView}
+                    getMap={this.getMap}
+                    viewToWorld={this.viewToWorld}
+                    worldToView={this.worldToView}
                     tileSize={tilePixelSize}
                 />
 
                 <MapSelectedPaper
-                    getMapFunc={this.getMap}
-                    viewToWorldFunc={this.viewToWorld}
-                    worldToViewFunc={this.worldToView}
+                    getMap={this.getMap}
+                    viewToWorld={this.viewToWorld}
+                    worldToView={this.worldToView}
+                    worldToViewScale={this.worldToViewScale}
                 />
 
                 {papersList.map((paper, index) =>
