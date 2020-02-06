@@ -37,10 +37,8 @@ export default class MapSelectedPaper extends Component {
             + "&ml2p[]=" + X_pos
             + "&ml2p[]=" + Y_pos;
 
-        // Using a CORS-proxy given that the paperscape responses
-        // Do not include the 'Access-Control-Allow-Origin' header
-        // Ref: https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors
-        fetch(config.worldMandatoryProxy + "/" + url, {})
+
+        fetch(url, {})
             .then(resp => this._handlePaperIDResp(resp))
             .catch(err => console.log(err));
     }

@@ -68,7 +68,7 @@ export default class MapCanvas extends Component {
             <Map
                 center={config.mapInitialCenter}
                 crs={CRS.Simple}
-                maxBounds={config.mapBounds}
+                maxBounds={config.mapBoundsCoords}
                 maxBoundsViscosity={config.mapBoundsViscosity}
                 zoom={config.mapInitialZoom}
                 zoomDelta={config.mapZoomDelta}

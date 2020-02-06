@@ -1,9 +1,19 @@
 /* encoding: utf-8 */
 
+
+/* IMPORTANT NOTE:
+ *
+ * Using a CORS-proxy given that the paperscape responses
+ * Do not include the 'Access-Control-Allow-Origin' header
+ * Ref: https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors
+ */
+const worldMandatoryProxy = "https://cors-anywhere.herokuapp.com/";
+
+
 const config = {
 
     /* Leaflet map properties */
-    mapBounds: [[-2000, 0], [0, 2000]],
+    mapBoundsCoords: [[-2000, 0], [0, 2000]],
     mapBoundsViscosity: 0.8,
     mapInitialCenter: [-1000, 1000],
     mapInitialZoom: 0,
@@ -12,10 +22,10 @@ const config = {
 
 
     /* PaperScape map properties
-    *
-    *  They change in a daily basis.
-    *  They need to be fetched prior any rendering
-    */
+     *
+     * They change in a daily basis.
+     * They need to be fetched prior any rendering
+     */
     worldMinX: null,
     worldMaxX: null,
     worldMinY: null,
@@ -27,22 +37,15 @@ const config = {
 
 
     /* PaperScape URLs */
-    worldConfigURL: "https://tile1.paperscape.org/world/world_index.json",
-    locToPaperURL:  "https://paperscape.org/wombat",
-    labelsJsonHost: "https://tile1.paperscape.org/world/zones",
+    worldConfigURL: worldMandatoryProxy + "https://tile1.paperscape.org/world/world_index.json",
+    locToPaperURL:  worldMandatoryProxy + "https://paperscape.org/wombat",
+    labelsJsonHost: worldMandatoryProxy + "https://tile1.paperscape.org/world/zones",
 
 
-    /* Mandatory proxy to allow PaperScape CORS requests */
-    worldMandatoryProxy: "https://cors-anywhere.herokuapp.com",
-
-
-    /* Color tiles provider */
-    colorTilesHost: "https://tile{s}.paperscape.org/world/tiles/{z}/{x}/{y}.png",
-    colorTilesAttr: "<a href=https://github.com/paperscape>PaperScape</a>",
-
-    /* Greyscale tiles provider */
-    greyTilesHost: "https://tile{s}.paperscape.org/world/tiles-hm/{z}/{x}/{y}.png",
-    greyTilesAttr: "<a href=https://github.com/paperscape>PaperScape</a>",
+    /* PaperScape tiles URLs */
+    tilesColorHost: "https://tile{s}.paperscape.org/world/tiles/{z}/{x}/{y}.png",
+    tilesGreyHost:  "https://tile{s}.paperscape.org/world/tiles-hm/{z}/{x}/{y}.png",
+    tilesAttrib:    "<a href=https://github.com/paperscape>PaperScape</a>",
 };
 
 

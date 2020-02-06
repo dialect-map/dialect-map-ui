@@ -53,10 +53,7 @@ export default class MapLayerControl extends Component {
             + "/" + Y_tile
             + ".json";
 
-        // Using a CORS-proxy given that the paperscape responses
-        // Do not include the 'Access-Control-Allow-Origin' header
-        // Ref: https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors
-        fetch(config.worldMandatoryProxy + "/" + url, {})
+        fetch(url, {})
             .then(resp => this._handleLabelsResp(resp))
             .catch(err => console.log(err));
     }
@@ -114,8 +111,8 @@ export default class MapLayerControl extends Component {
                     checked={false}
                     name="Field">
                     <PapersTilesLayer
-                        url={config.colorTilesHost}
-                        attribution={config.colorTilesAttr}
+                        url={config.tilesColorHost}
+                        attribution={config.tilesAttrib}
                         tileSize={config.worldTileSize}
                         onLoad={this.loadLabels}
                     />
@@ -124,8 +121,8 @@ export default class MapLayerControl extends Component {
                     checked={true}
                     name="Heatmap">
                     <PapersTilesLayer
-                        url={config.greyTilesHost}
-                        attribution={config.greyTilesAttr}
+                        url={config.tilesGreyHost}
+                        attribution={config.tilesAttrib}
                         tileSize={config.worldTileSize}
                         onLoad={this.loadLabels}
                     />

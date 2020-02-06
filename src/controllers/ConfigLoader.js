@@ -57,8 +57,7 @@ export default class ConfigLoader {
     static async loadPaperscapeConfig() {
         console.log("Loading PaperScape configuration...");
 
-        let url  = config.worldMandatoryProxy + "/" + config.worldConfigURL;
-        let resp = await fetch(url, {});
+        let resp = await fetch(config.worldConfigURL, {});
         let text = await this._handlePaperIDResp(resp);
 
         let body = this.stringDecoder.decode(text.value);
