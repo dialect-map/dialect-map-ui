@@ -1,8 +1,8 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
+import config from "../../../../config";
 import { LABELS } from "./MapLabels";
-import * as config from "../../../../config";
 import PapersTilesLayer from "../../controllers/PapersTilesLayer";
 import { FeatureGroup, LayersControl, Marker } from "react-leaflet";
 import { divIcon } from "leaflet";
@@ -105,7 +105,7 @@ export default class MapLayerControl extends Component {
 
 
     render() {
-        const { tileSize, worldToView } = this.props;
+        const { worldToView } = this.props;
         const { labels } = this.state;
 
         return (

@@ -1,12 +1,12 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
-import * as config from "../../../../config";
+import config from "../../../../config";
 import { Circle } from "react-leaflet";
 
 
-const paperIDRespPrefix = '(';
-const paperIDRespSuffix = ')\n';
+const paperIDRespPrefix = "(";
+const paperIDRespSuffix = ")\n";
 
 
 export default class MapSelectedPaper extends Component {
@@ -31,7 +31,7 @@ export default class MapSelectedPaper extends Component {
 
 
     _fetchPaperID(X_pos, Y_pos) {
-        let url = config.locationToPaperURL
+        let url = config.locToPaperURL
             + "?callback="
             + "&tbl="
             + "&ml2p[]=" + X_pos

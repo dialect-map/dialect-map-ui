@@ -1,7 +1,7 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
-import * as config from "../../../../config";
+import config from "../../../../config";
 import MapLayerControl from "./MapLayerControl";
 import MapSelectedPaper  from "./MapSelected";
 import { CircleMarker, Map } from "react-leaflet";
@@ -46,7 +46,7 @@ export default class MapCanvas extends Component {
         // Leaflet "Simple" CRS supposes a 1:1 ratio
         // Between tile pixels and world pixels at zoom 0.
         // As it is not the case, scaling need to be performed
-        return config.tileRealPixelsSize / config.tileWorldPixelsAtZoom0;
+        return config.tileRealPixelsSize / config.tileWorldPixelsAtZ0;
     }
 
 
