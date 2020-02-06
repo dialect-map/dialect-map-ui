@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import * as config from "../../../../config";
 import MapLayerControl from "./MapLayerControl";
+import MapSelectedPaper  from "./MapSelected";
 import { CircleMarker, Map } from "react-leaflet";
 import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -46,30 +47,6 @@ export default class MapCanvas extends Component {
         if (this.map === null) {
             this.map = ref.leafletElement;
         }
-    }
-
-
-    _fetchPaperID(X_pos, Y_pos) {
-        let url = config.locationToPaperURL
-            + "?callback="
-            + "&tbl="
-            + "&ml2p[]=" + X_pos
-            + "&ml2p[]=" + Y_pos;
-
-        fetch(url, {})
-            .then(resp => console.log(resp))
-            .catch(err => console.log(err));
-    }
-
-
-    clickToPaperID(e) {
-        let coords = this.map.mouseEventToLatLng(e.originalEvent);
-
-        let view_X_pos = coords.lng;
-        let view_Y_pos = coords.lat;
-        let world_loc = this.viewToWorld(view_X_pos, view_Y_pos);
-
-        this._fetchPaperID(world_loc[0], world_loc[1]);
     }
 
 
@@ -118,7 +95,6 @@ export default class MapCanvas extends Component {
                 crs={CRS.Simple}
                 maxBounds={config.mapBounds}
                 maxBoundsViscosity={config.mapBoundsViscosity}
-                onClick={(e) => this.clickToPaperID(e)}
                 zoom={config.mapInitialZoom}
                 zoomDelta={config.mapZoomDelta}
                 zoomSnap={config.mapZoomSnap}
@@ -129,6 +105,12 @@ export default class MapCanvas extends Component {
                     viewToWorldFunc={this.viewToWorld}
                     worldToViewFunc={this.worldToView}
                     tileSize={tilePixelSize}
+                />
+
+                <MapSelectedPaper
+                    getMapFunc={this.getMap}
+                    viewToWorldFunc={this.viewToWorld}
+                    worldToViewFunc={this.worldToView}
                 />
 
                 {papersList.map((paper, index) =>

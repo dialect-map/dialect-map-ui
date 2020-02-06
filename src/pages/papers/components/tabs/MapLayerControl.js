@@ -136,7 +136,7 @@ export default class MapLayerControl extends Component {
                         {labels.map((label, index) =>
                             <Marker
                                 key={index}
-                                position={worldToViewFunc(label["x"], label["y"])}
+                                position={worldToViewFunc(label.x, label.y)}
                                 icon={divIcon({
                                     className: "panel-body-map-label",
                                     html: label["lbl"].split(",").join("<br>")
