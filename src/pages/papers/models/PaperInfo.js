@@ -8,10 +8,11 @@ export default class PaperInfo {
 
 
     constructor(data) {
-        this.title   = data["titl"];
-        this.auth    = data["auth"];
-        this.publ    = data["publ"];
-        this.arxivID = data["arxv"];
+        // Some of these fields may not be in the API response
+        this.title   = data["titl"] || "";
+        this.auth    = data["auth"] || "";
+        this.publ    = data["publ"] || "";
+        this.arxivID = data["arxv"] || "";
         this.numRefs = data["nr"];
         this.numCits = data["nc"];
     }
