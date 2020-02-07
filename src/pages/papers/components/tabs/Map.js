@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import config from "../../../../config";
-import MapInfoBox from "./MapInfoBox";
 import MapLayerControl from "./MapLayerControl";
 import MapSelectedPaper  from "./MapSelected";
 import { CircleMarker, Map } from "react-leaflet";
@@ -18,14 +17,9 @@ export default class MapCanvas extends Component {
 
         // Set up at render() time
         this.map = null;
-        this.state = {
-            infoBoxVisible: false,
-        };
 
         // Necessary binding in order to pass these functions to children
         this.getMap = this.getMap.bind(this);
-        this.hideInfoBox = this.hideInfoBox.bind(this);
-        this.showInfoBox = this.showInfoBox.bind(this);
         this.viewToWorld = this.viewToWorld.bind(this);
         this.worldToView = this.worldToView.bind(this);
     }
@@ -45,20 +39,6 @@ export default class MapCanvas extends Component {
         if (this.map === null) {
             this.map = ref.leafletElement;
         }
-    }
-
-
-    hideInfoBox() {
-        this.setState({
-            infoBoxVisible: false,
-        });
-    }
-
-
-    showInfoBox() {
-        this.setState({
-            infoBoxVisible: true,
-        });
     }
 
 
@@ -96,9 +76,6 @@ export default class MapCanvas extends Component {
                 zoomSnap={config.mapZoomSnap}
                 ref={(ref) => this.setMap(ref)}
             >
-                {this.state.infoBoxVisible ?
-                    (<MapInfoBox hideInfoBox={this.hideInfoBox} />) : null
-                }
 
                 <MapLayerControl
                     getMap={this.getMap}
@@ -108,7 +85,6 @@ export default class MapCanvas extends Component {
 
                 <MapSelectedPaper
                     getMap={this.getMap}
-                    showInfoBox={this.showInfoBox}
                     viewToWorld={this.viewToWorld}
                     worldToView={this.worldToView}
                 />

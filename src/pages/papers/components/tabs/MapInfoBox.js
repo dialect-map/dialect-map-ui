@@ -7,29 +7,15 @@ import { Button, Card, Icon, List } from "semantic-ui-react";
 export default class MapInfoBox extends Component {
 
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            paper: {
-                title: "Loading...",
-                authors: "Loading...",
-                publisher: "Loading...",
-                arxivID: "",
-                numRefs: 0,
-                numCits: 0,
-            },
-        };
-    }
-
-
-    buildArxivLink() {
-        return "https://arxiv.org/pdf/" + this.state.paper.arxivID;
+    buildArxivLink(arxivID) {
+        return "https://arxiv.org/pdf/" + arxivID;
     }
 
 
     render() {
-        const { hideInfoBox } = this.props;
-        const arxivLink = this.buildArxivLink();
+        const { getPaperInfo, hideInfoBox } = this.props;
+        const paperInfo = getPaperInfo();
+        const arxivLink = this.buildArxivLink(paperInfo.arxivID);
 
         return (
             <Card className="panel-body-map-info">
@@ -39,13 +25,13 @@ export default class MapInfoBox extends Component {
 
                 <Card.Content>
                     <Card.Header>
-                        {this.state.paper.title}
+                        {paperInfo.title}
                     </Card.Header>
                     <Card.Description>
-                        {this.state.paper.authors}
+                        {paperInfo.authors}
                     </Card.Description>
                     <Card.Description>
-                        {this.state.paper.publisher}
+                        {paperInfo.publisher}
                         <a
                             href={arxivLink}
                             rel="noopener noreferrer"
@@ -60,11 +46,11 @@ export default class MapInfoBox extends Component {
                     <List horizontal>
                         <List.Item>
                             <Icon name="linkify" />
-                            {this.state.paper.numRefs} references
+                            {paperInfo.numRefs} references
                         </List.Item>
                         <List.Item>
                             <Icon name="file alternate" />
-                            {this.state.paper.numCits} citations
+                            {paperInfo.numCits} citations
                         </List.Item>
                     </List>
                 </Card.Content>
