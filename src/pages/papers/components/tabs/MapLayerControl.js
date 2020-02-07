@@ -2,8 +2,7 @@
 
 import React, { Component } from "react";
 import config from "../../../../config";
-import { LABELS } from "./MapLabels";
-import PapersTilesLayer from "../../controllers/PapersTilesLayer";
+import MapTilesLayer from "./MapTilesLayer";
 import { FeatureGroup, LayersControl, Marker } from "react-leaflet";
 import { divIcon } from "leaflet";
 
@@ -88,7 +87,7 @@ export default class MapLayerControl extends Component {
 
         let currentZoom = map.getZoom();
         let roundedZoom = Math.floor(currentZoom);
-        let labelSpec   = LABELS[roundedZoom];
+        let labelSpec   = config.worldLabels[roundedZoom];
         let labelsXTile = this._getLabelTile(worldCenter[0], config.worldMinX, config.worldMaxX, labelSpec.nx);
         let labelsYTile = this._getLabelTile(worldCenter[1], config.worldMinY, config.worldMaxY, labelSpec.ny);
 
@@ -105,7 +104,7 @@ export default class MapLayerControl extends Component {
                 <LayersControl.BaseLayer
                     checked={false}
                     name="Field">
-                    <PapersTilesLayer
+                    <MapTilesLayer
                         url={config.tilesColorHost}
                         attribution={config.tilesAttrib}
                         tileSize={config.worldTileSize}
@@ -115,7 +114,7 @@ export default class MapLayerControl extends Component {
                 <LayersControl.BaseLayer
                     checked={true}
                     name="Heatmap">
-                    <PapersTilesLayer
+                    <MapTilesLayer
                         url={config.tilesGreyHost}
                         attribution={config.tilesAttrib}
                         tileSize={config.worldTileSize}

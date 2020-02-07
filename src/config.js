@@ -36,10 +36,21 @@ const config = {
     viewToWorldScale: null,
     worldToViewScale: null,
 
+    worldLabels: {
+        0: {"nx": 1, "ny": 1},
+        1: {"nx": 1, "ny": 1},
+        2: {"nx": 1, "ny": 1},
+        3: {"nx": 1, "ny": 1},
+        4: {"nx": 2, "ny": 2},
+        5: {"nx": 4, "ny": 4},
+        6: {"nx": 8, "ny": 8},
+    },
+
 
     /* PaperScape URLs */
     worldConfigURL: worldMandatoryProxy + "https://tile1.paperscape.org/world/world_index.json",
-    locToPaperURL:  worldMandatoryProxy + "https://paperscape.org/wombat",
+    paperInfoURL:   worldMandatoryProxy + "https://paperscape.org/wombat",
+    paperPosURL:    worldMandatoryProxy + "https://paperscape.org/wombat",
     labelsJsonHost: worldMandatoryProxy + "https://tile1.paperscape.org/world/zones",
 
 

@@ -4,7 +4,7 @@ import { GridLayer, withLeaflet } from "react-leaflet";
 import { TileLayer } from "leaflet";
 
 
-class PaperscapeTiles extends GridLayer {
+class MapTilesLayer extends GridLayer {
 
 
     getCustomOptions(props) {
@@ -48,4 +48,4 @@ class PaperscapeTiles extends GridLayer {
 }
 
 
-export default withLeaflet(PaperscapeTiles)
+export default withLeaflet(MapTilesLayer)
