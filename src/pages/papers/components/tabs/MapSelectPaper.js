@@ -8,7 +8,7 @@ import MapInfoBox from "./MapInfoBox";
 import { Circle } from "react-leaflet";
 
 
-export default class MapSelectedPaper extends Component {
+export default class MapSelectPaper extends Component {
 
 
     constructor(props) {

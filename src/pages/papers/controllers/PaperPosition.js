@@ -10,14 +10,14 @@ const paperPosRespSuffix = ")\n";
 export default class PaperPositionCtl  {
 
 
-    static async fetchPaperPos(X_pos, Y_pos) {
+    static fetchPaperPos(X_pos, Y_pos) {
         let url = config.paperPosURL
             + "?callback="
             + "&tbl="
             + "&ml2p[]=" + X_pos
             + "&ml2p[]=" + Y_pos;
 
-        fetch(url, {})
+        return fetch(url, {})
             .then(resp => resp.text())
             .then(text => this._handlePaperPosResp(text))
             .catch(err => console.log(err));

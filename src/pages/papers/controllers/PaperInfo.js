@@ -10,13 +10,13 @@ const paperInfoRespSuffix = ")\n";
 export default class PaperInfoCtl  {
 
 
-    static async fetchPaperInfo(paperID) {
+    static fetchPaperInfo(paperID) {
         let url = config.paperInfoURL
             + "?callback="
             + "&flags[]=1"
             + "&gdata[]=" + paperID;
 
-        fetch(url, {})
+        return fetch(url, {})
             .then(resp => resp.text())
             .then(text => this._handlePaperInfoResp(text))
             .catch(err => console.log(err));

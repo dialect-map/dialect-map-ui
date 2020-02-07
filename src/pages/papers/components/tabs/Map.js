@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import config from "../../../../config";
 import MapLayerControl from "./MapLayerControl";
-import MapSelectedPaper  from "./MapSelected";
+import MapSelectPaper  from "./MapSelectPaper";
 import { CircleMarker, Map } from "react-leaflet";
 import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -83,7 +83,7 @@ export default class MapCanvas extends Component {
                     worldToView={this.worldToView}
                 />
 
-                <MapSelectedPaper
+                <MapSelectPaper
                     getMap={this.getMap}
                     viewToWorld={this.viewToWorld}
                     worldToView={this.worldToView}

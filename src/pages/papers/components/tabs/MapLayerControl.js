@@ -27,7 +27,7 @@ export default class MapLayerControl extends Component {
     }
 
 
-    loadLabels() {
+    async loadLabels() {
         let map = this.props.getMap();
 
         let viewCenter  = map.getCenter();
@@ -35,7 +35,7 @@ export default class MapLayerControl extends Component {
         let currentZoom = map.getZoom();
         let roundedZoom = Math.floor(currentZoom);
 
-        let labels = MapLabelsCtl.fetchLabels(roundedZoom, worldCenter);
+        let labels = await MapLabelsCtl.fetchLabels(roundedZoom, worldCenter);
         this.setState({
             labels: labels,
         });

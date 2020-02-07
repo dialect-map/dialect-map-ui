@@ -13,13 +13,13 @@ export default class MapInfoBox extends Component {
 
 
     render() {
-        const { getPaperInfo, hideInfoBox } = this.props;
+        const { getPaperInfo, hidePaperInfo } = this.props;
         const paperInfo = getPaperInfo();
         const arxivLink = this.buildArxivLink(paperInfo.arxivID);
 
         return (
             <Card className="panel-body-map-info">
-                <Button icon onClick={hideInfoBox}>
+                <Button icon onClick={hidePaperInfo}>
                     <Icon name="minus square" />
                 </Button>
 

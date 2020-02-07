@@ -10,7 +10,7 @@ const labelsRespSuffix = ")";
 export default class MapLabelsCtl  {
 
 
-    static async fetchLabels(zoomLevel, centerPos) {
+    static fetchLabels(zoomLevel, centerPos) {
 
         let labelSpec   = config.worldLabels[zoomLevel];
         let labelsXTile = this._getLabelTile(centerPos[0], config.worldMinX, config.worldMaxX, labelSpec.nx);
@@ -22,7 +22,7 @@ export default class MapLabelsCtl  {
             + "/" + labelsYTile
             + ".json";
 
-        fetch(url, {})
+        return fetch(url, {})
             .then(resp => resp.text())
             .then(text => this._handleLabelsResp(text))
             .catch(err => console.log(err));
