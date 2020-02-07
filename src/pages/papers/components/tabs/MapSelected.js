@@ -2,12 +2,10 @@
 
 import React, { Component } from "react";
 import config from "../../../../config";
+import PaperInfoCtl from "../../controllers/PaperInfo";
+import PaperPositionCtl from "../../controllers/PaperPosition";
 import MapInfoBox from "./MapInfoBox";
 import { Circle } from "react-leaflet";
-
-
-const paperIDRespPrefix = "(";
-const paperIDRespSuffix = ")\n";
 
 
 export default class MapSelectedPaper extends Component {
@@ -52,41 +50,6 @@ export default class MapSelectedPaper extends Component {
     }
 
 
-    _fetchPaperPos(X_pos, Y_pos) {
-        let url = config.locToPaperURL
-            + "?callback="
-            + "&tbl="
-            + "&ml2p[]=" + X_pos
-            + "&ml2p[]=" + Y_pos;
-
-        fetch(url, {})
-            .then(resp => resp.text())
-            .then(text => this._handlePaperPosResp(text))
-            .then(____ => this.showPaperInfo())
-            .catch(err => console.log(err));
-    }
-
-
-    _handlePaperPosResp(text) {
-        let body = this._prunePaperPosResp(text);
-        let json = JSON.parse(body);
-        let result = json["r"];
-
-        if (result !== null) {
-            this.setState({
-                paperPos: result
-            });
-        }
-    }
-
-
-    _prunePaperPosResp(body) {
-        let startStr = paperIDRespPrefix.length;
-        let finishStr = body.length - paperIDRespSuffix.length;
-        return body.substring(startStr, finishStr);
-    }
-
-
     _isMapBackground(e) {
         let clickedClass = e.originalEvent.target.className;
 
@@ -98,7 +61,7 @@ export default class MapSelectedPaper extends Component {
     }
 
 
-    clickToPaperPos(e) {
+    async clickToPaperPos(e) {
         // Stop click event if it was not performed directly into the map
         if (this._isMapBackground(e) === false) {
             return;
@@ -106,7 +69,15 @@ export default class MapSelectedPaper extends Component {
 
         let coords = this.map.mouseEventToLatLng(e.originalEvent);
         let worldLoc = this.props.viewToWorld(coords.lng, coords.lat);
-        this._fetchPaperPos(worldLoc[0], worldLoc[1])
+
+        let paperPos = await PaperPositionCtl.fetchPaperPos(worldLoc[0], worldLoc[1]);
+        let paperInfo = await PaperInfoCtl.fetchPaperInfo(paperPos.id);
+        this.setState({
+            paperPos: paperPos,
+            paperInfo: paperInfo,
+        });
+
+        this.showPaperInfo();
     }
 
 
