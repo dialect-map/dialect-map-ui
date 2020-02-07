@@ -25,13 +25,13 @@ export default class MapInfoBox extends Component {
 
                 <Card.Content>
                     <Card.Header>
-                        {paperInfo.title}
+                        { paperInfo.getTitleForView() }
                     </Card.Header>
                     <Card.Description>
-                        {paperInfo.authors}
+                        { paperInfo.getAuthorsForView() }
                     </Card.Description>
                     <Card.Description>
-                        {paperInfo.publisher}
+                        { paperInfo.getPublisherForView() }
                         <a
                             href={arxivLink}
                             rel="noopener noreferrer"
@@ -46,11 +46,11 @@ export default class MapInfoBox extends Component {
                     <List horizontal>
                         <List.Item>
                             <Icon name="linkify" />
-                            {paperInfo.numRefs} references
+                            { paperInfo.numRefs } references
                         </List.Item>
                         <List.Item>
                             <Icon name="file alternate" />
-                            {paperInfo.numCits} citations
+                            { paperInfo.numCits } citations
                         </List.Item>
                     </List>
                 </Card.Content>

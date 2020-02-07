@@ -1,6 +1,7 @@
 /* encoding: utf-8 */
 
 import config from "../../../config"
+import PaperPosition from "../models/PaperPosition"
 
 
 const paperPosRespPrefix = "(";
@@ -20,20 +21,30 @@ export default class PaperPositionCtl  {
         return fetch(url, {})
             .then(resp => resp.text())
             .then(text => this._handlePaperPosResp(text))
-            .catch(err => console.log(err));
     }
 
 
     static _handlePaperPosResp(text) {
-        let body = this._prunePaperPosResp(text);
-        let json = JSON.parse(body);
-        return json["r"];
+        let paperPos = null;
+
+        try {
+            let body = this._prunePaperPosResp(text);
+            let json = JSON.parse(body);
+            let data = json["r"];
+            paperPos = new PaperPosition(data);
+        }
+        catch(error) {
+            console.log(error);
+        }
+
+        return paperPos;
     }
 
 
     static _prunePaperPosResp(body) {
         let startStr = paperPosRespPrefix.length;
         let finishStr = body.length - paperPosRespSuffix.length;
+
         return body.substring(startStr, finishStr);
     }
 }

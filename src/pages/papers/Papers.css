@@ -68,10 +68,11 @@
 }
 
 .panel-body-map-info {
-    width: 150px;
-    height: 150px;
-    z-index: 450;
+    top: 10px;
     right: 10px;
+    width: 320px            !important; /* Necessary flag */
+    z-index: 450;
+    cursor: default;
     position: absolute      !important; /* Necessary flag */
-    background-color: #FFFFFF;
+    background: #FFFFFF     !important; /* Necessary flag */
 }

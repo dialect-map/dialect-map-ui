@@ -15,15 +15,8 @@ export default class MapSelectPaper extends Component {
         super(props);
         this.state = {
             paperInfoVisible: false,
+            paperInfo: null,
             paperPos: null,
-            paperInfo: {
-                title: "Loading...",
-                authors: "Loading...",
-                publisher: "Loading...",
-                arxivID: "",
-                numRefs: 0,
-                numCits: 0,
-            },
         };
 
         this.map = props.getMap();
@@ -42,11 +35,6 @@ export default class MapSelectPaper extends Component {
 
     hidePaperInfo() {
         this.setState({paperInfoVisible: false});
-    }
-
-
-    showPaperInfo() {
-        this.setState({paperInfoVisible: true});
     }
 
 
@@ -71,18 +59,30 @@ export default class MapSelectPaper extends Component {
         let worldLoc = this.props.viewToWorld(coords.lng, coords.lat);
 
         let paperPos = await PaperPositionCtl.fetchPaperPos(worldLoc[0], worldLoc[1]);
-        let paperInfo = await PaperInfoCtl.fetchPaperInfo(paperPos.id);
-        this.setState({
-            paperPos: paperPos,
-            paperInfo: paperInfo,
-        });
+        if (paperPos === null) {
+            return;
+        }
 
-        this.showPaperInfo();
+        let paperInfo = await PaperInfoCtl.fetchPaperInfo(paperPos.id);
+        if (paperInfo === null) {
+            return;
+        }
+
+        this.updateSelectedPaper(paperPos, paperInfo);
     }
 
 
     convertRadius(radius) {
         return radius * config.worldToViewScale;
+    }
+
+
+    updateSelectedPaper(paperPos, paperInfo) {
+        this.setState({
+            paperInfoVisible: true,
+            paperInfo: paperInfo,
+            paperPos: paperPos,
+        });
     }
 
 
