@@ -21,8 +21,6 @@ export default class MapLayerControl extends Component {
             labels: []
         };
 
-        this.stringDecoder = new TextDecoder("utf-8");
-
         // Necessary binding in order to access parent functions
         this.loadLabels = this.loadLabels.bind(this);
     }
@@ -54,27 +52,19 @@ export default class MapLayerControl extends Component {
             + ".json";
 
         fetch(url, {})
-            .then(resp => this._handleLabelsResp(resp))
+            .then(resp => resp.text())
+            .then(text => this._handleLabelsResp(text))
             .catch(err => console.log(err));
     }
 
 
-    _handleLabelsResp(resp) {
-        let reader = resp.body.getReader();
+    _handleLabelsResp(text) {
+        let body = this._pruneLabelsResp(text);
+        let json = JSON.parse(body);
 
-        reader.read()
-            .then(text => {
-                let body = this.stringDecoder.decode(text.value);
-                let resp = this._pruneLabelsResp(body);
-                let json = JSON.parse(resp);
-
-                this.setState({
-                    labels: json["lbls"]
-                });
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        this.setState({
+            labels: json["lbls"]
+        });
     }
 
 

@@ -23,8 +23,6 @@ export default class MapSelectedPaper extends Component {
             },
         };
 
-        this.stringDecoder = new TextDecoder("utf-8");
-
         this.map = props.getMap();
         this.map.on("click", (e) => this.clickToPaperID(e));
     }
@@ -37,32 +35,24 @@ export default class MapSelectedPaper extends Component {
             + "&ml2p[]=" + X_pos
             + "&ml2p[]=" + Y_pos;
 
-
         fetch(url, {})
-            .then(resp => this._handlePaperIDResp(resp))
+            .then(resp => resp.text())
+            .then(text => this._handlePaperIDResp(text))
             .then(____ => this.props.showInfoBox())
             .catch(err => console.log(err));
     }
 
 
-    _handlePaperIDResp(resp) {
-        let reader = resp.body.getReader();
+    _handlePaperIDResp(text) {
+        let body = this._prunePaperIDResp(text);
+        let json = JSON.parse(body);
+        let result = json["r"];
 
-        reader.read()
-            .then(text => {
-                let body = this.stringDecoder.decode(text.value);
-                let resp = this._prunePaperIDResp(body);
-                let json = JSON.parse(resp);
-
-                if (json["r"] !== null) {
-                    this.setState({
-                        selected: json["r"]
-                    });
-                }
-            })
-            .catch(err => {
-                console.log(err)
+        if (result !== null) {
+            this.setState({
+                selected: result
             });
+        }
     }
 
 

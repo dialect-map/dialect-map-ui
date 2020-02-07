@@ -10,9 +10,6 @@ const configRespSuffix = ")";
 export default class ConfigLoader {
 
 
-    static stringDecoder = new TextDecoder("utf-8");
-
-
     static _calcWorldToViewScale(tilePixels, tilePixelsAtZ0) {
         return tilePixels / tilePixelsAtZ0;
     }
@@ -23,9 +20,9 @@ export default class ConfigLoader {
     }
 
 
-    static _handlePaperIDResp(resp) {
-        let reader = resp.body.getReader();
-        return reader.read()
+    static _handlePaperIDResp(text) {
+        let body = this._pruneWorldConfigResp(text);
+        return JSON.parse(body);
     }
 
 
@@ -57,12 +54,9 @@ export default class ConfigLoader {
     static async loadPaperscapeConfig() {
         console.log("Loading PaperScape configuration...");
 
-        let resp = await fetch(config.worldConfigURL, {});
-        let text = await this._handlePaperIDResp(resp);
-
-        let body = this.stringDecoder.decode(text.value);
-        let json = this._pruneWorldConfigResp(body);
-        let conf = JSON.parse(json);
+        let conf = await fetch(config.worldConfigURL, {})
+            .then(resp => resp.text())
+            .then(text => this._handlePaperIDResp(text));
 
         this._updateConfig(conf);
         console.log("PaperScape configuration loaded")
