@@ -28,13 +28,8 @@ export default class MapInfoBox extends Component {
 
 
     render() {
-        const { getInfoBox, hideInfoBox } = this.props;
+        const { hideInfoBox } = this.props;
         const arxivLink = this.buildArxivLink();
-
-        // In case the info box is hidden
-        if (getInfoBox() === false) {
-            return false;
-        }
 
         return (
             <Card className="panel-body-map-info">

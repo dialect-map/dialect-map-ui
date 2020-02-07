@@ -24,7 +24,6 @@ export default class MapCanvas extends Component {
 
         // Necessary binding in order to pass these functions to children
         this.getMap = this.getMap.bind(this);
-        this.getInfoBox = this.getInfoBox.bind(this);
         this.hideInfoBox = this.hideInfoBox.bind(this);
         this.showInfoBox = this.showInfoBox.bind(this);
         this.viewToWorld = this.viewToWorld.bind(this);
@@ -46,11 +45,6 @@ export default class MapCanvas extends Component {
         if (this.map === null) {
             this.map = ref.leafletElement;
         }
-    }
-
-
-    getInfoBox() {
-        return this.state.infoBoxVisible;
     }
 
 
@@ -102,10 +96,9 @@ export default class MapCanvas extends Component {
                 zoomSnap={config.mapZoomSnap}
                 ref={(ref) => this.setMap(ref)}
             >
-                <MapInfoBox
-                    getInfoBox={this.getInfoBox}
-                    hideInfoBox={this.hideInfoBox}
-                />
+                {this.state.infoBoxVisible ?
+                    (<MapInfoBox hideInfoBox={this.hideInfoBox} />) : null
+                }
 
                 <MapLayerControl
                     getMap={this.getMap}
