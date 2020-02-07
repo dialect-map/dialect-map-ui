@@ -8,12 +8,12 @@ export default class PaperInfo {
 
 
     constructor(data) {
-        this.title     = data["titl"];
-        this.auth      = data["auth"];
-        this.publ      = data["publ"];
-        this.arxivID   = data["arxv"];
-        this.numRefs   = data["nr"];
-        this.numCits   = data["nc"];
+        this.title   = data["titl"];
+        this.auth    = data["auth"];
+        this.publ    = data["publ"];
+        this.arxivID = data["arxv"];
+        this.numRefs = data["nr"];
+        this.numCits = data["nc"];
     }
 
 

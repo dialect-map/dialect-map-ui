@@ -38,24 +38,24 @@ export default class MapSelectPaper extends Component {
     }
 
 
-    _isMapBackground(e) {
-        let clickedClass = e.originalEvent.target.className;
+    _isMapBackground(event) {
+        let clickedClass = event.originalEvent.target.className;
 
         if (typeof(clickedClass) !== "string" || clickedClass.includes("leaflet") === false) {
-            return false
+            return false;
         } else {
             return true;
         }
     }
 
 
-    async clickToPaperPos(e) {
+    async clickToPaperPos(event) {
         // Stop click event if it was not performed directly into the map
-        if (this._isMapBackground(e) === false) {
+        if (this._isMapBackground(event) === false) {
             return;
         }
 
-        let coords = this.map.mouseEventToLatLng(e.originalEvent);
+        let coords = this.map.mouseEventToLatLng(event.originalEvent);
         let worldLoc = this.props.viewToWorld(coords.lng, coords.lat);
 
         let paperPos = await PaperPositionCtl.fetchPaperPos(worldLoc[0], worldLoc[1]);
@@ -92,7 +92,7 @@ export default class MapSelectPaper extends Component {
 
         return (
             <div>
-                {this.state.paperInfoVisible ?
+                { this.state.paperInfoVisible ?
                     (
                         <MapInfoBox
                             getPaperInfo={this.getPaperInfo}
@@ -100,7 +100,7 @@ export default class MapSelectPaper extends Component {
                         />
                     ) : null
                 }
-                {this.state.paperPos !== null ?
+                { this.state.paperPos !== null ?
                     (
                         <Circle
                             center={worldToView(paperPos.x, paperPos.y)}
