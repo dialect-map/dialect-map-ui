@@ -12,7 +12,7 @@ export default class PaperInfoCtl  {
 
 
     static fetchPaperInfo(paperID) {
-        let url = config.paperInfoURL
+        let url = config.papersDataURL
             + "?callback="
             + "&flags[]=1"
             + "&gdata[]=" + paperID;

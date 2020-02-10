@@ -48,9 +48,8 @@ const config = {
 
 
     /* PaperScape URLs */
+    papersDataURL: "https://paperscape.org/wombat",
     worldConfigURL: worldMandatoryProxy + "https://tile1.paperscape.org/world/world_index.json",
-    paperInfoURL:   worldMandatoryProxy + "https://paperscape.org/wombat",
-    paperPosURL:    worldMandatoryProxy + "https://paperscape.org/wombat",
     labelsJsonHost: worldMandatoryProxy + "https://tile1.paperscape.org/world/zones",
 
 

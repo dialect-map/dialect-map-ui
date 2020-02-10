@@ -12,7 +12,7 @@ export default class PaperPositionCtl  {
 
 
     static fetchPaperPos(X_pos, Y_pos) {
-        let url = config.paperPosURL
+        let url = config.papersDataURL
             + "?callback="
             + "&tbl="
             + "&ml2p[]=" + X_pos
