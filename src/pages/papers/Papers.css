@@ -36,6 +36,11 @@
 }
 
 
+.leaflet-container {
+    background-color: #000000;
+}
+
+
 .panel-layout {
     height: 100%;
 }
@@ -60,10 +65,12 @@
 
 
 .panel-body-map-label {
-    color: #000000;
+    color: #FFFFFF;
     font-size: 14px;
     font-weight: bold;
+    font-family: Arial, sans-serif;
     text-align: center;
+    line-height: normal;
     white-space: nowrap;
 }
 

@@ -23,7 +23,12 @@ export default class MapLayerControl extends Component {
 
 
     buildLabel(label) {
-        return label.split(",").filter((s) => s !== "").join("<br>")
+        let labelLevels = label.split(",");
+        labelLevels = labelLevels.filter((s) => s !== "");
+        labelLevels = labelLevels.slice(0, 3);
+        labelLevels = labelLevels.join("<br>");
+
+        return labelLevels;
     }
 
 
