@@ -27,6 +27,12 @@ export default class MapLayerControl extends Component {
     }
 
 
+    filterWorldLabels(label, northEast, southWest) {
+        return (label.x >= southWest[0] && label.x <= northEast[0])
+            && (label.y >= northEast[1] && label.y <= southWest[1]);
+    }
+
+
     async loadLabels() {
         let map = this.props.getMap();
 
@@ -36,8 +42,15 @@ export default class MapLayerControl extends Component {
         let roundedZoom = Math.floor(currentZoom);
 
         let labels = await MapLabelsCtl.fetchLabels(roundedZoom, worldCenter);
+
+        let viewBounds = map.getBounds();
+        let worldNorthEast = this.props.viewToWorld(viewBounds._northEast.lng, viewBounds._northEast.lat);
+        let worldSouthWest = this.props.viewToWorld(viewBounds._southWest.lng, viewBounds._southWest.lat);
+
+        let worldLabels = labels.filter(label => this.filterWorldLabels(label, worldNorthEast, worldSouthWest));
+
         this.setState({
-            labels: labels,
+            labels: worldLabels,
         });
     }
 
