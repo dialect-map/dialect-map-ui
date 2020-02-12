@@ -1,7 +1,15 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
-import { Button, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
+import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
+
+
+const searchOptions = [
+    {key: 'author',     text: 'Author',     value: 'author'},
+    {key: 'keyword',    text: 'Keyword',    value: 'keyword'},
+    {key: 'title',      text: 'Title',      value: 'title'},
+    {key: 'new-papers', text: 'New papers', value: 'new-papers'},
+];
 
 
 export default class PapersSearch extends Component {
@@ -10,23 +18,28 @@ export default class PapersSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            unsavedPapersJargonA: "",
-            unsavedPapersJargonB: "",
+            unsavedPaperSearch: "",
+            unsavedPaperSearchType: "",
         };
     }
 
 
-    updateUnsavedJargonA(event) {
+    updateUnsavedSearch(event) {
         this.setState({
-            unsavedPapersJargonA: event.target.value
+            unsavedPaperSearch: event.target.value
         });
     }
 
 
-    updateUnsavedJargonB(event) {
+    updateUnsavedSearchType(change) {
         this.setState({
-            unsavedPapersJargonB: event.target.value
+            unsavedPaperSearchType: change.value
         });
+    }
+
+
+    searchPapers() {
+        return [];
     }
 
 
@@ -40,28 +53,23 @@ export default class PapersSearch extends Component {
                             <Icon circular inverted color="blue" name="filter"/>
                         </Image>
                         <b className="search-menu-text">
-                            Jargon term A:
+                            Search:
                         </b>
                         <Input
                             fluid
                             placeholder="Free energy..."
                             size="small"
-                            onChange={event => this.updateUnsavedJargonA(event)}
+                            onChange={event => this.updateUnsavedSearch(event)}
                         />
                     </Menu.Item>
 
-                    <Menu.Item className="search-menu-item">
-                        <Image avatar>
-                            <Icon circular inverted color="blue" name="filter"/>
-                        </Image>
-                        <b className="search-menu-text">
-                            Jargon term B:
-                        </b>
-                        <Input
-                            fluid
-                            placeholder="ELBO..."
-                            size="small"
-                            onChange={event => this.updateUnsavedJargonB(event)}
+                    <Menu.Item>
+                        <Dropdown
+                            selection
+                            className="search-menu-dropdown"
+                            placeholder='By'
+                            options={searchOptions}
+                            onChange={(event, change) => this.updateUnsavedSearchType(change)}
                         />
                     </Menu.Item>
 
@@ -69,7 +77,7 @@ export default class PapersSearch extends Component {
                         <Menu.Item className="search-start-container">
                             <Button
                                 color='blue'
-                                onClick={() => {return false;} }>
+                                onClick={this.searchPapers}>
                                 Search
                             </Button>
                         </Menu.Item>
