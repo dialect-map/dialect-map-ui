@@ -1,14 +1,15 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
+import PaperSearchCtl from "../controllers/PaperSearch";
 import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
 
 
 const searchOptions = [
-    {key: 'author',     text: 'Author',     value: 'author'},
-    {key: 'keyword',    text: 'Keyword',    value: 'keyword'},
-    {key: 'title',      text: 'Title',      value: 'title'},
-    {key: 'new-papers', text: 'New papers', value: 'new-papers'},
+    {key: 'author',     text: 'Author',     value: 'sau'},
+    {key: 'keyword',    text: 'Keyword',    value: 'skw'},
+    {key: 'title',      text: 'Title',      value: 'sti'},
+    {key: 'new-papers', text: 'New papers', value: 'sca'},
 ];
 
 
@@ -38,8 +39,13 @@ export default class PapersSearch extends Component {
     }
 
 
-    searchPapers() {
-        return [];
+    async searchPapers() {
+        let papers = await PaperSearchCtl.fetchPapers(
+            this.state.unsavedPaperSearchType,
+            this.state.unsavedPaperSearch,
+        );
+
+        this.props.setPapers(papers);
     }
 
 
@@ -77,7 +83,8 @@ export default class PapersSearch extends Component {
                         <Menu.Item className="search-start-container">
                             <Button
                                 color='blue'
-                                onClick={this.searchPapers}>
+                                onClick={this.searchPapers}
+                            >
                                 Search
                             </Button>
                         </Menu.Item>

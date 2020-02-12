@@ -62,7 +62,9 @@ class PapersPanel extends Component {
 
                 <Grid.Row stretched className="panel-header">
                     <Grid.Column width={16}>
-                        <PapersSearch/>
+                        <PapersSearch
+                            setPapers={this.setPapers}
+                        />
                     </Grid.Column>
                 </Grid.Row>
 
