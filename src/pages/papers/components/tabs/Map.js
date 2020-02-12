@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import config from "../../../../config";
 import MapLayerControl from "./MapLayerControl";
 import MapSelectPaper  from "./MapSelectPaper";
-import { CircleMarker, Map } from "react-leaflet";
+import { Circle, Map } from "react-leaflet";
 import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -39,6 +39,11 @@ export default class MapCanvas extends Component {
         if (this.map === null) {
             this.map = ref.leafletElement;
         }
+    }
+
+
+    convertRadius(radius) {
+        return radius * config.worldToViewScale;
     }
 
 
@@ -90,12 +95,12 @@ export default class MapCanvas extends Component {
                 />
 
                 {papersList.map((paper, index) =>
-                    <CircleMarker
+                    <Circle
                         key={index}
                         center={this.worldToView(paper.x, paper.y)}
-                        color={"red"}
-                        radius={4}>
-                    </CircleMarker>
+                        color={"gray"}
+                        radius={this.convertRadius(paper.r)}>
+                    </Circle>
                 )}
             </Map>
         );

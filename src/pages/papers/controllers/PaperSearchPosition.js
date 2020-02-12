@@ -16,7 +16,8 @@ export default class PaperSearchPositionCtl  {
         };
 
         return fetch(url, params)
-            .then(resp => this._handlePaperPosResp(resp));
+            .then(resp => resp.json())
+            .then(json => this._handlePaperPosResp(json));
     }
 
 
@@ -30,11 +31,10 @@ export default class PaperSearchPositionCtl  {
     }
 
 
-    static _handlePaperPosResp(resp) {
+    static _handlePaperPosResp(json) {
         let paperPos = [];
 
         try {
-            let json = JSON.parse(resp);
             let data = json["r"];
             paperPos = data.map(paper => new PaperPosition(paper));
         }
