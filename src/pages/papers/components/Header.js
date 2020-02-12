@@ -3,24 +3,10 @@
 import React, { Component } from "react";
 import { withCookies } from "react-cookie";
 import { Menu, Segment } from "semantic-ui-react";
+import HeaderModal from "./header/HeaderModal";
 
 
 class Header extends Component {
-
-
-    constructor(props) {
-        super(props);
-        this.showInfo = this.showInfo.bind(this);
-    }
-
-
-    showInfo() {
-        alert("Dialect map is a project by the NYU Center of Data Science " +
-            "that compares jargon areas of influence by using " +
-            "the visual representation of ArXiv stored papers " +
-            "provided by the PaperScape project"
-        )
-    }
 
 
     render() {
@@ -29,10 +15,7 @@ class Header extends Component {
                 <Menu secondary>
                     <Menu.Item name="Dialect Map"/>
                     <Menu.Menu position="right">
-                        <Menu.Item
-                            name="Info"
-                            onClick={this.showInfo}
-                        />
+                        <HeaderModal/>
                     </Menu.Menu>
                 </Menu>
             </Segment>

@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
-import Header from "./components/Header";
+import PapersHeader from "./components/Header";
 import PapersPanel from "./components/PapersPanel";
 import "./Papers.css";
 
@@ -16,7 +16,7 @@ export default class StreamPage extends Component {
 
                 <Grid.Row stretched className="papers-header">
                     <Grid.Column width={16}>
-                        <Header/>
+                        <PapersHeader/>
                     </Grid.Column>
                 </Grid.Row>
 
