@@ -10,30 +10,31 @@ const paperSearchRespSuffix = ")\n";
 export default class PaperSearchCtl  {
 
 
-    static fetchPapers(searchKey, searchValue) {
+    static fetchPapersIDs(searchKey, searchValue) {
         let url = config.papersDataURL
             + "?callback="
             + "&" + searchKey + "=" + searchValue;
 
         return fetch(url, {})
             .then(resp => resp.text())
-            .then(text => this._handlePaperSearchResp(text))
+            .then(text => this._handlePaperSearchResp(text));
     }
 
 
     static _handlePaperSearchResp(text) {
-        let papers = [];
+        let paperIDs = [];
 
         try {
             let body = this._prunePaperSearchResp(text);
             let json = JSON.parse(body);
-            papers = json["r"];
+            let data = json["r"];
+            paperIDs = data.map(paper => paper.id)
         }
         catch(error) {
             console.log(error);
         }
 
-        return papers;
+        return paperIDs;
     }
 
 

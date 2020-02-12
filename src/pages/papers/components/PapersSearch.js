@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import PaperSearchCtl from "../controllers/PaperSearch";
+import PaperSearchPositionCtl from "../controllers/PaperSearchPosition";
 import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
 
 
@@ -19,31 +20,32 @@ export default class PapersSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            unsavedPaperSearch: "",
-            unsavedPaperSearchType: "",
+            paperSearch: "",
+            paperSearchType: "",
         };
+
+        // Necessary binding in order to access parent functions
+        this.searchPapers = this.searchPapers.bind(this);
     }
 
 
-    updateUnsavedSearch(event) {
+    updateSearch(event) {
         this.setState({
-            unsavedPaperSearch: event.target.value
+            paperSearch: event.target.value
         });
     }
 
 
-    updateUnsavedSearchType(change) {
+    updateSearchType(change) {
         this.setState({
-            unsavedPaperSearchType: change.value
+            paperSearchType: change.value
         });
     }
 
 
     async searchPapers() {
-        let papers = await PaperSearchCtl.fetchPapers(
-            this.state.unsavedPaperSearchType,
-            this.state.unsavedPaperSearch,
-        );
+        let ids = await PaperSearchCtl.fetchPapersIDs(this.state.paperSearchType, this.state.paperSearch);
+        let papers = await PaperSearchPositionCtl.fetchPapersPos(ids);
 
         this.props.setPapers(papers);
     }
@@ -65,7 +67,7 @@ export default class PapersSearch extends Component {
                             fluid
                             placeholder="Free energy..."
                             size="small"
-                            onChange={event => this.updateUnsavedSearch(event)}
+                            onChange={event => this.updateSearch(event)}
                         />
                     </Menu.Item>
 
@@ -75,7 +77,7 @@ export default class PapersSearch extends Component {
                             className="search-menu-dropdown"
                             placeholder='By'
                             options={searchOptions}
-                            onChange={(event, change) => this.updateUnsavedSearchType(change)}
+                            onChange={(event, change) => this.updateSearchType(change)}
                         />
                     </Menu.Item>
 
