@@ -35,6 +35,10 @@
     padding: 0          !important; /* Necessary flag */
 }
 
+.search-menu-dropdown {
+    z-index: 1000       !important; /* Necessary flag */
+}
+
 
 .leaflet-container {
     background-color: #000000;

@@ -1,7 +1,17 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
-import { Button, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
+import PaperSearchCtl from "../controllers/PaperSearch";
+import PaperSearchPositionCtl from "../controllers/PaperSearchPosition";
+import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
+
+
+const searchOptions = [
+    {key: 'author',     text: 'Author',     value: 'sau'},
+    {key: 'keyword',    text: 'Keyword',    value: 'skw'},
+    {key: 'title',      text: 'Title',      value: 'sti'},
+    {key: 'new-papers', text: 'New papers', value: 'sca'},
+];
 
 
 export default class PapersSearch extends Component {
@@ -10,23 +20,37 @@ export default class PapersSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            unsavedPapersJargonA: "",
-            unsavedPapersJargonB: "",
+            paperSearch: "",
+            paperSearchType: "",
         };
+
+        // Necessary binding in order to access parent functions
+        this.searchPapers = this.searchPapers.bind(this);
     }
 
 
-    updateUnsavedJargonA(event) {
+    updateSearch(event) {
         this.setState({
-            unsavedPapersJargonA: event.target.value
+            paperSearch: event.target.value
         });
     }
 
 
-    updateUnsavedJargonB(event) {
+    updateSearchType(change) {
         this.setState({
-            unsavedPapersJargonB: event.target.value
+            paperSearchType: change.value
         });
+    }
+
+
+    async searchPapers() {
+        let ids = await PaperSearchCtl.fetchPapersIDs(this.state.paperSearchType, this.state.paperSearch);
+        if (ids.length === 0) {
+            return;
+        }
+
+        let papers = await PaperSearchPositionCtl.fetchPapersPos(ids);
+        this.props.setPapers(papers);
     }
 
 
@@ -40,28 +64,23 @@ export default class PapersSearch extends Component {
                             <Icon circular inverted color="blue" name="filter"/>
                         </Image>
                         <b className="search-menu-text">
-                            Jargon term A:
+                            Search:
                         </b>
                         <Input
                             fluid
                             placeholder="Free energy..."
                             size="small"
-                            onChange={event => this.updateUnsavedJargonA(event)}
+                            onChange={event => this.updateSearch(event)}
                         />
                     </Menu.Item>
 
-                    <Menu.Item className="search-menu-item">
-                        <Image avatar>
-                            <Icon circular inverted color="blue" name="filter"/>
-                        </Image>
-                        <b className="search-menu-text">
-                            Jargon term B:
-                        </b>
-                        <Input
-                            fluid
-                            placeholder="ELBO..."
-                            size="small"
-                            onChange={event => this.updateUnsavedJargonB(event)}
+                    <Menu.Item>
+                        <Dropdown
+                            selection
+                            className="search-menu-dropdown"
+                            placeholder='By'
+                            options={searchOptions}
+                            onChange={(event, change) => this.updateSearchType(change)}
                         />
                     </Menu.Item>
 
@@ -69,7 +88,8 @@ export default class PapersSearch extends Component {
                         <Menu.Item className="search-start-container">
                             <Button
                                 color='blue'
-                                onClick={() => {return false;} }>
+                                onClick={this.searchPapers}
+                            >
                                 Search
                             </Button>
                         </Menu.Item>

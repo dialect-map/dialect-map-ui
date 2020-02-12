@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import { withCookies } from "react-cookie";
-import { withRouter } from "react-router-dom";
 import { Menu, Segment } from "semantic-ui-react";
 
 
@@ -42,4 +41,4 @@ class Header extends Component {
 }
 
 
-export default withCookies(withRouter(Header));
+export default withCookies(Header);

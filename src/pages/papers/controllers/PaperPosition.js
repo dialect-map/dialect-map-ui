@@ -20,7 +20,7 @@ export default class PaperPositionCtl  {
 
         return fetch(url, {})
             .then(resp => resp.text())
-            .then(text => this._handlePaperPosResp(text))
+            .then(text => this._handlePaperPosResp(text));
     }
 
 

@@ -19,7 +19,7 @@ export default class PaperInfoCtl  {
 
         return fetch(url, {})
             .then(resp => resp.text())
-            .then(text => this._handlePaperInfoResp(text))
+            .then(text => this._handlePaperInfoResp(text));
     }
 
 
