@@ -7,8 +7,8 @@ It has been built using [React][react-webpage] using the [PaperSpace public fron
 ## Environment setup
 All dependencies can be installed by running:
 ```shell script
-RUN npm install
-RUN npm install --global serve
+npm install
+npm install --global serve
 ```
 
 ## Project development
