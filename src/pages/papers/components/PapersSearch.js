@@ -69,7 +69,6 @@ export default class PapersSearch extends Component {
                         <Input
                             fluid
                             placeholder="Free energy..."
-                            size="small"
                             onChange={event => this.updateSearch(event)}
                         />
                     </Menu.Item>

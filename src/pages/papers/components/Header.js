@@ -2,18 +2,21 @@
 
 import React, { Component } from "react";
 import { withCookies } from "react-cookie";
-import { Menu, Segment } from "semantic-ui-react";
+import { Header, Menu, Segment } from "semantic-ui-react";
 import HeaderModal from "./header/HeaderModal";
 
 
-class Header extends Component {
+class PapersHeader extends Component {
 
 
     render() {
         return (
             <Segment>
                 <Menu secondary>
-                    <Menu.Item name="Dialect Map"/>
+                    <Menu.Item>
+                        <Header as="h4">Map of Jargon Across Domains</Header>
+                    </Menu.Item>
+
                     <Menu.Menu position="right">
                         <HeaderModal/>
                     </Menu.Menu>
@@ -24,4 +27,4 @@ class Header extends Component {
 }
 
 
-export default withCookies(Header);
+export default withCookies(PapersHeader);

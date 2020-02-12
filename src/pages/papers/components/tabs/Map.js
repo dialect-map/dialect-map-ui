@@ -98,7 +98,7 @@ export default class MapCanvas extends Component {
                     <Circle
                         key={index}
                         center={this.worldToView(paper.x, paper.y)}
-                        color={"gray"}
+                        color={"white"}
                         radius={this.convertRadius(paper.r)}>
                     </Circle>
                 )}

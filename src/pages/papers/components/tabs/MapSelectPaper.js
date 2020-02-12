@@ -101,7 +101,7 @@ export default class MapSelectPaper extends Component {
                     (
                         <Circle
                             center={worldToView(paperPos.x, paperPos.y)}
-                            color={"white"}
+                            color={"yellow"}
                             radius={this.convertRadius(paperPos.r)}
                         />
                     ) : null

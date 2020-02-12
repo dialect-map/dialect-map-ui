@@ -34,7 +34,7 @@ export default class PaperSearchCtl  {
                 params += "&sti=" + searchValue;
                 break;
             case "sca":
-                params += "&sca=" + searchValue + "&fd=1" + "&td=0";
+                params += "&sca=" + searchValue + "&fd=1&td=0";
                 break;
             default:
                 params += "&skw=" + searchValue;
