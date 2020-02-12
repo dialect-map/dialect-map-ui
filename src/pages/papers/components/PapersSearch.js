@@ -45,8 +45,11 @@ export default class PapersSearch extends Component {
 
     async searchPapers() {
         let ids = await PaperSearchCtl.fetchPapersIDs(this.state.paperSearchType, this.state.paperSearch);
-        let papers = await PaperSearchPositionCtl.fetchPapersPos(ids);
+        if (ids.length === 0) {
+            return;
+        }
 
+        let papers = await PaperSearchPositionCtl.fetchPapersPos(ids);
         this.props.setPapers(papers);
     }
 

@@ -38,20 +38,17 @@ export default class MapSelectPaper extends Component {
     }
 
 
-    _isMapBackground(event) {
+    _isMapInfoBox(event) {
         let clickedClass = event.originalEvent.target.className;
 
-        if (typeof(clickedClass) !== "string" || clickedClass.includes("leaflet") === false) {
-            return false;
-        } else {
-            return true;
-        }
+        return (typeof clickedClass === "string")
+            && (clickedClass.includes("leaflet") === false);
     }
 
 
     async clickToPaperPos(event) {
-        // Stop click event if it was not performed directly into the map
-        if (this._isMapBackground(event) === false) {
+        // Stop click event if it was performed on the information box
+        if (this._isMapInfoBox(event)) {
             return;
         }
 
