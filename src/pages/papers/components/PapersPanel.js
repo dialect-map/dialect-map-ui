@@ -19,22 +19,40 @@ class PapersPanel extends Component {
         };
 
         // Necessary binding in order to allow children actions
+        this.getChosenTab = this.getChosenTab.bind(this);
+        this.getPapers = this.getPapers.bind(this);
         this.setMapTab = this.setMapTab.bind(this);
+        this.setPapers = this.setPapers.bind(this);
+    }
+
+
+    getChosenTab() {
+        return this.state.chosenTab;
+    }
+
+
+    getPapers() {
+        return this.state.papers;
+    }
+
+
+    setMapTab() {
+        this.setState({chosenTab: "map"});
+    }
+
+
+    setPapers(papers) {
+        this.setState({papers: papers});
     }
 
 
     renderTab() {
         switch (this.state.chosenTab) {
             case "map":
-                return <MapCanvas papersList={this.state.papers}/>;
+                return <MapCanvas getPapers={this.getPapers}/>;
             default:
-                return <MapCanvas papersList={this.state.papers}/>;
+                return <MapCanvas getPapers={this.getPapers}/>;
         }
-    }
-
-
-    setMapTab() {
-        this.setState({chosenTab: "map"});
     }
 
 
@@ -51,7 +69,7 @@ class PapersPanel extends Component {
                 <Grid.Row stretched className="panel-body">
                     <Grid.Column width={1} className="panel-body-sidebar">
                         <PapersSidebar
-                            chosenTab={this.state.chosenTab}
+                            getChosenTab={this.getChosenTab}
                             setMapTab={this.setMapTab}
                         />
                     </Grid.Column>
