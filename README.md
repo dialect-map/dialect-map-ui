@@ -3,6 +3,14 @@
 This repository contains the current front-end interface of the Dialect map project.
 It has been built using [React][react-webpage] using the [PaperSpace public front-end][paperscape-ui] as inspiration.
 
+## Functionality
+
+#### Paper selection
+![Paper selection demo](resources/selection_demo.gif)
+
+#### Jargon comparison
+![Jargon comparison demo](resources/jargon_demo.gif)
+
 
 ## Environment setup
 All dependencies can be installed by running:
