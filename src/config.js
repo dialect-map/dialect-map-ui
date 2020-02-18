@@ -4,7 +4,7 @@
 /* IMPORTANT NOTE:
  *
  * Using a CORS-proxy given that the paperscape responses
- * Do not include the 'Access-Control-Allow-Origin' header
+ * May not include the 'Access-Control-Allow-Origin' header
  * Ref: https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors
  */
 const worldMandatoryProxy = "https://cors-anywhere.herokuapp.com/";
@@ -49,8 +49,8 @@ const config = {
 
     /* PaperScape URLs */
     papersDataURL: "https://paperscape.org/wombat",
-    worldConfigURL: worldMandatoryProxy + "https://tile1.paperscape.org/world/world_index.json",
-    labelsJsonHost: worldMandatoryProxy + "https://tile1.paperscape.org/world/zones",
+    worldConfigURL: "https://tile1.paperscape.org/world/world_index.json",
+    labelsJsonHost: "https://tile1.paperscape.org/world/zones",
 
 
     /* PaperScape tiles URLs */
