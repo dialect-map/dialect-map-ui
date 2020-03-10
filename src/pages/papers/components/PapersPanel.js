@@ -58,27 +58,25 @@ class PapersPanel extends Component {
 
     render() {
         return (
-            <Grid className="panel-layout">
+            <Grid stretched>
 
-                <Grid.Row stretched className="panel-header">
-                    <Grid.Column width={16}>
+                <Grid.Column width={1} className="panel-body-sidebar">
+                    <PapersSidebar
+                        getChosenTab={this.getChosenTab}
+                        setMapTab={this.setMapTab}
+                    />
+                </Grid.Column>
+
+                <Grid.Column width={15} className="panel-body-main">
+                    <Grid.Row className="panel-body-header">
                         <PapersSearch
                             setPapers={this.setPapers}
                         />
-                    </Grid.Column>
-                </Grid.Row>
-
-                <Grid.Row stretched className="panel-body">
-                    <Grid.Column width={1} className="panel-body-sidebar">
-                        <PapersSidebar
-                            getChosenTab={this.getChosenTab}
-                            setMapTab={this.setMapTab}
-                        />
-                    </Grid.Column>
-                    <Grid.Column width={15} className="panel-body-main">
+                    </Grid.Row>
+                    <Grid.Row className="panel-body-map">
                         { this.renderTab() }
-                    </Grid.Column>
-                </Grid.Row>
+                    </Grid.Row>
+                </Grid.Column>
 
             </Grid>
         );

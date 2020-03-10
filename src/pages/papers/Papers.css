@@ -45,31 +45,33 @@
 }
 
 
-.leaflet-container {
-    background-color: #000000;
-}
-
-
-.panel-layout {
-    height: 100%;
-}
-
-.panel-header {
-    height: 10%;
-    min-height: 80px;
-}
-
-.panel-body {
-    height: 90%;
-}
-
-
 .panel-body-sidebar {
     min-width: 100px;
 }
 
 .panel-body-main {
     max-width: calc(100% - 100px);
+}
+
+.panel-body-header {
+    height: 10%;
+    min-height: 80px;
+}
+
+.panel-body-map {
+    height: 90%;
+    position: relative;
+}
+
+
+.leaflet-container {
+    background-color: #000000;
+}
+
+.map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 
