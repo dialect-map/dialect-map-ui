@@ -14,15 +14,15 @@ class PapersPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chosenTab: "map",
+            chosenTab: "search",
             papers: [],
         };
 
         // Necessary binding in order to allow children actions
         this.getChosenTab = this.getChosenTab.bind(this);
         this.getPapers = this.getPapers.bind(this);
-        this.setMapTab = this.setMapTab.bind(this);
         this.setPapers = this.setPapers.bind(this);
+        this.setSearchTab = this.setSearchTab.bind(this);
     }
 
 
@@ -36,8 +36,8 @@ class PapersPanel extends Component {
     }
 
 
-    setMapTab() {
-        this.setState({chosenTab: "map"});
+    setSearchTab() {
+        this.setState({chosenTab: "search"});
     }
 
 
@@ -46,12 +46,12 @@ class PapersPanel extends Component {
     }
 
 
-    renderTab() {
+    renderTabHeader() {
         switch (this.state.chosenTab) {
-            case "map":
-                return <MapCanvas getPapers={this.getPapers}/>;
+            case "search":
+                return <PapersSearch setPapers={this.setPapers}/>;
             default:
-                return <MapCanvas getPapers={this.getPapers}/>;
+                return <PapersSearch setPapers={this.setPapers}/>;
         }
     }
 
@@ -69,12 +69,12 @@ class PapersPanel extends Component {
 
                 <Grid.Column width={15} className="panel-body-main">
                     <Grid.Row className="panel-body-header">
-                        <PapersSearch
-                            setPapers={this.setPapers}
-                        />
+                        { this.renderTabHeader() }
                     </Grid.Row>
                     <Grid.Row className="panel-body-map">
-                        { this.renderTab() }
+                        <MapCanvas
+                            getPapers={this.getPapers}
+                        />
                     </Grid.Row>
                 </Grid.Column>
 
