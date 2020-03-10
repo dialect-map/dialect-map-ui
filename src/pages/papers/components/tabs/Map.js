@@ -71,7 +71,7 @@ export default class MapCanvas extends Component {
         return (
             // The "ref" prop is necessary to obtain the created instance
             <Map
-                className="map"
+                className="map-component"
                 center={config.mapInitialCenter}
                 crs={CRS.Simple}
                 maxBounds={config.mapBoundsCoords}

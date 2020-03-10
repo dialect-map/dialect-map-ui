@@ -8,7 +8,7 @@ export default class PapersSidebar extends Component {
 
 
     isMapActive() {
-        return this.props.getChosenTab() === "map";
+        return this.props.getChosenTab() === "search";
     }
 
 
@@ -24,7 +24,7 @@ export default class PapersSidebar extends Component {
                     active={this.isMapActive()}
                     onClick={setMapTab}
                 >
-                    <Icon circular inverted color="blue" name="map"/>
+                    <Icon circular inverted color="blue" name="search"/>
                 </Menu.Item>
             </Menu>
         );
