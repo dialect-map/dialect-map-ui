@@ -7,24 +7,35 @@ import { Icon, Menu } from "semantic-ui-react";
 export default class PapersSidebar extends Component {
 
 
-    isMapActive() {
+    isSearchActive() {
         return this.props.getChosenTab() === "search";
+    }
+
+    isJargonActive() {
+        return this.props.getChosenTab() === "jargon";
     }
 
 
     render() {
 
         // Change-state functions passed by the parent
-        const { setMapTab } = this.props;
+        const { setJargonTab, setSearchTab } = this.props;
 
         return (
             <Menu compact icon vertical>
                 <Menu.Item
-                    name="map"
-                    active={this.isMapActive()}
-                    onClick={setMapTab}
+                    name="search"
+                    active={this.isSearchActive()}
+                    onClick={setSearchTab}
                 >
                     <Icon circular inverted color="blue" name="search"/>
+                </Menu.Item>
+                <Menu.Item
+                    name="jargon"
+                    active={this.isJargonActive()}
+                    onClick={setJargonTab}
+                >
+                    <Icon circular inverted color="blue" name="comment"/>
                 </Menu.Item>
             </Menu>
         );
