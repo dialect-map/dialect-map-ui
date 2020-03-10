@@ -11,7 +11,7 @@ class PapersHeader extends Component {
 
     render() {
         return (
-            <Segment>
+            <Segment className="papers-header-segment">
                 <Menu secondary>
                     <Menu.Item>
                         <Header as="h4">Map of Jargon Across Domains</Header>

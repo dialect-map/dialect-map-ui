@@ -5,10 +5,14 @@
 }
 
 .papers-header {
-    height: 5%;
-    min-height: 60px;
+    min-height: 80px;
     min-width: 950px;
-    padding-bottom: 0;
+    padding-bottom: 0   !important; /* Necessary flag */
+}
+
+.papers-header-segment {
+    padding-top: 5px    !important; /* Necessary flag */
+    padding-bottom: 5px !important; /* Necessary flag */
 }
 
 .papers-header-info {
@@ -16,7 +20,7 @@
 }
 
 .papers-body {
-    height: 95%;
+    height: calc(100% - 60px);
     min-width: 950px;
 }
 
