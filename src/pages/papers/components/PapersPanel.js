@@ -22,6 +22,7 @@ class PapersPanel extends Component {
         this.getChosenTab = this.getChosenTab.bind(this);
         this.getPapers = this.getPapers.bind(this);
         this.setPapers = this.setPapers.bind(this);
+        this.setJargonTab = this.setJargonTab.bind(this);
         this.setSearchTab = this.setSearchTab.bind(this);
     }
 
@@ -36,18 +37,25 @@ class PapersPanel extends Component {
     }
 
 
-    setSearchTab() {
-        this.setState({chosenTab: "search"});
-    }
-
-
     setPapers(papers) {
         this.setState({papers: papers});
     }
 
 
+    setJargonTab() {
+        this.setState({chosenTab: "jargon"});
+    }
+
+
+    setSearchTab() {
+        this.setState({chosenTab: "search"});
+    }
+
+
     renderTabHeader() {
         switch (this.state.chosenTab) {
+            case "jargon":
+                return <PapersSearch setPapers={this.setPapers}/>;
             case "search":
                 return <PapersSearch setPapers={this.setPapers}/>;
             default:
@@ -63,7 +71,8 @@ class PapersPanel extends Component {
                 <Grid.Column width={1} className="panel-body-sidebar">
                     <PapersSidebar
                         getChosenTab={this.getChosenTab}
-                        setMapTab={this.setMapTab}
+                        setJargonTab={this.setJargonTab}
+                        setSearchTab={this.setSearchTab}
                     />
                 </Grid.Column>
 

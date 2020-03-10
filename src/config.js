@@ -3,11 +3,13 @@
 
 /* IMPORTANT NOTE:
  *
- * Using a CORS-proxy given that the paperscape responses
- * May not include the 'Access-Control-Allow-Origin' header
+ * Previously, a CORS-proxy was necessary to parse PaperScape responses
+ * As they may not include the 'Access-Control-Allow-Origin' header.
+ * Consider these resources if this change in the future:
+ *
  * Ref: https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors
+ * Redirect: https://cors-anywhere.herokuapp.com/
  */
-const worldMandatoryProxy = "https://cors-anywhere.herokuapp.com/";
 
 
 const config = {
