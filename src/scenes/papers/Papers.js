@@ -7,7 +7,7 @@ import PapersPanel from "./components/PapersPanel";
 import "./Papers.css";
 
 
-export default class StreamPage extends Component {
+export default class PapersMap extends Component {
 
 
     render() {

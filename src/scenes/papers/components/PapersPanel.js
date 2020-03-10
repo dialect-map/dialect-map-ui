@@ -3,9 +3,10 @@
 import React, { Component } from "react";
 import { withCookies } from "react-cookie";
 import { Grid } from "semantic-ui-react";
-import PapersSearch from "./PapersSearch";
 import PapersSidebar from "./PapersSidebar";
-import MapCanvas from "./tabs/Map";
+import MapCanvas from "./map/Map";
+import Jargon from "./headers/Jargon";
+import Search from "./headers/Search";
 
 
 class PapersPanel extends Component {
@@ -55,11 +56,11 @@ class PapersPanel extends Component {
     renderTabHeader() {
         switch (this.state.chosenTab) {
             case "jargon":
-                return <PapersSearch setPapers={this.setPapers}/>;
+                return <Jargon setPapers={this.setPapers}/>;
             case "search":
-                return <PapersSearch setPapers={this.setPapers}/>;
+                return <Search setPapers={this.setPapers}/>;
             default:
-                return <PapersSearch setPapers={this.setPapers}/>;
+                return <Search setPapers={this.setPapers}/>;
         }
     }
 

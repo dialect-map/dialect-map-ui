@@ -32,6 +32,7 @@
 
 .search-menu-item {
     width: 28%;
+    height: 50px        !important; /* Necessary flag */
 }
 
 .search-menu-text {
@@ -58,12 +59,11 @@
 }
 
 .panel-body-header {
-    height: 10%;
     min-height: 80px;
 }
 
 .panel-body-map {
-    height: 90%;
+    height: 100%;
     position: relative;
 }
 

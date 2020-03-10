@@ -1,8 +1,8 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
-import PaperSearchCtl from "../controllers/PaperSearch";
-import PaperSearchPositionCtl from "../controllers/PaperSearchPosition";
+import PaperSearchCtl from "../../controllers/PaperSearch";
+import PaperSearchPositionCtl from "../../controllers/PaperSearchPosition";
 import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
 
 
@@ -14,7 +14,7 @@ const searchOptions = [
 ];
 
 
-export default class PapersSearch extends Component {
+export default class Search extends Component {
 
 
     constructor(props) {
@@ -73,7 +73,7 @@ export default class PapersSearch extends Component {
                         />
                     </Menu.Item>
 
-                    <Menu.Item>
+                    <Menu.Item className="search-menu-item">
                         <Dropdown
                             selection
                             className="search-menu-dropdown"
