@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import { withCookies } from "react-cookie";
 import { Header, Menu, Segment } from "semantic-ui-react";
-import HeaderModal from "./header/HeaderModal";
+import HeaderModal from "./HeaderModal";
 
 
 class PapersHeader extends Component {

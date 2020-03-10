@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 import ConfigLoader from "./controllers/ConfigLoader";
-import StreamPage from './pages/papers/Papers';
+import PapersMap from './scenes/papers/Papers';
 import "semantic-ui-css/semantic.min.css";
 import './index.css';
 
@@ -18,8 +18,8 @@ function render() {
     ReactDOM.render(
         <CookiesProvider>
             <BrowserRouter>
-                <Route exact path="/" component={StreamPage}/>
-                <Route exact path="/map" component={StreamPage}/>
+                <Route exact path="/" component={PapersMap}/>
+                <Route exact path="/map" component={PapersMap}/>
             </BrowserRouter>
         </CookiesProvider>,
         document.getElementById('root')
