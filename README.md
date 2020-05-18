@@ -1,6 +1,8 @@
 # Data Science: Dialect map UI
 
 This repository contains the front-end interface of the Dialect map project.
+An idea proposed by professor Kyle Cranmer, and developed as one of
+the Data Science and Software Services (DS3) funded projects.
 
 
 ## About
@@ -29,30 +31,36 @@ npm install
 npm install --global serve
 ```
 
-## Project development
+### Project development
 ```shell script
 npm start
 ```
 
-## Project build
+### Project build
 ```shell script
 make build
 ```
 
-## Project deploy
+### Project deploy
 ```shell script
 make deploy
 ```
 
-## Docker build
+### Docker build
 ```shell script
 make docker-build
 ```
 
-## Docker run
+### Docker run
 ```shell script
 make docker-deploy
 ```
+
+
+## Acknowledges
+
+We would like to thank the PaperScape authors for maintaining an up-to-date tiles server,
+and specially Rob J. Knegjens for being in contact with us during the development of this project.
 
 
 [leaflet-webpage]: https://leafletjs.com/
