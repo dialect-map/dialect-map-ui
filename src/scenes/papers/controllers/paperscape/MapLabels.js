@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import config from "../../../config"
+import config from "../../../../config"
 
 
 const labelsRespPrefix = "lz_Z_X_Y(";

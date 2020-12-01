@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import config from "../../../../config";
-import MapLabelsCtl from "../../controllers/MapLabels";
+import MapLabelsCtl from "../../controllers/paperscape/MapLabels";
 import MapTilesLayer from "./MapTilesLayer";
 import { FeatureGroup, LayersControl, Marker } from "react-leaflet";
 import { divIcon } from "leaflet";

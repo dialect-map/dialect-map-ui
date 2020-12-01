@@ -1,7 +1,7 @@
 /* encoding: utf-8 */
 
-import config from "../../../config"
-import PaperPosition from "../models/PaperPosition"
+import config from "../../../../config"
+import PaperPosition from "../../models/PaperPosition"
 
 
 export default class PaperSearchPositionCtl  {

@@ -1,7 +1,7 @@
 /* encoding: utf-8 */
 
-import config from "../../../config"
-import PaperInfo from "../models/PaperInfo"
+import config from "../../../../config"
+import PaperInfo from "../../models/PaperInfo"
 
 
 const paperInfoRespPrefix = "(";
