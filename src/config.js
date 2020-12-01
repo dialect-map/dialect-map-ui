@@ -51,6 +51,7 @@ const config = {
     /* Dialect map server */
     dialectMapHost: window.env.SERVER_API_HOST,
     dialectMapPort: window.env.SERVER_API_PORT,
+    dialectMapURL: `${window.env.SERVER_API_HOST}:${window.env.SERVER_API_PORT}`,
 
 
     /* PaperScape URLs */
