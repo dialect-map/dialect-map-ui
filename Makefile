@@ -8,8 +8,9 @@ clean:
 	@echo "Cleaning built folder"
 	@rm -rf build
 
+
 .PHONY: build
-build:
+build: clean
 	@echo "Building project"
 	@npm run build --silent
 
