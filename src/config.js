@@ -48,6 +48,10 @@ const config = {
         6: {"nx": 8, "ny": 8},
     },
 
+    /* Dialect map server */
+    dialectMapHost: window.env.SERVER_API_HOST,
+    dialectMapPort: window.env.SERVER_API_PORT,
+
 
     /* PaperScape URLs */
     papersDataURL: "https://paperscape.org/wombat",
