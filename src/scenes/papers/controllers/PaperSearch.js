@@ -7,7 +7,7 @@ const paperSearchRespPrefix = "(";
 const paperSearchRespSuffix = ")\n";
 
 
-export default class PaperSearchCtl  {
+export default class PaperSearchCtl {
 
 
     static fetchPapersIDs(searchKey, searchValue) {
