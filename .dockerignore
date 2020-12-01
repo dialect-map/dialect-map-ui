@@ -10,3 +10,6 @@ README.md
 # Artifacts that will be built during image creation
 build
 node_modules
+
+# Development mode env. values file
+public/*.js

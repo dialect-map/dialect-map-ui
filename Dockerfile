@@ -1,5 +1,5 @@
 # Base image
-FROM node:13.3.0-alpine
+FROM node:15.3.0-alpine
 
 # Set working directory and copy files
 WORKDIR /app
@@ -16,4 +16,4 @@ RUN npm run build --silent
 EXPOSE 5000
 
 # Start app
-CMD serve -s build
+CMD ["/bin/sh", "-c", "./scripts/parse-env.sh && serve --listen tcp://0.0.0.0:5000 --single 'build'"]
