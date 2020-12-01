@@ -2,8 +2,8 @@
 
 import React, { Component } from "react";
 import config from "../../../../config";
-import PaperInfoCtl from "../../controllers/PaperInfo";
-import PaperPositionCtl from "../../controllers/PaperPosition";
+import PaperInfoCtl from "../../controllers/paperscape/PaperInfo";
+import PaperPositionCtl from "../../controllers/paperscape/PaperPosition";
 import MapInfoBox from "./MapInfoBox";
 import { Circle } from "react-leaflet";
 
