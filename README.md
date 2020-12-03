@@ -59,15 +59,45 @@ make build
 make deploy
 ```
 
-### Docker build
+
+## Docker
+There is a `Makefile` to perform both Docker `build` and `push` operations.
+
+The project is currently designed to be deployed in the _DS3-Dialect-Map_ GCP project,
+so the initial step involve using [gcloud][gcloud-cli-setup] CLI tool to log in with GCP:
+
+```shell script
+gcloud login
+gcloud auth configure-docker
+```
+
+To build the image:
+
 ```shell script
 make docker-build
 ```
 
-### Docker run
+To push the image to the GCP registry:
+
 ```shell script
-make docker-deploy
+export GCP_PROJECT="ds3-dialect-map"
+export GCP_REGISTRY="us.gcr.io"
+make docker-push
 ```
+
+
+## Deployment
+This project uses a set of env. variables to configure the connection with the backend API:
+
+Bear in mind that React does not allow passing **run-time** env. variables to a built application
+([reference][react-env-docs]). In order to do so, a dedicated shell script named `parse-env.sh` was created.
+This script parses the `.env` file substituting the default values by the ones defined in the environment,
+before writing them into a _run-time generated_ JavaScript file (loaded from the `index.html`).
+
+| ENV VARIABLE             | DEFAULT            | REQUIRED | DESCRIPTION                                   |
+|--------------------------|--------------------|----------|-----------------------------------------------|
+| SERVER_API_HOST          | http://0.0.0.0     | No       | Backend API host to connect                   |
+| SERVER_API_PORT          | 8080               | No       | Backend API port to connect                   |
 
 
 ## Acknowledges
@@ -77,7 +107,9 @@ and specially Rob J. Knegjens for being in contact with us during the developmen
 
 
 [leaflet-webpage]: https://leafletjs.com/
+[gcloud-cli-setup]: https://cloud.google.com/sdk/docs/install
 [paperscape-blog]: https://blog.paperscape.org/
 [paperscape-ui]: https://github.com/paperscape/paperscape-mapclient
+[react-env-docs]: https://create-react-app.dev/docs/adding-custom-environment-variables/
 [react-webpage]: https://reactjs.org/
 [semantic-webpage]: https://react.semantic-ui.com/
