@@ -1,6 +1,9 @@
-# Set of rules to simplify project interaction
+APP_VERSION    = $(shell cat VERSION)
+IMAGE_NAME     = "dialect-map-ui"
 
-IMAGE_NAME="dialect-map-react-ui"
+GCP_PROJECT   ?= "ds3-dialect-map"
+GCP_REGISTRY  ?= "us.gcr.io"
+GCP_IMAGE_NAME = $(GCP_REGISTRY)/$(GCP_PROJECT)/$(IMAGE_NAME)
 
 
 .PHONY: clean
@@ -24,10 +27,12 @@ deploy:
 .PHONY: docker-build
 docker-build:
 	@echo "Building Docker image"
-	@docker build . --tag $(IMAGE_NAME):latest
+	@docker build . --tag $(IMAGE_NAME):$(APP_VERSION)
 
 
-.PHONY: docker-deploy
-docker-deploy:
-	@echo "Deploying Docker container"
-	@docker run -it -p 5000:5000 $(IMAGE_NAME):latest
+.PHONY: docker-push
+docker-push: docker-build
+	@echo "Pushing Docker image to GCP"
+	@docker tag $(IMAGE_NAME):$(APP_VERSION) $(GCP_IMAGE_NAME):$(APP_VERSION)
+	@docker push $(GCP_IMAGE_NAME):$(APP_VERSION)
+	@docker rmi $(GCP_IMAGE_NAME):$(APP_VERSION)
