@@ -21,7 +21,7 @@ build: clean
 .PHONY: deploy
 deploy:
 	@echo "Deploying project"
-	@serve -s build
+	@npm start
 
 
 .PHONY: docker-build
