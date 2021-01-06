@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import { Button, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
 import JargonSearchCtl from "../../controllers/backend/JargonSearch";
 import MetricSearchCtl from "../../controllers/backend/MetricSearch";
+import PaperSearchCtl from "../../controllers/paperscape/PaperSearch";
+import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosition";
 
 
 export default class Jargon extends Component {
@@ -17,7 +19,7 @@ export default class Jargon extends Component {
         };
 
         // Necessary binding in order to access parent functions
-        this.searchPapers = this.searchPapers.bind(this);
+        this.searchPapersAndExtras = this.searchPapersAndExtras.bind(this);
     }
 
 
@@ -35,35 +37,61 @@ export default class Jargon extends Component {
     }
 
 
-    reduceJargonAbsFrequency(acc, metric) {
-        let id = metric.arxivID
-        acc[id] = (acc[id] || {})
-        acc[id][metric.jargonID] = metric.absFreq;
-        return acc
+    async queryJargonIds(jargons) {
+        let promises = jargons.map(j => JargonSearchCtl.fetchJargonID(j));
+        let results  = await Promise.all(promises);
+
+        return results.filter(id => id !== null);
     }
 
 
-    async searchPapers() {
-        let jargons  = [this.state.searchedJargonA, this.state.searchedJargonB]
-        let promises = jargons.map(j => this.searchMetrics(j))
+    async queryMetrics(jargonIds) {
+        let promises = jargonIds.map(id => MetricSearchCtl.fetchLatestMetrics(id));
+        let results  = await Promise.all(promises);
 
-        let metrics = (await Promise.all(promises)).flat()
-        let jargonFreq = metrics.reduce(this.reduceJargonAbsFrequency, {})
-        console.log(jargonFreq)
-
-        //console.log(jargonFreq)
-        // Get paper coordinates from paperscape
-        // Draw
+        return results.flat();
     }
 
 
-    async searchMetrics(jargon) {
-        let jargonID = await JargonSearchCtl.fetchJargonID(jargon);
-        if (jargonID === null) {
+    async queryPaperIds(arxivIds) {
+        let promises = arxivIds.map(id => PaperSearchCtl.fetchPapersIDs("saxm", id));
+        let results  = await Promise.all(promises);
+
+        return results.flat();
+    }
+
+
+    async searchFrequenciesByPaper() {
+        let jargons   = [this.state.searchedJargonA, this.state.searchedJargonB];
+        let jargonIds = await this.queryJargonIds(jargons);
+        let metrics   = await this.queryMetrics(jargonIds);
+
+        let emptyFreqs = {};
+        jargonIds.forEach(id => emptyFreqs[id] = 0);
+
+        let papersFreqs = {};
+        metrics.forEach(metric => papersFreqs[metric.arxivID] = {...emptyFreqs});
+        metrics.forEach(metric => papersFreqs[metric.arxivID][metric.jargonID] = metric.absFreq);
+
+        return papersFreqs;
+    }
+
+
+    async searchPapers(arxivIds) {
+        let paperIds = await this.queryPaperIds(arxivIds)
+        if (paperIds.length === 0) {
             return [];
         }
 
-        return await MetricSearchCtl.fetchLatestMetrics(jargonID);
+        return await PaperSearchPositionCtl.fetchPapersPos(paperIds);
+    }
+
+
+    async searchPapersAndExtras() {
+        let freqs  = await this.searchFrequenciesByPaper();
+        let axvIds = Object.keys(freqs);
+        let papers = await this.searchPapers(axvIds);
+        this.props.setJargonPapers(papers, {freqByPaper: freqs});
     }
 
 
@@ -103,7 +131,7 @@ export default class Jargon extends Component {
                         <Menu.Item className="search-start-container">
                             <Button
                                 color='blue'
-                                onClick={this.searchPapers}
+                                onClick={this.searchPapersAndExtras}
                             >
                                 Compare
                             </Button>
