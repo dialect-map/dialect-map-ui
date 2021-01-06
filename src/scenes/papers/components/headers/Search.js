@@ -6,11 +6,12 @@ import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosi
 import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
 
 
-const searchOptions = [
-    {key: 'author',     text: 'Author',     value: 'sau'},
-    {key: 'keyword',    text: 'Keyword',    value: 'skw'},
-    {key: 'title',      text: 'Title',      value: 'sti'},
-    {key: 'new-papers', text: 'New papers', value: 'sca'},
+export const SearchOptions = [
+    {key: "arxiv",      text: "Arxiv ID",   value: "saxm"},
+    {key: "author",     text: "Author",     value: "sau"},
+    {key: "keyword",    text: "Keyword",    value: "skw"},
+    {key: "title",      text: "Title",      value: "sti"},
+    {key: "new-papers", text: "New papers", value: "sca"},
 ];
 
 
@@ -77,8 +78,8 @@ export default class Search extends Component {
                         <Dropdown
                             selection
                             className="search-menu-dropdown"
-                            placeholder='By'
-                            options={searchOptions}
+                            placeholder="By"
+                            options={SearchOptions}
                             onChange={(event, change) => this.updateSearchType(change)}
                         />
                     </Menu.Item>
@@ -86,7 +87,7 @@ export default class Search extends Component {
                     <Menu.Menu position="right">
                         <Menu.Item className="search-start-container">
                             <Button
-                                color='blue'
+                                color="blue"
                                 onClick={this.searchPapers}
                             >
                                 Search
