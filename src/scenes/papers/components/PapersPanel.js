@@ -15,30 +15,22 @@ export default class PapersPanel extends Component {
         super(props);
         this.state = {
             chosenTab: "search",
-            papers: [],
+            searchTabProperties: {
+                papers: []
+            },
         };
 
         // Necessary binding in order to allow children actions
         this.getChosenTab = this.getChosenTab.bind(this);
-        this.getPapers = this.getPapers.bind(this);
-        this.setPapers = this.setPapers.bind(this);
         this.setJargonTab = this.setJargonTab.bind(this);
         this.setSearchTab = this.setSearchTab.bind(this);
+        this.getSearchTabPapers = this.getSearchTabPapers.bind(this);
+        this.setSearchTabPapers = this.setSearchTabPapers.bind(this);
     }
 
 
     getChosenTab() {
         return this.state.chosenTab;
-    }
-
-
-    getPapers() {
-        return this.state.papers;
-    }
-
-
-    setPapers(papers) {
-        this.setState({papers: papers});
     }
 
 
@@ -52,14 +44,28 @@ export default class PapersPanel extends Component {
     }
 
 
+    getSearchTabPapers() {
+        return this.state.searchTabProperties.papers;
+    }
+
+
+    setSearchTabPapers(papers) {
+        this.setState(prevState => ({
+            ...prevState,
+            searchTabProperties: {papers: papers}
+        }));
+    }
+
+
     renderTabHeader() {
         switch (this.state.chosenTab) {
             case "jargon":
-                return <Jargon setPapers={this.setPapers}/>;
+                // TODO: Change for setJargonTabPapers
+                return <Jargon setJargonPapers={this.setSearchTabPapers}/>;
             case "search":
-                return <Search setPapers={this.setPapers}/>;
+                return <Search setSearchPapers={this.setSearchTabPapers}/>;
             default:
-                return <Search setPapers={this.setPapers}/>;
+                return <Search setSearchPapers={this.setSearchTabPapers}/>;
         }
     }
 
@@ -82,7 +88,7 @@ export default class PapersPanel extends Component {
                     </Grid.Row>
                     <Grid.Row className="panel-body-map">
                         <MapCanvas
-                            getPapers={this.getPapers}
+                            getSearchPapers={this.getSearchTabPapers}
                         />
                     </Grid.Row>
                 </Grid.Column>

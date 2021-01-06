@@ -66,7 +66,7 @@ export default class MapCanvas extends Component {
 
 
     render() {
-        const papersList = this.props.getPapers();
+        const papersList = this.props.getSearchPapers();
 
         return (
             // The "ref" prop is necessary to obtain the created instance
