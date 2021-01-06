@@ -15,15 +15,24 @@ export default class PapersPanel extends Component {
         super(props);
         this.state = {
             chosenTab: "search",
+            jargonTabProperties: {
+                extras: {},
+                papers: [],
+            },
             searchTabProperties: {
                 papers: []
             },
         };
 
-        // Necessary binding in order to allow children actions
+        // Tab choosing related functions
         this.getChosenTab = this.getChosenTab.bind(this);
         this.setJargonTab = this.setJargonTab.bind(this);
         this.setSearchTab = this.setSearchTab.bind(this);
+
+        // Papers related getters and setters
+        this.getJargonTabExtras = this.getJargonTabExtras.bind(this);
+        this.getJargonTabPapers = this.getJargonTabPapers.bind(this);
+        this.setJargonTabPapers = this.setJargonTabPapers.bind(this);
         this.getSearchTabPapers = this.getSearchTabPapers.bind(this);
         this.setSearchTabPapers = this.setSearchTabPapers.bind(this);
     }
@@ -44,6 +53,24 @@ export default class PapersPanel extends Component {
     }
 
 
+    getJargonTabExtras() {
+        return this.state.jargonTabProperties.extras;
+    }
+
+
+    getJargonTabPapers() {
+        return this.state.jargonTabProperties.papers;
+    }
+
+
+    setJargonTabPapers(papers, extras) {
+        this.setState(prevState => ({
+            ...prevState,
+            jargonTabProperties: {papers: papers, extras: extras}
+        }));
+    }
+
+
     getSearchTabPapers() {
         return this.state.searchTabProperties.papers;
     }
@@ -60,8 +87,7 @@ export default class PapersPanel extends Component {
     renderTabHeader() {
         switch (this.state.chosenTab) {
             case "jargon":
-                // TODO: Change for setJargonTabPapers
-                return <Jargon setJargonPapers={this.setSearchTabPapers}/>;
+                return <Jargon setJargonPapers={this.setJargonTabPapers}/>;
             case "search":
                 return <Search setSearchPapers={this.setSearchTabPapers}/>;
             default:
@@ -88,6 +114,8 @@ export default class PapersPanel extends Component {
                     </Grid.Row>
                     <Grid.Row className="panel-body-map">
                         <MapCanvas
+                            getJargonExtras={this.getJargonTabExtras}
+                            getJargonPapers={this.getJargonTabPapers}
                             getSearchPapers={this.getSearchTabPapers}
                         />
                     </Grid.Row>
