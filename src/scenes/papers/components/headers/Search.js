@@ -50,7 +50,7 @@ export default class Search extends Component {
         }
 
         let papers = await PaperSearchPositionCtl.fetchPapersPos(ids);
-        this.props.setPapers(papers);
+        this.props.setSearchPapers(papers);
     }
 
 
