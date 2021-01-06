@@ -1,12 +1,11 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
-import { withCookies } from "react-cookie";
 import { Header, Menu, Segment } from "semantic-ui-react";
 import HeaderModal from "./HeaderModal";
 
 
-class PapersHeader extends Component {
+export default class PapersHeader extends Component {
 
 
     render() {
@@ -25,6 +24,3 @@ class PapersHeader extends Component {
         );
     }
 }
-
-
-export default withCookies(PapersHeader);

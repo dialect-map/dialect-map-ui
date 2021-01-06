@@ -5,7 +5,6 @@
   "dependencies": {
     "leaflet": "^1.7.1",
     "react": "^16.14.0",
-    "react-cookie": "^3.1.2",
     "react-dom": "^16.14.0",
     "react-leaflet": "^2.8.0",
     "react-router-dom": "^5.2.0",

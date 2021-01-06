@@ -1,7 +1,6 @@
 /* encoding: utf-8 */
 
 import React, { Component } from "react";
-import { withCookies } from "react-cookie";
 import { Grid } from "semantic-ui-react";
 import PapersSidebar from "./PapersSidebar";
 import MapCanvas from "./map/Map";
@@ -9,7 +8,7 @@ import Jargon from "./headers/Jargon";
 import Search from "./headers/Search";
 
 
-class PapersPanel extends Component {
+export default class PapersPanel extends Component {
 
 
     constructor(props) {
@@ -92,6 +91,3 @@ class PapersPanel extends Component {
         );
     }
 }
-
-
-export default withCookies(PapersPanel);

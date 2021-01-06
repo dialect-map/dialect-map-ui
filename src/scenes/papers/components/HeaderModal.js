@@ -5,7 +5,7 @@ import { Header, Image, Modal, Segment } from "semantic-ui-react";
 import Logo from "../../../images/DS3_logo.png";
 
 
-export default class PapersHeader extends Component {
+export default class PapersModal extends Component {
 
 
     render() {

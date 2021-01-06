@@ -4,7 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
 import ConfigLoader from "./controllers/ConfigLoader";
 import PapersMap from './scenes/papers/Papers';
 import "semantic-ui-css/semantic.min.css";
@@ -16,12 +15,10 @@ ConfigLoader.loadPaperscapeConfig().then(render);
 
 function render() {
     ReactDOM.render(
-        <CookiesProvider>
-            <BrowserRouter>
-                <Route exact path="/" component={PapersMap}/>
-                <Route exact path="/map" component={PapersMap}/>
-            </BrowserRouter>
-        </CookiesProvider>,
+        <BrowserRouter>
+            <Route exact path="/" component={PapersMap}/>
+            <Route exact path="/map" component={PapersMap}/>
+        </BrowserRouter>,
         document.getElementById('root')
     );
 
