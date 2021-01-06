@@ -8,6 +8,12 @@ import PaperSearchCtl from "../../controllers/paperscape/PaperSearch";
 import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosition";
 
 
+export const JargonColors = [
+    {key: "blue", text: "blue", rgb: {r: 0,   g: 0, b: 255}},
+    {key: "red",  text: "red",  rgb: {r: 255, g: 0, b: 0}},
+];
+
+
 export default class Jargon extends Component {
 
 
@@ -102,10 +108,10 @@ export default class Jargon extends Component {
                 <Menu secondary>
                     <Menu.Item className="search-menu-item">
                         <Image avatar>
-                            <Icon circular inverted color="blue" name="comment"/>
+                            <Icon circular inverted color={JargonColors[0].text} name="comment"/>
                         </Image>
                         <b className="search-menu-text">
-                            Jargon:
+                            Jargon A:
                         </b>
                         <Input
                             fluid
@@ -115,10 +121,10 @@ export default class Jargon extends Component {
                     </Menu.Item>
                     <Menu.Item className="search-menu-item">
                         <Image avatar>
-                            <Icon circular inverted color="blue" name="comment"/>
+                            <Icon circular inverted color={JargonColors[1].text} name="comment"/>
                         </Image>
                         <b className="search-menu-text">
-                            Jargon:
+                            Jargon B:
                         </b>
                         <Input
                             fluid
