@@ -1,0 +1,9 @@
+fail_fast: true
+
+repos:
+  -   repo: https://github.com/pre-commit/mirrors-prettier
+      rev: 2.2.1
+      hooks:
+        - id: prettier
+          name: "JavaScript format checker"
+          args: ["--check", "src/**/*.js"]

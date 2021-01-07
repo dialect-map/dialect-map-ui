@@ -5,7 +5,7 @@ import PaperSearchCtl from "../../controllers/paperscape/PaperSearch";
 import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosition";
 import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
 
-
+// prettier-ignore
 export const SearchOptions = [
     {key: "arxiv",      text: "Arxiv ID",   value: "saxm"},
     {key: "author",     text: "Author",     value: "sau"},
@@ -14,9 +14,8 @@ export const SearchOptions = [
     {key: "new-papers", text: "New papers", value: "sca"},
 ];
 
-
 export default class Search extends Component {
-
+    /** Component to define the search query to the PaperScape API */
 
     constructor(props) {
         super(props);
@@ -29,23 +28,23 @@ export default class Search extends Component {
         this.searchPapers = this.searchPapers.bind(this);
     }
 
-
     updateSearch(event) {
         this.setState({
-            paperSearch: event.target.value
+            paperSearch: event.target.value,
         });
     }
-
 
     updateSearchType(change) {
         this.setState({
-            paperSearchType: change.value
+            paperSearchType: change.value,
         });
     }
 
-
     async searchPapers() {
-        let ids = await PaperSearchCtl.fetchPapersIDs(this.state.paperSearchType, this.state.paperSearch);
+        let ids = await PaperSearchCtl.fetchPapersIDs(
+            this.state.paperSearchType,
+            this.state.paperSearch
+        );
         if (ids.length === 0) {
             return;
         }
@@ -54,19 +53,15 @@ export default class Search extends Component {
         this.props.setSearchPapers(papers);
     }
 
-
     render() {
-
         return (
             <Segment className="search-container">
                 <Menu secondary>
                     <Menu.Item className="search-menu-item">
                         <Image avatar>
-                            <Icon circular inverted color="blue" name="filter"/>
+                            <Icon circular inverted color="blue" name="filter" />
                         </Image>
-                        <b className="search-menu-text">
-                            Search:
-                        </b>
+                        <b className="search-menu-text">Search:</b>
                         <Input
                             fluid
                             placeholder="Free energy..."
@@ -86,10 +81,7 @@ export default class Search extends Component {
 
                     <Menu.Menu position="right">
                         <Menu.Item className="search-start-container">
-                            <Button
-                                color="blue"
-                                onClick={this.searchPapers}
-                            >
+                            <Button color="blue" onClick={this.searchPapers}>
                                 Search
                             </Button>
                         </Menu.Item>

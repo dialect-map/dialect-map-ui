@@ -1,17 +1,16 @@
 /* encoding: utf-8 */
 
-import config from "../../../../config"
-import PaperInfo from "../../models/PaperInfo"
-
+import config from "../../../../config";
+import PaperInfo from "../../models/PaperInfo";
 
 const paperInfoRespPrefix = "(";
 const paperInfoRespSuffix = ")\n";
 
-
-export default class PaperInfoCtl  {
-
+export default class PaperInfoCtl {
+    /** Controller defining the paper info queries to the Paperscape API */
 
     static fetchPaperInfo(paperID) {
+        // prettier-ignore
         let url = config.papersDataURL
             + "?callback="
             + "&flags[]=1"
@@ -22,7 +21,6 @@ export default class PaperInfoCtl  {
             .then(text => this._handlePaperInfoResp(text));
     }
 
-
     static _handlePaperInfoResp(text) {
         let paperInfo = null;
 
@@ -31,14 +29,12 @@ export default class PaperInfoCtl  {
             let json = JSON.parse(body);
             let data = json["r"]["papr"][0];
             paperInfo = new PaperInfo(data);
-        }
-        catch(error) {
+        } catch (error) {
             console.log(error);
         }
 
         return paperInfo;
     }
-
 
     static _prunePaperInfoResp(body) {
         let startStr = paperInfoRespPrefix.length;

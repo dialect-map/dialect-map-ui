@@ -1,12 +1,13 @@
 /* encoding: utf-8 */
 
-
 export default class PaperPosition {
+    /** Model containing the basic paper position structure */
 
-    constructor(apiResponse) {
-        this.id = apiResponse.id;
-        this.x  = apiResponse.x;
-        this.y  = apiResponse.y;
-        this.r  = apiResponse.r;
+    // prettier-ignore
+    constructor(data) {
+        this.id = data["id"];
+        this.x  = data["x"];
+        this.y  = data["y"];
+        this.r  = data["r"];
     }
 }

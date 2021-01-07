@@ -8,7 +8,7 @@ the Data Science and Software Services (DS3) funded projects.
 ## About
 
 This project provides a web client for the [PaperScape project][paperscape-blog],
-taking the [PaperSpace public front-end][paperscape-ui] as inspiration, and using a modern 
+taking the [PaperSpace public front-end][paperscape-ui] as inspiration, and using a modern
 and standardized front-end stack:
 
 - [React][react-webpage] ⚛️
@@ -31,19 +31,19 @@ npm install
 npm install --global serve
 ```
 
+
 ### Project development
-```shell script
-npm start
-```
-
-### Project build
-```shell script
-make build
-```
-
-### Project deploy
+To start a development server:
 ```shell script
 make deploy
+```
+
+
+### Formatting
+All JavaScript files are formatted using [Prettier][prettier-web], and the custom properties defined
+in the `.prettierrc.json` file. To check for code style inconsistencies:
+```shell script
+make check
 ```
 
 
@@ -97,6 +97,7 @@ and specially Rob J. Knegjens for being in contact with us during the developmen
 [gcloud-cli-setup]: https://cloud.google.com/sdk/docs/install
 [paperscape-blog]: https://blog.paperscape.org/
 [paperscape-ui]: https://github.com/paperscape/paperscape-mapclient
+[prettier-web]: https://prettier.io/docs/en/index.html
 [react-env-docs]: https://create-react-app.dev/docs/adding-custom-environment-variables/
 [react-webpage]: https://reactjs.org/
 [semantic-webpage]: https://react.semantic-ui.com/

@@ -1,25 +1,23 @@
 /* encoding: utf-8 */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter, Route } from "react-router-dom";
 import ConfigLoader from "./controllers/ConfigLoader";
-import PapersMap from './scenes/papers/Papers';
+import PapersMap from "./scenes/papers/Papers";
 import "semantic-ui-css/semantic.min.css";
-import './index.css';
-
+import "./index.css";
 
 ConfigLoader.loadPaperscapeConfig().then(render);
-
 
 function render() {
     ReactDOM.render(
         <BrowserRouter>
-            <Route exact path="/" component={PapersMap}/>
-            <Route exact path="/map" component={PapersMap}/>
+            <Route exact path="/" component={PapersMap} />
+            <Route exact path="/map" component={PapersMap} />
         </BrowserRouter>,
-        document.getElementById('root')
+        document.getElementById("root")
     );
 
     // If you want your app to work offline and load faster, you can change

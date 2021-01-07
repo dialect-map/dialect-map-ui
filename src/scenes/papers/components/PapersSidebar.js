@@ -3,9 +3,8 @@
 import React, { Component } from "react";
 import { Icon, Menu } from "semantic-ui-react";
 
-
 export default class PapersSidebar extends Component {
-
+    /** Component defining the main section sidebar to change between tabs */
 
     isSearchActive() {
         return this.props.getChosenTab() === "search";
@@ -15,9 +14,7 @@ export default class PapersSidebar extends Component {
         return this.props.getChosenTab() === "jargon";
     }
 
-
     render() {
-
         // Change-state functions passed by the parent
         const { setJargonTab, setSearchTab } = this.props;
 
@@ -28,14 +25,14 @@ export default class PapersSidebar extends Component {
                     active={this.isSearchActive()}
                     onClick={setSearchTab}
                 >
-                    <Icon circular inverted color="blue" name="search"/>
+                    <Icon circular inverted color="blue" name="search" />
                 </Menu.Item>
                 <Menu.Item
                     name="jargon"
                     active={this.isJargonActive()}
                     onClick={setJargonTab}
                 >
-                    <Icon circular inverted color="blue" name="comment"/>
+                    <Icon circular inverted color="blue" name="comment" />
                 </Menu.Item>
             </Menu>
         );

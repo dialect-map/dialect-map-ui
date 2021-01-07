@@ -1,16 +1,15 @@
 /* encoding: utf-8 */
 
-import config from "../../../../config"
-
+import config from "../../../../config";
 
 const paperSearchRespPrefix = "(";
 const paperSearchRespSuffix = ")\n";
 
-
 export default class PaperSearchCtl {
-
+    /** Controller defining the paper search queries to the Paperscape API */
 
     static fetchPapersIDs(searchKey, searchValue) {
+        // prettier-ignore
         let url = config.papersDataURL
             + this._buildRequestParams(searchKey, searchValue);
 
@@ -18,7 +17,6 @@ export default class PaperSearchCtl {
             .then(resp => resp.text())
             .then(text => this._handlePaperSearchResp(text));
     }
-
 
     static _buildRequestParams(searchKey, searchValue) {
         let params = "?callback=";
@@ -47,7 +45,6 @@ export default class PaperSearchCtl {
         return params;
     }
 
-
     static _handlePaperSearchResp(text) {
         let paperIDs = [];
 
@@ -56,14 +53,12 @@ export default class PaperSearchCtl {
             let json = JSON.parse(body);
             let data = json["r"];
             paperIDs = data.map(paper => paper.id);
-        }
-        catch(error) {
+        } catch (error) {
             console.log(error);
         }
 
         return paperIDs;
     }
-
 
     static _prunePaperSearchResp(body) {
         let startStr = paperSearchRespPrefix.length;

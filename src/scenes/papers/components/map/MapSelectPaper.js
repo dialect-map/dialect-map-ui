@@ -7,9 +7,8 @@ import PaperPositionCtl from "../../controllers/paperscape/PaperPosition";
 import MapInfoBox from "./MapInfoBox";
 import { Circle } from "react-leaflet";
 
-
 export default class MapSelectPaper extends Component {
-
+    /** Component defining the paper selection elements */
 
     constructor(props) {
         super(props);
@@ -20,31 +19,28 @@ export default class MapSelectPaper extends Component {
         };
 
         this.map = props.getMap();
-        this.map.on("click", (e) => this.clickToPaperPos(e));
+        this.map.on("click", e => this.clickToPaperPos(e));
 
         // Necessary binding in order to pass these functions to children
         this.getPaperInfo = this.getPaperInfo.bind(this);
         this.hidePaperInfo = this.hidePaperInfo.bind(this);
     }
 
-
     getPaperInfo() {
         return this.state.paperInfo;
     }
 
-
     hidePaperInfo() {
-        this.setState({paperInfoVisible: false});
+        this.setState({ paperInfoVisible: false });
     }
-
 
     _isMapInfoBox(event) {
         let clickedClass = event.originalEvent.target.className;
 
-        return (typeof clickedClass === "string")
-            && (clickedClass.includes("leaflet") === false);
+        return (
+            typeof clickedClass === "string" && clickedClass.includes("leaflet") === false
+        );
     }
-
 
     async clickToPaperPos(event) {
         // Stop click event if it was performed on the information box
@@ -68,11 +64,9 @@ export default class MapSelectPaper extends Component {
         this.updateSelectedPaper(paperPos, paperInfo);
     }
 
-
     convertRadius(radius) {
         return radius * config.worldToViewScale;
     }
-
 
     updateSelectedPaper(paperPos, paperInfo) {
         this.setState({
@@ -82,30 +76,25 @@ export default class MapSelectPaper extends Component {
         });
     }
 
-
     render() {
         const { worldToView } = this.props;
         const { paperPos } = this.state;
 
         return (
             <div>
-                { this.state.paperInfoVisible ?
-                    (
-                        <MapInfoBox
-                            getPaperInfo={this.getPaperInfo}
-                            hidePaperInfo={this.hidePaperInfo}
-                        />
-                    ) : null
-                }
-                { this.state.paperPos !== null ?
-                    (
-                        <Circle
-                            center={worldToView(paperPos.x, paperPos.y)}
-                            color={"yellow"}
-                            radius={this.convertRadius(paperPos.r)}
-                        />
-                    ) : null
-                }
+                {this.state.paperInfoVisible ? (
+                    <MapInfoBox
+                        getPaperInfo={this.getPaperInfo}
+                        hidePaperInfo={this.hidePaperInfo}
+                    />
+                ) : null}
+                {this.state.paperPos !== null ? (
+                    <Circle
+                        center={worldToView(paperPos.x, paperPos.y)}
+                        color={"yellow"}
+                        radius={this.convertRadius(paperPos.r)}
+                    />
+                ) : null}
             </div>
         );
     }
