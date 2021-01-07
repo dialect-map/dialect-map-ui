@@ -16,6 +16,7 @@ export default class MapLabelsCtl  {
         let labelsXTile = this._getLabelTile(centerPos[0], config.worldMinX, config.worldMaxX, labelSpec.nx);
         let labelsYTile = this._getLabelTile(centerPos[1], config.worldMinY, config.worldMaxY, labelSpec.ny);
 
+        // prettier-ignore
         let url = config.labelsJsonHost
             + "/" + zoomLevel
             + "/" + labelsXTile

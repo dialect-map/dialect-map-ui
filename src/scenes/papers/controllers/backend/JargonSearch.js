@@ -7,6 +7,8 @@ export default class JargonSearchCtl {
 
 
     static fetchJargonID(searchJargon) {
+
+        // prettier-ignore
         let url = config.dialectMapURL
             + "/jargon/string/"
             + encodeURIComponent(searchJargon);

@@ -6,6 +6,7 @@ import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosi
 import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
 
 
+// prettier-ignore
 export const SearchOptions = [
     {key: "arxiv",      text: "Arxiv ID",   value: "saxm"},
     {key: "author",     text: "Author",     value: "sau"},

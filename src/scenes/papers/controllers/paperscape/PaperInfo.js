@@ -12,6 +12,8 @@ export default class PaperInfoCtl  {
 
 
     static fetchPaperInfo(paperID) {
+
+        // prettier-ignore
         let url = config.papersDataURL
             + "?callback="
             + "&flags[]=1"

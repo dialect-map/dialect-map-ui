@@ -8,6 +8,7 @@ import PaperSearchCtl from "../../controllers/paperscape/PaperSearch";
 import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosition";
 
 
+// prettier-ignore
 export const JargonColors = [
     {key: "blue", text: "blue", rgb: {r: 0,   g: 0, b: 255}},
     {key: "red",  text: "red",  rgb: {r: 255, g: 0, b: 0}},

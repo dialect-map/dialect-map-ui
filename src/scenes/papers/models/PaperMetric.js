@@ -3,7 +3,7 @@
 
 export default class PaperJargonMetric {
 
-
+    // prettier-ignore
     constructor(data) {
         this.id       = data["metric_id"];
         this.jargonID = data["jargon_id"];

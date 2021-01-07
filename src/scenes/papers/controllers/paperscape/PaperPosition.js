@@ -12,6 +12,8 @@ export default class PaperPositionCtl  {
 
 
     static fetchPaperPos(X_pos, Y_pos) {
+
+        // prettier-ignore
         let url = config.papersDataURL
             + "?callback="
             + "&tbl="

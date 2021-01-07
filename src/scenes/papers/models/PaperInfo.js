@@ -6,7 +6,7 @@ const maxCharsPerField = 40;
 
 export default class PaperInfo {
 
-
+    // prettier-ignore
     constructor(data) {
         // Some of these fields may not be in the API response
         this.title   = data["titl"] || "";

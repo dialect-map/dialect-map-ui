@@ -8,6 +8,8 @@ export default class MetricSearchCtl {
 
 
     static fetchLatestMetrics(jargonID) {
+
+        // prettier-ignore
         let url = config.dialectMapURL
             + "/paper/metrics/latest/"
             + encodeURIComponent(jargonID);

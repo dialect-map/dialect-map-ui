@@ -3,6 +3,7 @@
 
 export default class PaperPosition {
 
+    // prettier-ignore
     constructor(apiResponse) {
         this.id = apiResponse.id;
         this.x  = apiResponse.x;

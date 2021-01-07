@@ -11,6 +11,8 @@ export default class PaperSearchCtl {
 
 
     static fetchPapersIDs(searchKey, searchValue) {
+
+        // prettier-ignore
         let url = config.papersDataURL
             + this._buildRequestParams(searchKey, searchValue);
 
