@@ -42,21 +42,18 @@ export default class Jargon extends Component {
     async queryJargonIds(jargons) {
         let promises = jargons.map(j => JargonSearchCtl.fetchJargonID(j));
         let results = await Promise.all(promises);
-
         return results.filter(id => id !== null);
     }
 
     async queryMetrics(jargonIds) {
         let promises = jargonIds.map(id => MetricSearchCtl.fetchLatestMetrics(id));
         let results = await Promise.all(promises);
-
         return results.flat();
     }
 
     async queryPaperIds(arxivIds) {
         let promises = arxivIds.map(id => PaperSearchCtl.fetchPapersIDs("saxm", id));
         let results = await Promise.all(promises);
-
         return results.flat();
     }
 
@@ -69,10 +66,8 @@ export default class Jargon extends Component {
         jargonIds.forEach(id => (emptyFreqs[id] = 0));
 
         let papersFreqs = {};
-        metrics.forEach(metric => (papersFreqs[metric.arxivID] = { ...emptyFreqs }));
-        metrics.forEach(
-            metric => (papersFreqs[metric.arxivID][metric.jargonID] = metric.absFreq)
-        );
+        metrics.forEach(m => (papersFreqs[m.arxivID] = { ...emptyFreqs }));
+        metrics.forEach(m => (papersFreqs[m.arxivID][m.jargonID] = m.absFreq));
 
         return papersFreqs;
     }
