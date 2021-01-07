@@ -15,30 +15,31 @@ export default class PapersPanel extends Component {
         super(props);
         this.state = {
             chosenTab: "search",
-            papers: [],
+            jargonTabProperties: {
+                extras: {},
+                papers: [],
+            },
+            searchTabProperties: {
+                papers: []
+            },
         };
 
-        // Necessary binding in order to allow children actions
+        // Tab choosing related functions
         this.getChosenTab = this.getChosenTab.bind(this);
-        this.getPapers = this.getPapers.bind(this);
-        this.setPapers = this.setPapers.bind(this);
         this.setJargonTab = this.setJargonTab.bind(this);
         this.setSearchTab = this.setSearchTab.bind(this);
+
+        // Papers related getters and setters
+        this.getJargonTabExtras = this.getJargonTabExtras.bind(this);
+        this.getJargonTabPapers = this.getJargonTabPapers.bind(this);
+        this.setJargonTabPapers = this.setJargonTabPapers.bind(this);
+        this.getSearchTabPapers = this.getSearchTabPapers.bind(this);
+        this.setSearchTabPapers = this.setSearchTabPapers.bind(this);
     }
 
 
     getChosenTab() {
         return this.state.chosenTab;
-    }
-
-
-    getPapers() {
-        return this.state.papers;
-    }
-
-
-    setPapers(papers) {
-        this.setState({papers: papers});
     }
 
 
@@ -52,14 +53,45 @@ export default class PapersPanel extends Component {
     }
 
 
+    getJargonTabExtras() {
+        return this.state.jargonTabProperties.extras;
+    }
+
+
+    getJargonTabPapers() {
+        return this.state.jargonTabProperties.papers;
+    }
+
+
+    setJargonTabPapers(papers, extras) {
+        this.setState(prevState => ({
+            ...prevState,
+            jargonTabProperties: {papers: papers, extras: extras}
+        }));
+    }
+
+
+    getSearchTabPapers() {
+        return this.state.searchTabProperties.papers;
+    }
+
+
+    setSearchTabPapers(papers) {
+        this.setState(prevState => ({
+            ...prevState,
+            searchTabProperties: {papers: papers}
+        }));
+    }
+
+
     renderTabHeader() {
         switch (this.state.chosenTab) {
             case "jargon":
-                return <Jargon setPapers={this.setPapers}/>;
+                return <Jargon setJargonPapers={this.setJargonTabPapers}/>;
             case "search":
-                return <Search setPapers={this.setPapers}/>;
+                return <Search setSearchPapers={this.setSearchTabPapers}/>;
             default:
-                return <Search setPapers={this.setPapers}/>;
+                return <Search setSearchPapers={this.setSearchTabPapers}/>;
         }
     }
 
@@ -82,7 +114,9 @@ export default class PapersPanel extends Component {
                     </Grid.Row>
                     <Grid.Row className="panel-body-map">
                         <MapCanvas
-                            getPapers={this.getPapers}
+                            getJargonExtras={this.getJargonTabExtras}
+                            getJargonPapers={this.getJargonTabPapers}
+                            getSearchPapers={this.getSearchTabPapers}
                         />
                     </Grid.Row>
                 </Grid.Column>

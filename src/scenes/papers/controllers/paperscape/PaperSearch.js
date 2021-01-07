@@ -24,6 +24,9 @@ export default class PaperSearchCtl {
         let params = "?callback=";
 
         switch (searchKey) {
+            case "saxm":
+                params += "&saxm=" + searchValue;
+                break;
             case "sau":
                 params += "&sau=" + searchValue;
                 break;

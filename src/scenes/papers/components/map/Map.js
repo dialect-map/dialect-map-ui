@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import config from "../../../../config";
 import MapLayerControl from "./MapLayerControl";
 import MapSelectPaper  from "./MapSelectPaper";
+import { JargonColors } from "../headers/Jargon";
 import { Circle, Map } from "react-leaflet";
 import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -17,6 +18,9 @@ export default class MapCanvas extends Component {
 
         // Set up at render() time
         this.map = null;
+
+        // Necessary binding in order to access parent functions
+        this.calcJargonColor = this.calcJargonColor.bind(this);
 
         // Necessary binding in order to pass these functions to children
         this.getMap = this.getMap.bind(this);
@@ -47,6 +51,36 @@ export default class MapCanvas extends Component {
     }
 
 
+    convertRGBColor(color) {
+        return `rgb(${color.r}, ${color.g}, ${color.b})`;
+    }
+
+
+    calcJargonColor(paperId) {
+        let jargonExtras = this.props.getJargonExtras();
+        let paperFreqs   = jargonExtras.freqByPaper[paperId];
+
+        let [freqA, freqB]   = Object.values(paperFreqs);
+        let [colorA, colorB] = JargonColors.map(c => c.rgb);
+
+        if (freqA === 0) {
+            return this.convertRGBColor(colorB);
+        }
+        if (freqB === 0) {
+            return this.convertRGBColor(colorA);
+        }
+
+        let colorARatio = freqB > freqA ? freqA / freqB : (1 - (freqB / freqA));
+        let colorBRatio = freqA > freqB ? freqB / freqA : (1 - (freqA / freqB));
+
+        return this.convertRGBColor({
+            r: (colorARatio * colorA.r) + (colorBRatio * colorB.r),
+            g: (colorARatio * colorA.g) + (colorBRatio * colorB.g),
+            b: (colorARatio * colorA.b) + (colorBRatio * colorB.b),
+        });
+    }
+
+
     worldToView(world_X, world_Y) {
         // Leaflet considers [Y, X] not [X, Y]
         return [
@@ -66,7 +100,8 @@ export default class MapCanvas extends Component {
 
 
     render() {
-        const papersList = this.props.getPapers();
+        const jargonPapers = this.props.getJargonPapers();
+        const searchPapers = this.props.getSearchPapers();
 
         return (
             // The "ref" prop is necessary to obtain the created instance
@@ -95,7 +130,16 @@ export default class MapCanvas extends Component {
                     worldToView={this.worldToView}
                 />
 
-                {papersList.map((paper, index) =>
+                {jargonPapers.map((paper, index) =>
+                    <Circle
+                        key={index}
+                        center={this.worldToView(paper.x, paper.y)}
+                        color={this.calcJargonColor(paper.id)}
+                        radius={this.convertRadius(paper.r)}>
+                    </Circle>
+                )}
+
+                {searchPapers.map((paper, index) =>
                     <Circle
                         key={index}
                         center={this.worldToView(paper.x, paper.y)}
