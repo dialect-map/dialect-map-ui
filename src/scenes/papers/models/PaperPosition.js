@@ -1,6 +1,5 @@
 /* encoding: utf-8 */
 
-
 export default class PaperPosition {
     /** Model containing the basic paper position structure */
 

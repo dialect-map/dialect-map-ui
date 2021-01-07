@@ -1,15 +1,12 @@
 /* encoding: utf-8 */
 
-import config from "../../../../config"
+import config from "../../../../config";
 import PaperJargonMetric from "../../models/PaperMetric";
-
 
 export default class MetricSearchCtl {
     /** Controller defining metrics search queries to our own backend */
 
-
     static fetchLatestMetrics(jargonID) {
-
         // prettier-ignore
         let url = config.dialectMapURL
             + "/paper/metrics/latest/"
@@ -21,14 +18,12 @@ export default class MetricSearchCtl {
             .catch(err => console.log(err));
     }
 
-
     static _handleMetricSearchResp(json) {
         let metrics = [];
 
         try {
             metrics = json.map(metric => new PaperJargonMetric(metric));
-        }
-        catch(error) {
+        } catch (error) {
             console.log(error);
         }
 

@@ -1,21 +1,27 @@
 /* encoding: utf-8 */
 
-import config from "../../../../config"
-
+import config from "../../../../config";
 
 const labelsRespPrefix = "lz_Z_X_Y(";
 const labelsRespSuffix = ")";
 
-
 export default class MapLabelsCtl {
     /** Controller defining the map labels queries to the Paperscape API */
 
-
     static fetchLabels(zoomLevel, centerPos) {
-
-        let labelSpec   = config.worldLabels[zoomLevel];
-        let labelsXTile = this._getLabelTile(centerPos[0], config.worldMinX, config.worldMaxX, labelSpec.nx);
-        let labelsYTile = this._getLabelTile(centerPos[1], config.worldMinY, config.worldMaxY, labelSpec.ny);
+        let labelSpec = config.worldLabels[zoomLevel];
+        let labelsXTile = this._getLabelTile(
+            centerPos[0],
+            config.worldMinX,
+            config.worldMaxX,
+            labelSpec.nx
+        );
+        let labelsYTile = this._getLabelTile(
+            centerPos[1],
+            config.worldMinY,
+            config.worldMaxY,
+            labelSpec.ny
+        );
 
         // prettier-ignore
         let url = config.labelsJsonHost
@@ -30,7 +36,6 @@ export default class MapLabelsCtl {
             .catch(err => console.log(err));
     }
 
-
     static _getLabelTile(coord, coordMin, coordMax, tilesNum) {
         let chunkSize = (coordMax - coordMin) / tilesNum;
         let upperBound = coordMin;
@@ -39,7 +44,7 @@ export default class MapLabelsCtl {
         while (true) {
             upperBound += chunkSize;
             if (coord < upperBound) {
-                break
+                break;
             } else {
                 tileIndex += 1;
             }
@@ -48,16 +53,14 @@ export default class MapLabelsCtl {
         return tileIndex;
     }
 
-
     static _handleLabelsResp(text) {
         let body = this._pruneLabelsResp(text);
         let json = JSON.parse(body);
         return json["lbls"];
     }
 
-
     static _pruneLabelsResp(body) {
-        let startStr  = labelsRespPrefix.length;
+        let startStr = labelsRespPrefix.length;
         let finishStr = body.length - labelsRespSuffix.length;
         return body.substring(startStr, finishStr);
     }

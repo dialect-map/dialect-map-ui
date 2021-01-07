@@ -3,10 +3,8 @@
 import { GridLayer, withLeaflet } from "react-leaflet";
 import { TileLayer } from "leaflet";
 
-
 class MapTilesLayer extends GridLayer {
     /** Class overriding the default Leaflet GridLayer functionality */
-
 
     getCustomOptions(props) {
         let options = super.getOptions(props);
@@ -15,16 +13,14 @@ class MapTilesLayer extends GridLayer {
         options.continuousWorld = true;
         options.subdomains = ["1", "2", "3", "4"];
 
-        return options
+        return options;
     }
-
 
     customGetTileUrl(coords) {
         coords.x += 1;
         coords.y += 1;
         return this.defaultGetTileUrl(coords);
     }
-
 
     // Function invoked by the GridLayer
     createLeafletElement(props) {
@@ -38,7 +34,6 @@ class MapTilesLayer extends GridLayer {
         return layer;
     }
 
-
     // Function invoked by the GridLayer
     updateLeafletElement(fromProps, toProps) {
         super.updateLeafletElement(fromProps, toProps);
@@ -48,5 +43,4 @@ class MapTilesLayer extends GridLayer {
     }
 }
 
-
-export default withLeaflet(MapTilesLayer)
+export default withLeaflet(MapTilesLayer);

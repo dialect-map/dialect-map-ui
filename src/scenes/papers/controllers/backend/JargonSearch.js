@@ -1,14 +1,11 @@
 /* encoding: utf-8 */
 
-import config from "../../../../config"
-
+import config from "../../../../config";
 
 export default class JargonSearchCtl {
     /** Controller defining Jargon search queries to our own backend */
 
-
     static fetchJargonID(searchJargon) {
-
         // prettier-ignore
         let url = config.dialectMapURL
             + "/jargon/string/"
@@ -20,14 +17,12 @@ export default class JargonSearchCtl {
             .catch(err => console.log(err));
     }
 
-
     static _handleJargonSearchResp(json) {
         let jargonID = null;
 
         try {
             jargonID = json["jargon_id"];
-        }
-        catch(error) {
+        } catch (error) {
             console.log(error);
         }
 

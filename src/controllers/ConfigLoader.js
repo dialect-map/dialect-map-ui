@@ -2,37 +2,30 @@
 
 import config from "../config";
 
-
 const configRespPrefix = "world_index(";
 const configRespSuffix = ")";
 
-
 export default class ConfigLoader {
     /** Class to load the initial map configuration from Paperscape */
-
 
     static _calcWorldToViewScale(tilePixels, tilePixelsAtZ0) {
         return tilePixels / tilePixelsAtZ0;
     }
 
-
     static _calcViewToWorldScale(tilePixels, tilePixelsAtZ0) {
         return tilePixelsAtZ0 / tilePixels;
     }
-
 
     static _handlePaperIDResp(text) {
         let body = this._pruneWorldConfigResp(text);
         return JSON.parse(body);
     }
 
-
     static _pruneWorldConfigResp(body) {
-        let startStr  = configRespPrefix.length;
+        let startStr = configRespPrefix.length;
         let finishStr = body.length - configRespSuffix.length;
         return body.substring(startStr, finishStr);
     }
-
 
     static _updateConfig(conf) {
         config.worldMinX = conf["xmin"];
@@ -47,10 +40,15 @@ export default class ConfigLoader {
          * Between tile pixels and world pixels at zoom 0.
          * As it is not the case, scaling need to be performed
          */
-        config.viewToWorldScale = this._calcViewToWorldScale(conf["pixelw"], conf["tilings"][0]["tw"]);
-        config.worldToViewScale = this._calcWorldToViewScale(conf["pixelw"], conf["tilings"][0]["tw"]);
+        config.viewToWorldScale = this._calcViewToWorldScale(
+            conf["pixelw"],
+            conf["tilings"][0]["tw"]
+        );
+        config.worldToViewScale = this._calcWorldToViewScale(
+            conf["pixelw"],
+            conf["tilings"][0]["tw"]
+        );
     }
-
 
     static async loadPaperscapeConfig() {
         console.log("Loading PaperScape configuration...");
@@ -60,6 +58,6 @@ export default class ConfigLoader {
             .then(text => this._handlePaperIDResp(text));
 
         this._updateConfig(conf);
-        console.log("PaperScape configuration loaded")
+        console.log("PaperScape configuration loaded");
     }
 }

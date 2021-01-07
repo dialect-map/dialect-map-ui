@@ -3,15 +3,12 @@
 import React, { Component } from "react";
 import { Button, Card, Icon, List } from "semantic-ui-react";
 
-
 export default class MapInfoBox extends Component {
     /** Component defining the information box upon paper selection */
-
 
     buildArxivLink(arxivID) {
         return "https://arxiv.org/pdf/" + arxivID;
     }
-
 
     render() {
         const { getPaperInfo, hidePaperInfo } = this.props;
@@ -25,19 +22,11 @@ export default class MapInfoBox extends Component {
                 </Button>
 
                 <Card.Content>
-                    <Card.Header>
-                        { paperInfo.getTitleForView() }
-                    </Card.Header>
+                    <Card.Header>{paperInfo.getTitleForView()}</Card.Header>
+                    <Card.Description>{paperInfo.getAuthorsForView()}</Card.Description>
                     <Card.Description>
-                        { paperInfo.getAuthorsForView() }
-                    </Card.Description>
-                    <Card.Description>
-                        { paperInfo.getPublisherForView() }
-                        <a
-                            href={arxivLink}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
+                        {paperInfo.getPublisherForView()}
+                        <a href={arxivLink} rel="noopener noreferrer" target="_blank">
                             <Icon name="file pdf" />
                         </a>
                     </Card.Description>
@@ -47,11 +36,11 @@ export default class MapInfoBox extends Component {
                     <List horizontal>
                         <List.Item>
                             <Icon name="linkify" />
-                            { paperInfo.numRefs } references
+                            {paperInfo.numRefs} references
                         </List.Item>
                         <List.Item>
                             <Icon name="file alternate" />
-                            { paperInfo.numCits } citations
+                            {paperInfo.numCits} citations
                         </List.Item>
                     </List>
                 </Card.Content>

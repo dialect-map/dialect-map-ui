@@ -1,8 +1,6 @@
 /* encoding: utf-8 */
 
-
 const maxCharsPerField = 40;
-
 
 export default class PaperInfo {
     /** Model containing the paper information structure */
@@ -18,29 +16,26 @@ export default class PaperInfo {
         this.numCits = data["nc"];
     }
 
-
     getTitleForView() {
         let shortTitle = this.title.substring(0, maxCharsPerField);
         if (shortTitle.length < this.title.length) {
-            shortTitle += "..."
+            shortTitle += "...";
         }
         return shortTitle;
     }
 
-
     getAuthorsForView() {
         let shortAuthors = this.auth.substring(0, maxCharsPerField);
         if (shortAuthors.length < this.auth.length) {
-            shortAuthors += "..."
+            shortAuthors += "...";
         }
         return shortAuthors;
     }
 
-
     getPublisherForView() {
         let shortPublisher = this.publ.substring(0, maxCharsPerField);
         if (shortPublisher.length < this.publ.length) {
-            shortPublisher += "..."
+            shortPublisher += "...";
         }
         return shortPublisher;
     }
