@@ -100,8 +100,7 @@ export default class MapLayerControl extends Component {
                                     className: "panel-body-map-label",
                                     html: this.buildLabel(label["lbl"])
                                 })}
-                            >
-                            </Marker>
+                            />
                         )}
                     </FeatureGroup>
                 </LayersControl.Overlay>

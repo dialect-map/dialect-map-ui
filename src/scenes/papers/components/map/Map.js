@@ -136,8 +136,8 @@ export default class MapCanvas extends Component {
                         key={index}
                         center={this.worldToView(paper.x, paper.y)}
                         color={this.calcJargonColor(paper.id)}
-                        radius={this.convertRadius(paper.r)}>
-                    </Circle>
+                        radius={this.convertRadius(paper.r)}
+                    />
                 )}
 
                 {searchPapers.map((paper, index) =>
@@ -145,8 +145,8 @@ export default class MapCanvas extends Component {
                         key={index}
                         center={this.worldToView(paper.x, paper.y)}
                         color={"white"}
-                        radius={this.convertRadius(paper.r)}>
-                    </Circle>
+                        radius={this.convertRadius(paper.r)}
+                    />
                 )}
             </Map>
         );
