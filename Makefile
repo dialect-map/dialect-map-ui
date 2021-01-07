@@ -6,6 +6,12 @@ GCP_REGISTRY  ?= "us.gcr.io"
 GCP_IMAGE_NAME = $(GCP_REGISTRY)/$(GCP_PROJECT)/$(IMAGE_NAME)
 
 
+.PHONY: check
+check:
+	@echo "Checking code format"
+	@npx prettier --check "src/**/*.js"
+
+
 .PHONY: clean
 clean:
 	@echo "Cleaning built folder"
