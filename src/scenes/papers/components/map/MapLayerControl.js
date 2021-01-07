@@ -9,6 +9,7 @@ import { divIcon } from "leaflet";
 
 
 export default class MapLayerControl extends Component {
+    /** Component defining the box with the layer control options */
 
 
     constructor(props) {

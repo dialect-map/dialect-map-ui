@@ -4,6 +4,7 @@ import config from "../../../../config"
 
 
 export default class JargonSearchCtl {
+    /** Controller defining Jargon search queries to our own backend */
 
 
     static fetchJargonID(searchJargon) {

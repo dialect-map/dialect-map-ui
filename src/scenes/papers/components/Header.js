@@ -6,6 +6,7 @@ import HeaderModal from "./HeaderModal";
 
 
 export default class PapersHeader extends Component {
+    /** Component defining the global scene header */
 
 
     render() {

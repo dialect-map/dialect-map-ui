@@ -5,6 +5,7 @@ import { Button, Card, Icon, List } from "semantic-ui-react";
 
 
 export default class MapInfoBox extends Component {
+    /** Component defining the information box upon paper selection */
 
 
     buildArxivLink(arxivID) {

@@ -8,6 +8,7 @@ const configRespSuffix = ")";
 
 
 export default class ConfigLoader {
+    /** Class to load the initial map configuration from Paperscape */
 
 
     static _calcWorldToViewScale(tilePixels, tilePixelsAtZ0) {

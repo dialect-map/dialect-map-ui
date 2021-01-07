@@ -9,6 +9,7 @@ import { Circle } from "react-leaflet";
 
 
 export default class MapSelectPaper extends Component {
+    /** Component defining the paper selection elements */
 
 
     constructor(props) {

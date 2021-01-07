@@ -9,6 +9,7 @@ import Search from "./headers/Search";
 
 
 export default class PapersPanel extends Component {
+    /** Component defining the main section div (sidebar + header + map) */
 
 
     constructor(props) {

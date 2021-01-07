@@ -8,6 +8,7 @@ import "./Papers.css";
 
 
 export default class PapersMap extends Component {
+    /** Component containing the whole papers map scene */
 
 
     render() {

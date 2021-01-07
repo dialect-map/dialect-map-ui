@@ -6,6 +6,7 @@ import Logo from "../../../images/DS3_logo.png";
 
 
 export default class PapersModal extends Component {
+    /** Component defining the center overlaid box upon information request */
 
 
     render() {

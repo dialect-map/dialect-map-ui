@@ -5,6 +5,7 @@ import PaperJargonMetric from "../../models/PaperMetric";
 
 
 export default class MetricSearchCtl {
+    /** Controller defining metrics search queries to our own backend */
 
 
     static fetchLatestMetrics(jargonID) {

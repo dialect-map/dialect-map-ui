@@ -8,7 +8,8 @@ const paperPosRespPrefix = "(";
 const paperPosRespSuffix = ")\n";
 
 
-export default class PaperPositionCtl  {
+export default class PaperPositionCtl {
+    /** Controller defining the paper coordinates queries to the Paperscape API */
 
 
     static fetchPaperPos(X_pos, Y_pos) {

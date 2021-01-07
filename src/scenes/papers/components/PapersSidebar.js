@@ -5,6 +5,7 @@ import { Icon, Menu } from "semantic-ui-react";
 
 
 export default class PapersSidebar extends Component {
+    /** Component defining the main section sidebar to change between tabs */
 
 
     isSearchActive() {

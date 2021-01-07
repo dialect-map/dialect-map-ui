@@ -4,7 +4,8 @@ import config from "../../../../config"
 import PaperPosition from "../../models/PaperPosition"
 
 
-export default class PaperSearchPositionCtl  {
+export default class PaperSearchPositionCtl {
+    /** Controller defining the paper position search queries to the Paperscape API */
 
 
     static fetchPapersPos(paperIDs) {

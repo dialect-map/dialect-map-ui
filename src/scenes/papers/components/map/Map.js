@@ -11,6 +11,7 @@ import "leaflet/dist/leaflet.css";
 
 
 export default class MapCanvas extends Component {
+    /** Component containing all the map related information / rendering */
 
 
     constructor(props) {

@@ -2,6 +2,7 @@
 
 
 export default class PaperJargonMetric {
+    /** Model containing the basic jargon metric structure */
 
     // prettier-ignore
     constructor(data) {

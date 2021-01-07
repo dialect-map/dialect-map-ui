@@ -7,7 +7,8 @@ const labelsRespPrefix = "lz_Z_X_Y(";
 const labelsRespSuffix = ")";
 
 
-export default class MapLabelsCtl  {
+export default class MapLabelsCtl {
+    /** Controller defining the map labels queries to the Paperscape API */
 
 
     static fetchLabels(zoomLevel, centerPos) {

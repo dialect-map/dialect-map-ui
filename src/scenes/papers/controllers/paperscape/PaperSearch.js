@@ -8,6 +8,7 @@ const paperSearchRespSuffix = ")\n";
 
 
 export default class PaperSearchCtl {
+    /** Controller defining the paper search queries to the Paperscape API */
 
 
     static fetchPapersIDs(searchKey, searchValue) {

@@ -8,7 +8,8 @@ const paperInfoRespPrefix = "(";
 const paperInfoRespSuffix = ")\n";
 
 
-export default class PaperInfoCtl  {
+export default class PaperInfoCtl {
+    /** Controller defining the paper info queries to the Paperscape API */
 
 
     static fetchPaperInfo(paperID) {

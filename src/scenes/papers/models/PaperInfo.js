@@ -5,6 +5,7 @@ const maxCharsPerField = 40;
 
 
 export default class PaperInfo {
+    /** Model containing the paper information structure */
 
     // prettier-ignore
     constructor(data) {

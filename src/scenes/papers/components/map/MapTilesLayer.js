@@ -5,6 +5,7 @@ import { TileLayer } from "leaflet";
 
 
 class MapTilesLayer extends GridLayer {
+    /** Class overriding the default Leaflet GridLayer functionality */
 
 
     getCustomOptions(props) {

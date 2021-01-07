@@ -16,6 +16,7 @@ export const JargonColors = [
 
 
 export default class Jargon extends Component {
+    /** Component to define the jargon terms comparison across papers */
 
 
     constructor(props) {

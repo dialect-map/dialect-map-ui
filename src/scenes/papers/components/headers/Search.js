@@ -17,6 +17,7 @@ export const SearchOptions = [
 
 
 export default class Search extends Component {
+    /** Component to define the search query to the PaperScape API */
 
 
     constructor(props) {
