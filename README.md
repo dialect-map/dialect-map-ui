@@ -1,4 +1,4 @@
-# Data Science: Dialect map UI
+# Dialect map UI
 
 This repository contains the front-end interface of the Dialect map project.
 An idea proposed by professor Kyle Cranmer, and developed as one of
