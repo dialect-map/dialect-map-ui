@@ -111,7 +111,7 @@ export default class MapCanvas extends Component {
                 />
 
                 <MapSelectPaper
-                    getMap={this.getMap}
+                    convertRadius={this.convertRadius}
                     viewToWorld={this.viewToWorld}
                     worldToView={this.worldToView}
                 />
