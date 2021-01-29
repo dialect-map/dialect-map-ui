@@ -10,7 +10,6 @@ class MapTilesLayer extends GridLayer {
         let options = super.getOptions(props);
         options.minZoom = 0;
         options.maxZoom = 6;
-        options.continuousWorld = true;
         options.subdomains = ["1", "2", "3", "4"];
 
         return options;
