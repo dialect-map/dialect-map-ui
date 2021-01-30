@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 15
       - name: "Install dev dependencies"
-        run: npm install --silent --only=dev
+        run: npm install --only=dev
       - name: "Check code format"
         run: make check
 
