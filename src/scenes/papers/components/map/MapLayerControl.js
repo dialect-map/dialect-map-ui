@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import config from "../../../../config";
 import MapLabelsCtl from "../../controllers/paperscape/MapLabels";
-import MapTilesLayer from "./MapTilesLayer";
+import MapTileLayer from "./MapTileLayer";
 import { FeatureGroup, LayersControl, Marker } from "react-leaflet";
 import { divIcon } from "leaflet";
 
@@ -74,19 +74,15 @@ export default class MapLayerControl extends Component {
         return (
             <LayersControl position="topleft">
                 <LayersControl.BaseLayer checked={false} name="Field">
-                    <MapTilesLayer
-                        url={config.tilesColorHost}
-                        attribution={config.tilesAttrib}
-                        tileSize={config.worldTileSize}
-                        onLoad={this.loadLabels}
+                    <MapTileLayer
+                        loadLabels={this.loadLabels}
+                        tilesURL={config.tilesColorHost}
                     />
                 </LayersControl.BaseLayer>
                 <LayersControl.BaseLayer checked={true} name="Heatmap">
-                    <MapTilesLayer
-                        url={config.tilesGreyHost}
-                        attribution={config.tilesAttrib}
-                        tileSize={config.worldTileSize}
-                        onLoad={this.loadLabels}
+                    <MapTileLayer
+                        loadLabels={this.loadLabels}
+                        tilesURL={config.tilesGreyHost}
                     />
                 </LayersControl.BaseLayer>
                 <LayersControl.Overlay checked={true} key={0} name={"Labels"}>

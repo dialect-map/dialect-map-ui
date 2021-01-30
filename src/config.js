@@ -19,9 +19,12 @@ const config = {
     mapBoundsViscosity: 0.8,
     mapInitialCenter: [-1000, 1000],
     mapInitialZoom: 0,
+    mapZoomMinimum: 0,
+    mapZoomMaximum: 6,
     mapZoomControl: false,
     mapZoomDelta: 0.25,
     mapZoomSnap: 0.25,
+    mapSubdomains: ["1", "2", "3", "4"],
 
     /* PaperScape map properties
      *

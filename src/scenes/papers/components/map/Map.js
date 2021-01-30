@@ -5,7 +5,7 @@ import config from "../../../../config";
 import { JargonColors } from "../headers/Jargon";
 import MapLayerControl from "./MapLayerControl";
 import MapSelectPaper from "./MapSelectPaper";
-import { Circle, Map } from "react-leaflet";
+import { Circle, MapContainer } from "react-leaflet";
 import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -27,17 +27,13 @@ export default class MapCanvas extends Component {
         this.worldToView = this.worldToView.bind(this);
     }
 
-    componentDidMount() {
-        setTimeout(() => this.map.invalidateSize(), 200);
-    }
-
     getMap() {
         return this.map;
     }
 
-    setMap(ref) {
+    setMap(map) {
         if (this.map === null) {
-            this.map = ref.leafletElement;
+            this.map = map;
         }
     }
 
@@ -94,8 +90,9 @@ export default class MapCanvas extends Component {
         const searchPapers = this.props.getSearchPapers();
 
         return (
-            // The "ref" prop is necessary to obtain the created instance
-            <Map
+            // In react-leaflet v2, "ref" is used to obtain the created map instance
+            // In react-leaflet v3, "whenCreated" is used to obtain the created map instance
+            <MapContainer
                 className="map-component"
                 center={config.mapInitialCenter}
                 crs={CRS.Simple}
@@ -105,7 +102,7 @@ export default class MapCanvas extends Component {
                 zoomControl={config.mapZoomControl}
                 zoomDelta={config.mapZoomDelta}
                 zoomSnap={config.mapZoomSnap}
-                ref={ref => this.setMap(ref)}
+                whenCreated={map => this.setMap(map)}
             >
                 <MapLayerControl
                     getMap={this.getMap}
@@ -114,7 +111,7 @@ export default class MapCanvas extends Component {
                 />
 
                 <MapSelectPaper
-                    getMap={this.getMap}
+                    convertRadius={this.convertRadius}
                     viewToWorld={this.viewToWorld}
                     worldToView={this.worldToView}
                 />
@@ -136,7 +133,7 @@ export default class MapCanvas extends Component {
                         radius={this.convertRadius(paper.r)}
                     />
                 ))}
-            </Map>
+            </MapContainer>
         );
     }
 }
