@@ -16,14 +16,14 @@ export default class PapersModal extends Component {
                     </Segment>
                 }
             >
-                <Modal.Header>Map of Jargon Across Domains</Modal.Header>
+                <Modal.Header>Dialect Map</Modal.Header>
 
                 <Modal.Content image>
                     <Image wrapped size="medium" src={Logo} />
                     <Modal.Description>
                         <Header>Project description</Header>
                         <p>
-                            <i>Map of Jargon Across Domains</i> is a project by the NYU
+                            <i>Dialect Map</i> is a project initially supported by the NYU
                             Data Science and Software Services initiative
                             <a
                                 href="https://cds.nyu.edu/ds3/"
@@ -32,7 +32,8 @@ export default class PapersModal extends Component {
                             >
                                 {" (DS3)"}
                             </a>
-                            , that compares jargon areas of influence by using the visual
+                            , that compares jargon areas of influence across multiple
+                            science domains. For visualization purposes, it uses the
                             representation of ArXiv stored papers provided by the
                             PaperScape project.
                         </p>

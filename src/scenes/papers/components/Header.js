@@ -12,7 +12,7 @@ export default class PapersHeader extends Component {
             <Segment className="papers-header-segment">
                 <Menu secondary>
                     <Menu.Item>
-                        <Header as="h4">Map of Jargon Across Domains</Header>
+                        <Header as="h4">Dialect Map</Header>
                     </Menu.Item>
 
                     <Menu.Menu position="right">
