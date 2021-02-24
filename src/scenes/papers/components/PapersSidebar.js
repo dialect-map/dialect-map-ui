@@ -15,7 +15,6 @@ export default class PapersSidebar extends Component {
     }
 
     render() {
-        // Change-state functions passed by the parent
         const { setJargonTab, setSearchTab } = this.props;
 
         return (
