@@ -1,5 +1,5 @@
 # Base image
-FROM node:15.3.0-alpine
+FROM node:15.11-alpine
 
 # Set working directory and copy files
 WORKDIR /app
