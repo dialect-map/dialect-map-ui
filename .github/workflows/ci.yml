@@ -3,12 +3,12 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - "**.md"
   pull_request:
     branches:
-      - master
+      - main
     paths-ignore:
       - "**.md"
 
@@ -16,7 +16,7 @@ jobs:
 
   check:
     needs: []
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: "Set up GitHub Actions"
         uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
 
   build:
     needs: [check]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: "Set up GitHub Actions"
         uses: actions/checkout@v2
