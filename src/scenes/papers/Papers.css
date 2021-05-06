@@ -5,7 +5,7 @@
 }
 
 .papers-header {
-    min-height: 80px;
+    min-height: 50px;
     min-width: 950px;
     padding-bottom: 0   !important; /* Necessary flag */
 }
@@ -20,7 +20,7 @@
 }
 
 .papers-body {
-    height: calc(100% - 60px);
+    height: calc(100% - 50px);
     min-width: 950px;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .panel-body-header {
-    min-height: 80px;
+    margin-bottom: 10px;
 }
 
 .panel-body-map {
