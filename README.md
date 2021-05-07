@@ -1,27 +1,18 @@
 # Dialect map UI
 
 This repository contains the front-end interface of the Dialect map project.
-An idea proposed by professor Kyle Cranmer, and developed as one of
-the Data Science and Software Services (DS3) funded projects.
+An idea proposed by professor Kyle Cranmer, and initially developed as one
+of the _Data Science and Software Services_ (DS3) funded projects.
 
 
 ## About
-
-This project provides a web client for the [PaperScape project][paperscape-blog],
-taking the [PaperSpace public front-end][paperscape-ui] as inspiration, and using a modern
-and standardized front-end stack:
+This project provides a web interface for the [Dialect Map project][dialect-map-repo],
+taking the interface of the [PaperScape project][paperscape-blog] as inspiration,
+but modernizing and standardizing the whole stack. This web client uses:
 
 - [React][react-webpage] ⚛️
 - [Leaflet][leaflet-webpage] 🗺️
 - [Semantic][semantic-webpage] 🎨
-
-The PaperScape project describes itself as:
-
-> An interactive map that visualises the arXiv, an open, online repository for scientific research papers.
->
-> Each paper in the map is represented by a circle, with the area of the circle proportional
-> to the number of citations that paper has. In laying out the map, an N-body algorithm is run
-> to determine positions based on references between the papers.
 
 
 ## Environment setup
@@ -40,8 +31,8 @@ make deploy
 
 
 ### Formatting
-All JavaScript files are formatted using [Prettier][prettier-web], and the custom properties defined
-in the `.prettierrc.json` file. To check for code style inconsistencies:
+All JavaScript files are formatted using [Prettier][prettier-web], and the custom properties
+defined in the `.prettierrc.json` file. To check for code style inconsistencies:
 ```shell script
 make check
 ```
@@ -93,10 +84,10 @@ We would like to thank the PaperScape authors for maintaining an up-to-date tile
 and specially Rob J. Knegjens for being in contact with us during the development of this project.
 
 
-[leaflet-webpage]: https://leafletjs.com/
+[dialect-map-repo]: https://github.com/dialect-map/dialect-map
 [gcloud-cli-setup]: https://cloud.google.com/sdk/docs/install
-[paperscape-blog]: https://blog.paperscape.org/
-[paperscape-ui]: https://github.com/paperscape/paperscape-mapclient
+[leaflet-webpage]: https://leafletjs.com/
+[paperscape-blog]: https://paperscape.org/
 [prettier-web]: https://prettier.io/docs/en/index.html
 [react-env-docs]: https://create-react-app.dev/docs/adding-custom-environment-variables/
 [react-webpage]: https://reactjs.org/
