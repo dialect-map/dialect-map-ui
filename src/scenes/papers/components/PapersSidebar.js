@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import { Icon, Menu } from "semantic-ui-react";
 
 export default class PapersSidebar extends Component {

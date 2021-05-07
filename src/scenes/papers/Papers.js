@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import PapersHeader from "./components/Header";
 import PapersPanel from "./components/PapersPanel";

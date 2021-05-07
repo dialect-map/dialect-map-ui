@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import PaperSearchCtl from "../../controllers/paperscape/PaperSearch";
 import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosition";
 import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";

@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import { Button, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
 import JargonSearchCtl from "../../controllers/backend/JargonSearch";
 import MetricSearchCtl from "../../controllers/backend/MetricSearch";

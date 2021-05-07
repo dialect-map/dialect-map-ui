@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import { Button, Card, Icon, List } from "semantic-ui-react";
 
 export default class MapInfoBox extends Component {

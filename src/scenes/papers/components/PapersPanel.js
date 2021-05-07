@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import PapersSidebar from "./PapersSidebar";
 import MapCanvas from "./map/Map";

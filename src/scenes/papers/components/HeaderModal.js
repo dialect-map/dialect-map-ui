@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import { Header, Image, Modal, Segment } from "semantic-ui-react";
 import Logo from "../../../images/DS3_logo.png";
 

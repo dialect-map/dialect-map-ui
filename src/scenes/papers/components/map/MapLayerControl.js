@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import config from "../../../../config";
 import MapLabelsCtl from "../../controllers/paperscape/MapLabels";
 import MapTileLayer from "./MapTileLayer";

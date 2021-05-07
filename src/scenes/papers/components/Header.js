@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import { Header, Menu, Segment } from "semantic-ui-react";
 import HeaderModal from "./HeaderModal";
 

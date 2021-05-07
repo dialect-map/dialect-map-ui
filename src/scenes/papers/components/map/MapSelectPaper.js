@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import React, { Component } from "react";
+import { Component } from "react";
 import ClickHandler from "./events/MapClickEvent";
 import MapInfoBox from "./MapInfoBox";
 import { Circle } from "react-leaflet";
