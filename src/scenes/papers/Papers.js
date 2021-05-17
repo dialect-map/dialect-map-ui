@@ -3,7 +3,7 @@
 import { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import PapersHeader from "./components/Header";
-import PapersPanel from "./components/PapersPanel";
+import PapersPanel from "./components/Panel";
 import "./Papers.css";
 
 export default class PapersMap extends Component {
