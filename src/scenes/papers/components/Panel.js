@@ -8,13 +8,18 @@ import PaperSearch from "./panel/search/PaperSearch";
 import MapCanvas from "./panel/map/Map";
 import "./Panel.css";
 
+export const PanelTabs = {
+    JARGON_SEARCH: "jargon",
+    PAPER_SEARCH: "paper",
+};
+
 export default class PapersPanel extends Component {
-    /** Component defining the main section div (sidebar + header + map) */
+    /** Component defining the main section div (sidebar + searchbar + map) */
 
     constructor(props) {
         super(props);
         this.state = {
-            chosenTab: "paper",
+            chosenTab: PanelTabs.PAPER_SEARCH,
             jargonTabProperties: {
                 extras: {},
                 papers: [],
@@ -42,11 +47,11 @@ export default class PapersPanel extends Component {
     }
 
     setJargonTab() {
-        this.setState({ chosenTab: "jargon" });
+        this.setState({ chosenTab: PanelTabs.JARGON_SEARCH });
     }
 
     setSearchTab() {
-        this.setState({ chosenTab: "paper" });
+        this.setState({ chosenTab: PanelTabs.PAPER_SEARCH });
     }
 
     getJargonTabExtras() {
@@ -77,9 +82,9 @@ export default class PapersPanel extends Component {
 
     renderTabHeader() {
         switch (this.state.chosenTab) {
-            case "jargon":
+            case PanelTabs.JARGON_SEARCH:
                 return <JargonSearch setJargonPapers={this.setJargonTabPapers} />;
-            case "paper":
+            case PanelTabs.PAPER_SEARCH:
                 return <PaperSearch setSearchPapers={this.setSearchTabPapers} />;
             default:
                 return <PaperSearch setSearchPapers={this.setSearchTabPapers} />;
