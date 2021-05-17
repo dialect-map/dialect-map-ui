@@ -2,11 +2,11 @@
 
 import { Component } from "react";
 import { Button, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
-import JargonSearchCtl from "../../controllers/backend/JargonSearch";
-import MetricSearchCtl from "../../controllers/backend/MetricSearch";
-import PaperSearchCtl from "../../controllers/paperscape/PaperSearch";
-import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosition";
-import "./Header.css";
+import JargonSearchCtl from "../../../controllers/backend/JargonSearch";
+import MetricSearchCtl from "../../../controllers/backend/MetricSearch";
+import PaperSearchCtl from "../../../controllers/paperscape/PaperSearch";
+import PaperSearchPositionCtl from "../../../controllers/paperscape/PaperSearchPosition";
+import "./Search.css";
 
 // prettier-ignore
 export const JargonColors = [
@@ -14,7 +14,7 @@ export const JargonColors = [
     {key: "red",  text: "red",  rgb: {r: 255, g: 0, b: 0}},
 ];
 
-export default class Jargon extends Component {
+export default class JargonSearch extends Component {
     /** Component to define the jargon terms comparison across papers */
 
     constructor(props) {
