@@ -1,8 +1,8 @@
 /* encoding: utf-8 */
 
 import { Component } from "react";
-import config from "../../../../config";
-import { JargonColors } from "../headers/Jargon";
+import config from "../../../../../config";
+import { JargonColors } from "../search/JargonSearch";
 import MapLayerControl from "./MapLayerControl";
 import MapSelectPaper from "./MapSelectPaper";
 import { Circle, MapContainer } from "react-leaflet";

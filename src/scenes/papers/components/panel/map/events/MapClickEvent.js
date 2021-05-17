@@ -1,7 +1,7 @@
 /* encoding: utf-8 */
 
-import PaperInfoCtl from "../../../controllers/paperscape/PaperInfo";
-import PaperPositionCtl from "../../../controllers/paperscape/PaperPosition";
+import PaperInfoCtl from "../../../../controllers/paperscape/PaperInfo";
+import PaperPositionCtl from "../../../../controllers/paperscape/PaperPosition";
 import { useMapEvent } from "react-leaflet";
 
 export default function setClickHandler({ viewToWorld, updateSelected }) {
