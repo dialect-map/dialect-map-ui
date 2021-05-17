@@ -6,6 +6,7 @@ import JargonSearchCtl from "../../controllers/backend/JargonSearch";
 import MetricSearchCtl from "../../controllers/backend/MetricSearch";
 import PaperSearchCtl from "../../controllers/paperscape/PaperSearch";
 import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosition";
+import "./Header.css";
 
 // prettier-ignore
 export const JargonColors = [

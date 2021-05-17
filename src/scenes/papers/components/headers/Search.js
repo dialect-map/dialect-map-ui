@@ -4,6 +4,7 @@ import { Component } from "react";
 import PaperSearchCtl from "../../controllers/paperscape/PaperSearch";
 import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosition";
 import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
+import "./Header.css";
 
 // prettier-ignore
 export const SearchOptions = [
