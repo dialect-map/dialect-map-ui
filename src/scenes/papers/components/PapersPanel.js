@@ -6,6 +6,7 @@ import PapersSidebar from "./PapersSidebar";
 import MapCanvas from "./map/Map";
 import Jargon from "./headers/Jargon";
 import Search from "./headers/Search";
+import "./PapersPanel.css";
 
 export default class PapersPanel extends Component {
     /** Component defining the main section div (sidebar + header + map) */
