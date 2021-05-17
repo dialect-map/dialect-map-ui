@@ -2,10 +2,10 @@
 
 import { Component } from "react";
 import { Header, Image, Modal, Segment } from "semantic-ui-react";
-import Logo from "../../../images/DS3_logo.png";
+import Logo from "../../../../images/DS3_logo.png";
 import "./HeaderModal.css";
 
-export default class PapersModal extends Component {
+export default class HeaderModal extends Component {
     /** Component defining the center overlaid box upon information request */
 
     render() {
