@@ -1,0 +1,7 @@
+/* encoding: utf-8 */
+
+.papers-header-segment {
+    border-radius: 0    !important; /* Necessary flag */
+    padding-top: 5px    !important; /* Necessary flag */
+    padding-bottom: 5px !important; /* Necessary flag */
+}

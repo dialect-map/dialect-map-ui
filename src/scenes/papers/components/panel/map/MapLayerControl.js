@@ -1,8 +1,8 @@
 /* encoding: utf-8 */
 
 import { Component } from "react";
-import config from "../../../../config";
-import MapLabelsCtl from "../../controllers/paperscape/MapLabels";
+import config from "../../../../../config";
+import MapLabelsCtl from "../../../controllers/paperscape/MapLabels";
 import MapTileLayer from "./MapTileLayer";
 import { FeatureGroup, LayersControl, Marker } from "react-leaflet";
 import { divIcon } from "leaflet";

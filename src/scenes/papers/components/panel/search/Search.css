@@ -1,0 +1,25 @@
+/* encoding: utf-8 */
+
+.search-container {
+    padding-top: 5px    !important; /* Necessary flag */
+    padding-bottom: 5px !important; /* Necessary flag */
+}
+
+.search-menu-item {
+    width: 28%;
+    height: 50px        !important; /* Necessary flag */
+}
+
+.search-menu-text {
+    width: 150px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.search-start-container {
+    padding: 0          !important; /* Necessary flag */
+}
+
+.search-menu-dropdown {
+    z-index: 1000       !important; /* Necessary flag */
+}

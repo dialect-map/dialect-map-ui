@@ -1,9 +1,10 @@
 /* encoding: utf-8 */
 
 import { Component } from "react";
-import PaperSearchCtl from "../../controllers/paperscape/PaperSearch";
-import PaperSearchPositionCtl from "../../controllers/paperscape/PaperSearchPosition";
+import PaperSearchCtl from "../../../controllers/paperscape/PaperSearch";
+import PaperSearchPositionCtl from "../../../controllers/paperscape/PaperSearchPosition";
 import { Button, Dropdown, Icon, Image, Input, Menu, Segment } from "semantic-ui-react";
+import "./Search.css";
 
 // prettier-ignore
 export const SearchOptions = [
@@ -14,7 +15,7 @@ export const SearchOptions = [
     {key: "new-papers", text: "New papers", value: "sca"},
 ];
 
-export default class Search extends Component {
+export default class PaperSearch extends Component {
     /** Component to define the search query to the PaperScape API */
 
     constructor(props) {

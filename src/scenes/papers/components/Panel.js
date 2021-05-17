@@ -2,10 +2,11 @@
 
 import { Component } from "react";
 import { Grid } from "semantic-ui-react";
-import PapersSidebar from "./PapersSidebar";
-import MapCanvas from "./map/Map";
-import Jargon from "./headers/Jargon";
-import Search from "./headers/Search";
+import PapersSidebar from "./Sidebar";
+import JargonSearch from "./panel/search/JargonSearch";
+import PaperSearch from "./panel/search/PaperSearch";
+import MapCanvas from "./panel/map/Map";
+import "./Panel.css";
 
 export default class PapersPanel extends Component {
     /** Component defining the main section div (sidebar + header + map) */
@@ -13,7 +14,7 @@ export default class PapersPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chosenTab: "search",
+            chosenTab: "paper",
             jargonTabProperties: {
                 extras: {},
                 papers: [],
@@ -45,7 +46,7 @@ export default class PapersPanel extends Component {
     }
 
     setSearchTab() {
-        this.setState({ chosenTab: "search" });
+        this.setState({ chosenTab: "paper" });
     }
 
     getJargonTabExtras() {
@@ -77,11 +78,11 @@ export default class PapersPanel extends Component {
     renderTabHeader() {
         switch (this.state.chosenTab) {
             case "jargon":
-                return <Jargon setJargonPapers={this.setJargonTabPapers} />;
-            case "search":
-                return <Search setSearchPapers={this.setSearchTabPapers} />;
+                return <JargonSearch setJargonPapers={this.setJargonTabPapers} />;
+            case "paper":
+                return <PaperSearch setSearchPapers={this.setSearchTabPapers} />;
             default:
-                return <Search setSearchPapers={this.setSearchTabPapers} />;
+                return <PaperSearch setSearchPapers={this.setSearchTabPapers} />;
         }
     }
 

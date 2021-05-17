@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-import config from "../../../../config";
+import config from "../../../../../config";
 import { TileLayer } from "leaflet";
 import { createLayerComponent, updateGridLayer } from "@react-leaflet/core";
 

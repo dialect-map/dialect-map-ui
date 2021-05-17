@@ -2,7 +2,8 @@
 
 import { Component } from "react";
 import { Header, Menu, Segment } from "semantic-ui-react";
-import HeaderModal from "./HeaderModal";
+import HeaderModal from "./header/HeaderModal";
+import "./Header.css";
 
 export default class PapersHeader extends Component {
     /** Component defining the global scene header */

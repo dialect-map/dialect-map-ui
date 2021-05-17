@@ -1,13 +1,14 @@
 /* encoding: utf-8 */
 
 import { Component } from "react";
-import config from "../../../../config";
-import { JargonColors } from "../headers/Jargon";
+import config from "../../../../../config";
+import { JargonColors } from "../search/JargonSearch";
 import MapLayerControl from "./MapLayerControl";
 import MapSelectPaper from "./MapSelectPaper";
 import { Circle, MapContainer } from "react-leaflet";
 import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "./Map.css";
 
 export default class MapCanvas extends Component {
     /** Component containing all the map related information / rendering */

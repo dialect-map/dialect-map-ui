@@ -1,0 +1,33 @@
+/* encoding: utf-8 */
+
+.leaflet-container {
+    background-color: #000000;
+}
+
+.map-component {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: 5px;
+}
+
+
+.panel-body-map-label {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.panel-body-map-info {
+    top: 10px;
+    right: 10px;
+    width: 320px        !important; /* Necessary flag */
+    z-index: 450;
+    cursor: default;
+    position: absolute  !important; /* Necessary flag */
+    background: #FFFFFF !important; /* Necessary flag */
+}
