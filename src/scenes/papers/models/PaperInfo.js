@@ -1,9 +1,9 @@
 /* encoding: utf-8 */
 
-const maxCharsPerField = 40;
-
 export default class PaperInfo {
     /** Model containing the paper information structure */
+
+    maxCharsPerField = 40;
 
     // prettier-ignore
     constructor(data) {
@@ -17,7 +17,7 @@ export default class PaperInfo {
     }
 
     getTitleForView() {
-        let shortTitle = this.title.substring(0, maxCharsPerField);
+        let shortTitle = this.title.substring(0, this.maxCharsPerField);
         if (shortTitle.length < this.title.length) {
             shortTitle += "...";
         }
@@ -25,7 +25,7 @@ export default class PaperInfo {
     }
 
     getAuthorsForView() {
-        let shortAuthors = this.auth.substring(0, maxCharsPerField);
+        let shortAuthors = this.auth.substring(0, this.maxCharsPerField);
         if (shortAuthors.length < this.auth.length) {
             shortAuthors += "...";
         }
@@ -33,7 +33,7 @@ export default class PaperInfo {
     }
 
     getPublisherForView() {
-        let shortPublisher = this.publ.substring(0, maxCharsPerField);
+        let shortPublisher = this.publ.substring(0, this.maxCharsPerField);
         if (shortPublisher.length < this.publ.length) {
             shortPublisher += "...";
         }
