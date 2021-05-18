@@ -1,12 +1,20 @@
 /* encoding: utf-8 */
 
-import config from "../config";
+import config from "../../../../config";
 
 const mapConfigRespPrefix = "world_index(";
 const mapConfigRespSuffix = ")";
 
-export default class ConfigLoader {
-    /** Class to load the initial map configuration from Paperscape */
+export default class MapConfigCtl {
+    /** Controller to fetch the initial map configuration from Paperscape */
+
+    static fetchConfig() {
+        console.log("Loading PaperScape configuration...");
+
+        return fetch(config.worldConfigURL, {})
+            .then(resp => resp.text())
+            .then(text => this._handlePaperIDResp(text));
+    }
 
     static _calcWorldToViewScale(tilePixels, tilePixelsAtZ0) {
         return tilePixels / tilePixelsAtZ0;
@@ -18,7 +26,10 @@ export default class ConfigLoader {
 
     static _handlePaperIDResp(text) {
         let body = this._pruneWorldConfigResp(text);
-        return JSON.parse(body);
+        let conf = JSON.parse(body);
+
+        this._updateConfig(conf);
+        console.log("PaperScape configuration loaded");
     }
 
     static _pruneWorldConfigResp(body) {
@@ -49,16 +60,5 @@ export default class ConfigLoader {
             conf["pixelw"],
             conf["tilings"][0]["tw"]
         );
-    }
-
-    static async loadPaperscapeConfig() {
-        console.log("Loading PaperScape configuration...");
-
-        let conf = await fetch(config.worldConfigURL, {})
-            .then(resp => resp.text())
-            .then(text => this._handlePaperIDResp(text));
-
-        this._updateConfig(conf);
-        console.log("PaperScape configuration loaded");
     }
 }
