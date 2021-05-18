@@ -2,8 +2,8 @@
 
 import config from "../config";
 
-const configRespPrefix = "world_index(";
-const configRespSuffix = ")";
+const mapConfigRespPrefix = "world_index(";
+const mapConfigRespSuffix = ")";
 
 export default class ConfigLoader {
     /** Class to load the initial map configuration from Paperscape */
@@ -22,9 +22,10 @@ export default class ConfigLoader {
     }
 
     static _pruneWorldConfigResp(body) {
-        let startStr = configRespPrefix.length;
-        let finishStr = body.length - configRespSuffix.length;
-        return body.substring(startStr, finishStr);
+        return body.slice(
+            +1 * mapConfigRespPrefix.length,
+            -1 * mapConfigRespSuffix.length
+        );
     }
 
     static _updateConfig(conf) {

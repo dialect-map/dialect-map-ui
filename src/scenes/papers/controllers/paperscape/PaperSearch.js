@@ -61,9 +61,9 @@ export default class PaperSearchCtl {
     }
 
     static _prunePaperSearchResp(body) {
-        let startStr = paperSearchRespPrefix.length;
-        let finishStr = body.length - paperSearchRespSuffix.length;
-
-        return body.substring(startStr, finishStr);
+        return body.slice(
+            +1 * paperSearchRespPrefix.length,
+            -1 * paperSearchRespSuffix.length
+        );
     }
 }

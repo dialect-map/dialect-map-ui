@@ -3,8 +3,8 @@
 import config from "../../../../config";
 import PaperPosition from "../../models/PaperPosition";
 
-const paperPosRespPrefix = "(";
-const paperPosRespSuffix = ")\n";
+const paperPositionRespPrefix = "(";
+const paperPositionRespSuffix = ")\n";
 
 export default class PaperPositionCtl {
     /** Controller defining the paper coordinates queries to the Paperscape API */
@@ -38,9 +38,9 @@ export default class PaperPositionCtl {
     }
 
     static _prunePaperPosResp(body) {
-        let startStr = paperPosRespPrefix.length;
-        let finishStr = body.length - paperPosRespSuffix.length;
-
-        return body.substring(startStr, finishStr);
+        return body.slice(
+            +1 * paperPositionRespPrefix.length,
+            -1 * paperPositionRespSuffix.length
+        );
     }
 }
