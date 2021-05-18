@@ -38,16 +38,12 @@ export default class MapLabelsCtl {
 
     static _getLabelTile(coord, coordMin, coordMax, tilesNum) {
         let chunkSize = (coordMax - coordMin) / tilesNum;
-        let upperBound = coordMin;
+        let highBound = coordMin + chunkSize;
         let tileIndex = 1;
 
-        while (true) {
-            upperBound += chunkSize;
-            if (coord < upperBound) {
-                break;
-            } else {
-                tileIndex += 1;
-            }
+        while (coord >= highBound) {
+            highBound += chunkSize;
+            tileIndex += 1;
         }
 
         return tileIndex;
