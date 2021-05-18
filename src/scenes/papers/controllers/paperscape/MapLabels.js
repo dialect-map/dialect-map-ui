@@ -2,8 +2,8 @@
 
 import config from "../../../../config";
 
-const labelsRespPrefix = "lz_Z_X_Y(";
-const labelsRespSuffix = ")";
+const mapLabelsRespPrefix = "lz_Z_X_Y(";
+const mapLabelsRespSuffix = ")";
 
 export default class MapLabelsCtl {
     /** Controller defining the map labels queries to the Paperscape API */
@@ -38,16 +38,12 @@ export default class MapLabelsCtl {
 
     static _getLabelTile(coord, coordMin, coordMax, tilesNum) {
         let chunkSize = (coordMax - coordMin) / tilesNum;
-        let upperBound = coordMin;
+        let highBound = coordMin + chunkSize;
         let tileIndex = 1;
 
-        while (true) {
-            upperBound += chunkSize;
-            if (coord < upperBound) {
-                break;
-            } else {
-                tileIndex += 1;
-            }
+        while (coord >= highBound) {
+            highBound += chunkSize;
+            tileIndex += 1;
         }
 
         return tileIndex;
@@ -60,8 +56,9 @@ export default class MapLabelsCtl {
     }
 
     static _pruneLabelsResp(body) {
-        let startStr = labelsRespPrefix.length;
-        let finishStr = body.length - labelsRespSuffix.length;
-        return body.substring(startStr, finishStr);
+        return body.slice(
+            +1 * mapLabelsRespPrefix.length,
+            -1 * mapLabelsRespSuffix.length
+        );
     }
 }

@@ -37,9 +37,9 @@ export default class PaperInfoCtl {
     }
 
     static _prunePaperInfoResp(body) {
-        let startStr = paperInfoRespPrefix.length;
-        let finishStr = body.length - paperInfoRespSuffix.length;
-
-        return body.substring(startStr, finishStr);
+        return body.slice(
+            +1 * paperInfoRespPrefix.length,
+            -1 * paperInfoRespSuffix.length
+        );
     }
 }

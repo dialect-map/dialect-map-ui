@@ -20,12 +20,10 @@ export default class PaperSearchPositionCtl {
     }
 
     static _buildRequestBody(paperIDs) {
-        let params = "tbl=";
-        paperIDs.forEach(id => {
-            params += "&mp2l[]=" + id;
-        });
-
-        return params;
+        // prettier-ignore
+        paperIDs = paperIDs.map((id) => "&mp2l[]=" + id);
+        paperIDs = paperIDs.join("");
+        return "tbl=" + paperIDs;
     }
 
     static _handlePaperPosResp(json) {
