@@ -13,9 +13,20 @@
     "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
     "@testing-library/react": "^11.2.7",
     "jest": "^26.6.0",
     "prettier": "2.3.0"
+  },
+  "babel": {
+    "presets": [
+      ["@babel/preset-env", {"modules": "auto"}],
+      ["@babel/preset-react", {"runtime": "automatic"}]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
   },
   "scripts": {
     "prestart": "./scripts/parse-env.sh --destination public",
