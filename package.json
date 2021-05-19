@@ -28,6 +28,12 @@
       "@babel/plugin-transform-runtime"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|svg)$": "babel-jest",
+      "\\.(css|less)$": "babel-jest"
+    }
+  },
   "scripts": {
     "prestart": "./scripts/parse-env.sh --destination public",
     "start": "react-scripts start",
