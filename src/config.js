@@ -1,7 +1,6 @@
 /* encoding: utf-8 */
 
-/* IMPORTANT NOTE:
- *
+/* NOTE:
  * Previously, a CORS-proxy was necessary to parse PaperScape responses
  * As they may not include the 'Access-Control-Allow-Origin' header.
  * Consider these resources if this change in the future:
@@ -9,6 +8,13 @@
  * Ref: https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors
  * Redirect: https://cors-anywhere.herokuapp.com/
  */
+
+/* NOTE:
+ *
+ * Define browser environment fall back in order
+ * to allow browser independent rendering (testing)
+ */
+const env = window.env || {};
 
 const config = {
     /* Leaflet map properties */
@@ -51,9 +57,9 @@ const config = {
     },
 
     /* Dialect map server */
-    dialectMapHost: window.env.SERVER_API_HOST,
-    dialectMapPort: window.env.SERVER_API_PORT,
-    dialectMapURL: `${window.env.SERVER_API_HOST}:${window.env.SERVER_API_PORT}`,
+    dialectMapHost: env.SERVER_API_HOST,
+    dialectMapPort: env.SERVER_API_PORT,
+    dialectMapURL: `${env.SERVER_API_HOST}:${env.SERVER_API_PORT}`,
 
     /* PaperScape URLs */
     papersDataURL: "https://paperscape.org/wombat",
