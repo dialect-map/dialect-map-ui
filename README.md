@@ -17,24 +17,34 @@ but modernizing and standardizing the whole stack. This web client uses:
 
 ## Environment setup
 All dependencies can be installed by running:
-```shell script
+
+```shell
 npm install
 npm install --global serve
-```
-
-
-### Project development
-To start a development server:
-```shell script
-make deploy
 ```
 
 
 ### Formatting
 All JavaScript files are formatted using [Prettier][prettier-web], and the custom properties
 defined in the `.prettierrc.json` file. To check for code style inconsistencies:
-```shell script
+
+```shell
 make check
+```
+
+### Testing
+Project testing is performed using [Jest][jest-test-web]. In order to run the tests:
+
+```shell
+make test
+```
+
+
+### Run project
+To start a development server:
+
+```shell
+make run
 ```
 
 
@@ -44,20 +54,20 @@ There is a `Makefile` to perform both Docker `build` and `push` operations.
 The project is currently designed to be deployed in the _DS3-Dialect-Map_ GCP project,
 so the initial step involve using [gcloud][gcloud-cli-setup] CLI tool to log in with GCP:
 
-```shell script
+```shell
 gcloud login
 gcloud auth configure-docker
 ```
 
 To build the image:
 
-```shell script
+```shell
 make docker-build
 ```
 
 To push the image to the GCP registry:
 
-```shell script
+```shell
 export GCP_PROJECT="ds3-dialect-map"
 export GCP_REGISTRY="us.gcr.io"
 make docker-push
@@ -85,6 +95,7 @@ and specially Rob J. Knegjens for being in contact with us during the developmen
 
 
 [dialect-map-repo]: https://github.com/dialect-map/dialect-map
+[jest-testing-web]: https://jestjs.io/
 [gcloud-cli-setup]: https://cloud.google.com/sdk/docs/install
 [leaflet-webpage]: https://leafletjs.com/
 [paperscape-blog]: https://paperscape.org/
