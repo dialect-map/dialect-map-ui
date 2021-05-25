@@ -13,7 +13,7 @@
     "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
-    "prettier": "2.2.1"
+    "prettier": "2.3.0"
   },
   "scripts": {
     "prestart": "./scripts/parse-env.sh --destination public",
