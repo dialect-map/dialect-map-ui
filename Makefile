@@ -24,7 +24,7 @@ build:
 .PHONY: run
 run:
 	@echo "Running development project"
-	@npm start
+	@npm run start --silent
 
 
 .PHONY: test
