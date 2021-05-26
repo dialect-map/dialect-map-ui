@@ -25,7 +25,7 @@ npm install --global serve
 
 
 ### Formatting
-All JavaScript files are formatted using [Prettier][prettier-web], and the custom properties
+All JavaScript files are formatted using [Prettier][prettier-webpage], and the custom properties
 defined in the `.prettierrc.json` file. To check for code style inconsistencies:
 
 ```shell
@@ -33,7 +33,7 @@ make check
 ```
 
 ### Testing
-Project testing is performed using [Jest][jest-test-web]. In order to run the tests:
+Project testing is performed using [Jest][jest-webpage]. In order to run the tests:
 
 ```shell
 make test
@@ -95,11 +95,11 @@ and specially Rob J. Knegjens for being in contact with us during the developmen
 
 
 [dialect-map-repo]: https://github.com/dialect-map/dialect-map
-[jest-testing-web]: https://jestjs.io/
+[jest-webpage]: https://jestjs.io/
 [gcloud-cli-setup]: https://cloud.google.com/sdk/docs/install
 [leaflet-webpage]: https://leafletjs.com/
 [paperscape-blog]: https://paperscape.org/
-[prettier-web]: https://prettier.io/docs/en/index.html
+[prettier-webpage]: https://prettier.io/docs/en/index.html
 [react-env-docs]: https://create-react-app.dev/docs/adding-custom-environment-variables/
 [react-webpage]: https://reactjs.org/
 [semantic-webpage]: https://react.semantic-ui.com/
