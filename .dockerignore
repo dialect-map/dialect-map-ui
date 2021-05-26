@@ -7,11 +7,9 @@
 build
 node_modules
 
-# Heavy items to avoid
-resources
-
-# Development mode env. values file
+# Development mode files
 public/*.js
+tests
 
 # Ignore any markdown document
 **/*.md

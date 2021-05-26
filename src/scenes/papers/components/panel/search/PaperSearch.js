@@ -47,7 +47,7 @@ export default class PaperSearch extends Component {
             this.state.paperSearch
         );
         if (ids.length === 0) {
-            return;
+            return null;
         }
 
         let papers = await PaperSearchPositionCtl.fetchPapersPos(ids);

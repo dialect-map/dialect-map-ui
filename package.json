@@ -8,19 +8,40 @@
     "react-dom": "^17.0.1",
     "react-leaflet": "^3.0.5",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.0",
+    "react-scripts": "^4.0.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "@testing-library/react": "^11.2.7",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
+    "enzyme": "^3.11.0",
+    "jest": "^27.0.1",
     "prettier": "2.3.0"
+  },
+  "babel": {
+    "presets": [
+      ["@babel/preset-env", {"modules": "auto"}],
+      ["@babel/preset-react", {"runtime": "automatic"}]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["./tests/setup.js"],
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|svg)$": "babel-jest",
+      "\\.(css|less)$": "babel-jest"
+    }
   },
   "scripts": {
     "prestart": "./scripts/parse-env.sh --destination public",
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build"
   },
   "browserslist": [
     ">0.2%",

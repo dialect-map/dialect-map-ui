@@ -29,8 +29,23 @@ jobs:
       - name: "Check code format"
         run: make check
 
-  build:
+  test:
     needs: [check]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: "Set up GitHub Actions"
+        uses: actions/checkout@v2
+      - name: "Setup node"
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15
+      - name: "Install dependencies"
+        run: npm install
+      - name: "Run tests"
+        run: make test
+
+  build:
+    needs: [test]
     runs-on: ubuntu-20.04
     steps:
       - name: "Set up GitHub Actions"
