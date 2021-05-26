@@ -30,7 +30,7 @@ run:
 .PHONY: test
 test:
 	@echo "Testing project"
-	@jest --noStackTrace $(TESTS_FOLDER)
+	@npx jest --noStackTrace $(TESTS_FOLDER)
 
 
 .PHONY: docker-build
