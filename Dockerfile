@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . /app
 
 # Install dependencies and web server
-RUN npm install --silent --only=prod
+RUN npm install-clean --omit=dev
 RUN npm install --global serve
 
 # Build for production
