@@ -24,8 +24,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 15
-      - name: "Install dev dependencies"
-        run: npm install --only=dev
+      - name: "Install Prettier"
+        run: npm install --global prettier@2.3.0
       - name: "Check code format"
         run: make check
 
@@ -40,7 +40,7 @@ jobs:
         with:
           node-version: 15
       - name: "Install dependencies"
-        run: npm install
+        run: npm install-clean
       - name: "Run tests"
         run: make test
 
