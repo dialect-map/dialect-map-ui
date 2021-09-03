@@ -1,5 +1,10 @@
 # Dialect map UI
 
+[![CI/CD Status][ci-status-badge]][ci-status-link]
+[![Coverage Status][cov-status-badge]][cov-status-link]
+[![MIT license][mit-license-badge]][mit-license-link]
+[![Code style][code-style-badge]][code-style-link]
+
 This repository contains the front-end interface of the Dialect map project.
 An idea proposed by professor Kyle Cranmer, and initially developed as one
 of the _Data Science and Software Services_ (DS3) funded projects.
@@ -93,6 +98,15 @@ before writing them into a _run-time generated_ JavaScript file (loaded from the
 We would like to thank the PaperScape authors for maintaining an up-to-date tiles server,
 and specially Rob J. Knegjens for being in contact with us during the development of this project.
 
+
+[ci-status-badge]: https://github.com/dialect-map/dialect-map-ui/actions/workflows/ci.yml/badge.svg?branch=main
+[ci-status-link]: https://github.com/dialect-map/dialect-map-ui/actions/workflows/ci.yml?query=branch%3Amain
+[code-style-badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
+[code-style-link]: https://github.com/prettier/prettier
+[cov-status-badge]: https://codecov.io/gh/dialect-map/dialect-map-ui/branch/main/graph/badge.svg
+[cov-status-link]: https://codecov.io/gh/dialect-map/dialect-map-ui
+[mit-license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
+[mit-license-link]: https://github.com/dialect-map/dialect-map-ui/blob/main/LICENSE
 
 [dialect-map-repo]: https://github.com/dialect-map/dialect-map
 [docs-gcloud-cli]: https://cloud.google.com/sdk/docs/install
