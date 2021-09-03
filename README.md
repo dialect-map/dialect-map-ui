@@ -10,9 +10,9 @@ This project provides a web interface for the [Dialect Map project][dialect-map-
 taking the interface of the [PaperScape project][paperscape-blog] as inspiration,
 but modernizing and standardizing the whole stack. This web client uses:
 
-- [React][react-webpage] ⚛️
-- [Leaflet][leaflet-webpage] 🗺️
-- [Semantic][semantic-webpage] 🎨
+- [React][webpage-react] ⚛️
+- [Leaflet][webpage-leaflet] 🗺️
+- [Semantic][webpage-semantic] 🎨
 
 
 ## Environment setup
@@ -25,7 +25,7 @@ npm install --global serve
 
 
 ### Formatting
-All JavaScript files are formatted using [Prettier][prettier-webpage], and the custom properties
+All JavaScript files are formatted using [Prettier][webpage-prettier], and the custom properties
 defined in the `.prettierrc.json` file. To check for code style inconsistencies:
 
 ```shell
@@ -33,7 +33,7 @@ make check
 ```
 
 ### Testing
-Project testing is performed using [Jest][jest-webpage]. In order to run the tests:
+Project testing is performed using [Jest][webpage-jest]. In order to run the tests:
 
 ```shell
 make test
@@ -52,7 +52,7 @@ make run
 There is a `Makefile` to perform both Docker `build` and `push` operations.
 
 The project is currently designed to be deployed in the _DS3-Dialect-Map_ GCP project,
-so the initial step involve using [gcloud][gcloud-cli-setup] CLI tool to log in with GCP:
+so the initial step involve using [gcloud][docs-gcloud-cli] CLI tool to log in with GCP:
 
 ```shell
 gcloud login
@@ -78,7 +78,7 @@ make docker-push
 This project uses a set of env. variables to configure the connection with the backend API:
 
 Bear in mind that React does not allow passing **run-time** env. variables to a built application
-([reference][react-env-docs]). In order to do so, a dedicated shell script named `parse-env.sh` was created.
+([reference][docs-react-env]). In order to do so, a dedicated shell script named `parse-env.sh` was created.
 This script parses the `.env` file substituting the default values by the ones defined in the environment,
 before writing them into a _run-time generated_ JavaScript file (loaded from the `index.html`).
 
@@ -95,11 +95,11 @@ and specially Rob J. Knegjens for being in contact with us during the developmen
 
 
 [dialect-map-repo]: https://github.com/dialect-map/dialect-map
-[jest-webpage]: https://jestjs.io/
-[gcloud-cli-setup]: https://cloud.google.com/sdk/docs/install
-[leaflet-webpage]: https://leafletjs.com/
+[docs-gcloud-cli]: https://cloud.google.com/sdk/docs/install
+[docs-react-env]: https://create-react-app.dev/docs/adding-custom-environment-variables/
 [paperscape-blog]: https://paperscape.org/
-[prettier-webpage]: https://prettier.io/docs/en/index.html
-[react-env-docs]: https://create-react-app.dev/docs/adding-custom-environment-variables/
-[react-webpage]: https://reactjs.org/
-[semantic-webpage]: https://react.semantic-ui.com/
+[webpage-jest]: https://jestjs.io/
+[webpage-leaflet]: https://leafletjs.com/
+[webpage-prettier]: https://prettier.io/docs/en/index.html
+[webpage-react]: https://reactjs.org/
+[webpage-semantic]: https://react.semantic-ui.com/
