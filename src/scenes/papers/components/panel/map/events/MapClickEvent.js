@@ -22,7 +22,12 @@ export default function setClickHandler({ viewToWorld, updateSelected }) {
 }
 
 async function checkMapClick(event) {
-    let clickedClass = event.originalEvent.target.className;
+    // Order matters. 'Undefined' checking must go from
+    // the most specific to the least specific property
+    let clickedClass =
+        event.originalEvent.target.className.baseVal ||
+        event.originalEvent.target.className;
+
     let isDivStrings = typeof clickedClass === "string";
     let isDivLeaflet = clickedClass.includes("leaflet");
 
