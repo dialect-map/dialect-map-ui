@@ -1,7 +1,7 @@
 /* encoding: utf-8 */
 
 import { render } from "@testing-library/react";
-import { shallow } from "enzyme";
+import renderer from "react-test-renderer";
 import PaperSearch from "../../../../../src/scenes/papers/components/panel/search/PaperSearch";
 import PaperSearchCtl from "../../../../../src/scenes/papers/controllers/paperscape/PaperSearch";
 
@@ -9,8 +9,8 @@ describe("PaperSearch component", () => {
     /** Set of tests for the PaperSearch component */
 
     test("Updates search input", () => {
-        const wrapper = shallow(<PaperSearch />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<PaperSearch />);
+        const instance = wrapper.getInstance();
         const testValue = "example";
         const testEvent = { target: { value: testValue } };
 
@@ -22,8 +22,8 @@ describe("PaperSearch component", () => {
     });
 
     test("Updates search type", () => {
-        const wrapper = shallow(<PaperSearch />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<PaperSearch />);
+        const instance = wrapper.getInstance();
         const testValue = "example";
         const testEvent = { value: testValue };
 
@@ -37,8 +37,8 @@ describe("PaperSearch component", () => {
     test("Handles empty results", async () => {
         PaperSearchCtl.fetchPapersIDs = jest.fn().mockResolvedValue([]);
 
-        const wrapper = shallow(<PaperSearch />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<PaperSearch />);
+        const instance = wrapper.getInstance();
         const results = await instance.searchPapers();
         expect(results).toBeNull();
     });

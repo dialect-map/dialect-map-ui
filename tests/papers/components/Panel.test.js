@@ -1,14 +1,14 @@
 /* encoding: utf-8 */
 
-import { shallow } from "enzyme";
+import renderer from "react-test-renderer";
 import PapersPanel, { PanelTabs } from "../../../src/scenes/papers/components/Panel";
 
 describe("Panel component", () => {
     /** Set of tests for the Panel component */
 
     test("Sets jargon search tab", () => {
-        const wrapper = shallow(<PapersPanel />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<PapersPanel />);
+        const instance = wrapper.getInstance();
 
         instance.state.chosenTab = null;
         instance.setJargonTab();
@@ -18,8 +18,8 @@ describe("Panel component", () => {
     });
 
     test("Sets paper search tab", () => {
-        const wrapper = shallow(<PapersPanel />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<PapersPanel />);
+        const instance = wrapper.getInstance();
 
         instance.state.chosenTab = null;
         instance.setSearchTab();

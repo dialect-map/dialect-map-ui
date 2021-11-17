@@ -1,7 +1,7 @@
 /* encoding: utf-8 */
 
 import { render } from "@testing-library/react";
-import { shallow } from "enzyme";
+import renderer from "react-test-renderer";
 import JargonSearch from "../../../../../src/scenes/papers/components/panel/search/JargonSearch";
 import JargonSearchCtl from "../../../../../src/scenes/papers/controllers/backend/JargonSearch";
 import MetricSearchCtl from "../../../../../src/scenes/papers/controllers/backend/MetricSearch";
@@ -11,8 +11,8 @@ describe("JargonSearch component", () => {
     /** Set of tests for the JargonSearch component */
 
     test("Updates search jargon A", () => {
-        const wrapper = shallow(<JargonSearch />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<JargonSearch />);
+        const instance = wrapper.getInstance();
         const testValue = "example";
         const testEvent = { target: { value: testValue } };
 
@@ -24,8 +24,8 @@ describe("JargonSearch component", () => {
     });
 
     test("Updates search jargon B", () => {
-        const wrapper = shallow(<JargonSearch />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<JargonSearch />);
+        const instance = wrapper.getInstance();
         const testValue = "example";
         const testEvent = { target: { value: testValue } };
 
@@ -39,8 +39,8 @@ describe("JargonSearch component", () => {
     test("Gets Jargon IDs", async () => {
         JargonSearchCtl.fetchJargonID = jest.fn().mockResolvedValue(null);
 
-        const wrapper = shallow(<JargonSearch />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<JargonSearch />);
+        const instance = wrapper.getInstance();
         const results = await instance.queryJargonIds(["ID_1", "ID_2"]);
         expect(results).toHaveLength(0);
     });
@@ -48,8 +48,8 @@ describe("JargonSearch component", () => {
     test("Gets Jargon metrics", async () => {
         MetricSearchCtl.fetchLatestMetrics = jest.fn().mockResolvedValue(["a"]);
 
-        const wrapper = shallow(<JargonSearch />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<JargonSearch />);
+        const instance = wrapper.getInstance();
         const results = await instance.queryMetrics(["ID_1", "ID_2"]);
         expect(results).toStrictEqual(["a", "a"]);
     });
@@ -57,8 +57,8 @@ describe("JargonSearch component", () => {
     test("Gets Paper IDs", async () => {
         PaperSearchCtl.fetchPapersIDs = jest.fn().mockResolvedValue(["b"]);
 
-        const wrapper = shallow(<JargonSearch />);
-        const instance = wrapper.instance();
+        const wrapper = renderer.create(<JargonSearch />);
+        const instance = wrapper.getInstance();
         const results = await instance.queryPaperIds(["ID_1", "ID_2"]);
         expect(results).toStrictEqual(["b", "b"]);
     });
