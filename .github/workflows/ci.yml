@@ -23,7 +23,7 @@ jobs:
       - name: "Setup node"
         uses: actions/setup-node@v2
         with:
-          node-version: 15
+          node-version: 16
       - name: "Install Prettier"
         run: npm install --global prettier@2.5.0
       - name: "Check code format"
@@ -38,7 +38,7 @@ jobs:
       - name: "Setup node"
         uses: actions/setup-node@v2
         with:
-          node-version: 15
+          node-version: 16
       - name: "Install dependencies"
         run: npm install-clean
       - name: "Run tests"
