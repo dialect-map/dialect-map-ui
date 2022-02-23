@@ -14,7 +14,7 @@ on:
 
 jobs:
 
-  check:
+  lint:
     needs: []
     runs-on: ubuntu-20.04
     steps:
@@ -23,14 +23,14 @@ jobs:
       - name: "Setup node"
         uses: actions/setup-node@v2
         with:
-          node-version: 15
+          node-version: 16
       - name: "Install Prettier"
         run: npm install --global prettier@2.5.0
       - name: "Check code format"
         run: make check
 
   test:
-    needs: [check]
+    needs: [lint]
     runs-on: ubuntu-20.04
     steps:
       - name: "Set up GitHub Actions"
@@ -38,7 +38,7 @@ jobs:
       - name: "Setup node"
         uses: actions/setup-node@v2
         with:
-          node-version: 15
+          node-version: 16
       - name: "Install dependencies"
         run: npm install-clean
       - name: "Run tests"
@@ -50,11 +50,5 @@ jobs:
     steps:
       - name: "Set up GitHub Actions"
         uses: actions/checkout@v2
-      - name: "Setup node"
-        uses: actions/setup-node@v2
-        with:
-          node-version: 15
-      - name: "Install dependencies"
-        run: npm install-clean
-      - name: "Run tests"
-        run: make build
+      - name: "Build Docker image"
+        run: make docker-build
