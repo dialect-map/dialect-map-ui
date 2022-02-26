@@ -2,15 +2,17 @@
 
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PapersMap from "./scenes/papers/Papers";
 import "semantic-ui-css/semantic.min.css";
 import "./index.css";
 
 ReactDOM.render(
     <BrowserRouter>
-        <Route exact path="/" component={PapersMap} />
-        <Route exact path="/map" component={PapersMap} />
+        <Routes>
+            <Route exact path="/" element={<PapersMap />} />
+            <Route exact path="/map" element={<PapersMap />} />
+        </Routes>
     </BrowserRouter>,
     document.getElementById("root")
 );
