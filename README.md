@@ -54,23 +54,21 @@ make run
 
 
 ## Docker
-There is a `Makefile` to perform both Docker `build` and `push` operations.
-
-The project is currently designed to be deployed in the _DS3-Dialect-Map_ GCP project,
-so the initial step involve using [gcloud][docs-gcloud-cli] CLI tool to log in with GCP:
+The project is currently designed to be deployed in a Google Cloud Platform project,
+so the initial step involves using [gcloud][docs-gcloud-cli] CLI tool to log into it:
 
 ```shell
 gcloud login
 gcloud auth configure-docker
 ```
 
-To build the image:
+To build a Docker image out of the project:
 
 ```shell
 make docker-build
 ```
 
-To push the image to the GCP registry:
+To push a Docker image to the GCP registry:
 
 ```shell
 export GCP_PROJECT="ds3-dialect-map"
