@@ -1,19 +1,28 @@
 # Base image
 FROM node:16.14-alpine
 
-# Set working directory and copy files
+# Set working directory
 WORKDIR /app
-COPY . /app
 
-# Install dependencies and web server
+
+# Copy dependency files
+COPY package.json /app
+COPY package-lock.json /app
+
+# Install dependencies
 RUN npm install-clean --omit=dev && \
     npm install --global serve && \
     npm cache clean --force
 
+# Copy all files
+COPY . /app
+
+
 # Build for production
 RUN npm run build --silent
 
-# Tell Docker about the port `serve` will expose on
+
+# State application exposed port
 EXPOSE 5000
 
 # Start app
