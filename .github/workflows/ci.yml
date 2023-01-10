@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: 16
       - name: "Install Prettier"
-        run: npm install --global prettier@2.7.1
+        run: npm install --global prettier@2.8.2
       - name: "Check format"
         run: make check
 
