@@ -14,7 +14,7 @@
     "semantic-ui-react": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.16.0",
     "@testing-library/react": "^11.2.7",
     "jest": "^27.5.1",
